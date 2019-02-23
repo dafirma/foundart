@@ -1,0 +1,44 @@
+<form id="form" action="/user/signup" method="POST">
+  <label for="username">Username</label><br>
+  <input type="text" name="username" placeholder="Your username">
+
+  <label for="password">Password</label><br>
+  <input type="password" name="password" placeholder="password">
+
+  <label for="name">Name</label><br>
+  <input type="text" name="name" placeholder="Your name">
+
+  <label for="lastName">Lastname</label><br>
+  <input type="text" name="lastname" placeholder="Your lastname">
+
+  <label for="phone">Phone</label><br>
+  <input type="text" name="phone" placeholder="Your phone">
+
+  <label for="email">email</label><br>
+  <input type="email" name="email" placeholder="Your email">
+
+  <label for="street">street</label><br>
+  <input type="text" name="street" placeholder="Your street">
+
+  <label for="number">number</label><br>
+  <input type="number" name="number" placeholder="Your number">
+
+  <label for="zipcode">zipcode</label><br>
+  <input type="number" name="zipcode" placeholder="Your zipcode">
+
+  <label for="city">city</label><br>
+  <input type="text" name="city" placeholder="Your city">
+
+  <label for="country">country</label><br>
+  <input type="text" name="country" placeholder="Your country">
+
+  <label for="nationalId">nationalId</label><br>
+  <input type="text" name="nationalId" placeholder="Your nationalId">
+
+  <%/* if (errorMessage) {*/ %>
+    <div class="error-message">
+      <%/*= errorMessage */%>
+    </div>
+  <%/* } */%>
+  <button type="submit">Create account</button>
+</form>
