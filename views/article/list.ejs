@@ -1,0 +1,11 @@
+<h2>All the Articles</h2>
+
+<div>
+  <ul>
+    <% article.forEach(article) => {%>
+      <li>
+        <a href="/article/<%= article._id %>">
+          <%= article.title %> </a>
+      </li>
+  </ul>
+</div>

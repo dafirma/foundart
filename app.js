@@ -14,6 +14,7 @@ dotenv.load();
 
 const indexRouter = require('./routes/index');
 const userRouter = require('./routes/auth/user');
+const articleRouter = require('./routes/article/index');
 
 mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true })
   .then(() => {
@@ -56,6 +57,7 @@ app.use(session({
 
 app.use('/', indexRouter);
 app.use('/user', userRouter);
+app.use('/article', articleRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
