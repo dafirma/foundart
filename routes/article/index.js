@@ -26,7 +26,7 @@ router.post('/new', (req, res, next) => {
     description,
   })
     .then(() => {
-      res.redirect('/');
+      res.redirect('list');
     })
     .catch((error) => {
       next(error);
@@ -54,4 +54,33 @@ router.get('/:id', (req, res, next) => {
       next(error);
     });
 });
+/* GET update article */
+router.get('/:id/update', (req, res, next) => {
+  const { id } = req.params;
+  
+  Article.findById(id)
+    .then((article) => {
+      res.render('article/update', { article });
+    })
+    .catch((error) => {
+      next(error);
+    });
+});
+
+router.post('/:id', (req, res, next) => {
+  const { id } = req.params;
+  const {
+    title, price, category, imageArticle, type, description,
+  } = req.body;
+  Article.findByIdAndUpdate(id, {
+    title, price, category, imageArticle, type, description })
+    .then(() => {
+      res.redirect('list');
+    })
+    .catch((error) => {
+      next(error);
+    });
+});
+
+
 module.exports = router;
