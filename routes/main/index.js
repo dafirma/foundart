@@ -18,4 +18,8 @@ router.get('/search', (req, res, next) => {
     });
 });
 
+router.get('/test', (req, res, next) => {
+  res.render('main/test');
+});
+
 module.exports = router;
