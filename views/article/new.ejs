@@ -1,12 +1,13 @@
-<h2> New Article</h2>
+<h2> New Article</h2><br>
 
 <form id="form" action="/article/new" method="POST">
-  <label for="Title">Title</label><br>
-  <input type="text" name="title" placeholder="Title" id="title"><br>
+  <label for="title">Title</label><br>
+  <input type="text" name="title" placeholder="Title" id="title"><br><br>
 
   <label for="price">Price/day</label><br>
-  <input type="text" name="price" placeholder="Price/day" id="price"><br><br>
+  <input type="text" name="price" placeholder="Price/day" id="price"><br>
 
+  <label for="cetegory">Category</label><br>
   <select name="category" id="category">
     <option value="visualArt">Visual Art</option>
     <option value="contemporany">Contemporany</option>
@@ -19,9 +20,11 @@
     <option value="music">Music</option>
   </select><br>
 
-  <label for="image-article">Choose an article picture:</label>
-  <input type="file" id="imageArticle" name="image-article" accept="image/png, image/jpeg"><br>
+  <label for="image-article">Choose an article picture:</label><br>
 
+  <input type="file" id="imageArticle" name="image-article" accept="image/png, image/jpeg"><br>
+  
+  <label for="type">Type</label><br>
   <select name="type" id="type">
     <option value="painting">Painting</option>
     <option value="sculpture">Sculpture</option>
@@ -45,3 +48,4 @@
   <%/* } */%>
   <button type="submit">Create article</button>
 </form>
+

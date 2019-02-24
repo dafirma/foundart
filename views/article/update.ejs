@@ -1,1 +1,15 @@
-<h2> Edit Article</h2>
+<h2> Edit Article:  <%= article.title%></h2>
+
+<form action="/article/<%= article._id %>" method="post">
+  <label for="name">Title</label>
+  <input type="text" name="title" id="title" value="<%= article.title %>">
+  <label for="origin">Price</label>
+  <input type="text" name="price" id="price" value="<%= article.price %>">
+  <label for="destination">Category</label>
+  <input type="text" name="category" id="category" value="<%= article.category %>">
+  <label for="type">Type</label>
+  <input type="text" name="type" id="type" value="<%= article.type %>">
+  <label for="type">Type</label>
+  <input type="text" name="description" id="description" value="<%= article.description %>">
+  <input type="submit" value="Confirm">
+</form>

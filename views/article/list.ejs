@@ -2,10 +2,14 @@
 
 <div>
   <ul>
-    <% article.forEach(article) => {%>
+    <% articles.forEach((article) => {%>
       <li>
         <a href="/article/<%= article._id %>">
           <%= article.title %> </a>
+          <form action="/article/<%= article._id%>" method="POST">
+            <input type="submit" value="Delete">
+          </form>
       </li>
+      <% })%>
   </ul>
 </div>
