@@ -82,5 +82,16 @@ router.post('/:id', (req, res, next) => {
     });
 });
 
+/* DELETE article */
+router.post('/:id/delete', (req, res, next) => {
+  const { id } = req.params;
+  Article.findByIdAndDelete(id)
+    .then(() => {
+      res.redirect('/article/list');
+    })
+    .catch((error) => {
+      next(error);
+    });
+});
 
 module.exports = router;
