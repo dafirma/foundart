@@ -34,9 +34,17 @@ router.post('/new', (req, res, next) => {
 });
 
 /* GET list article */
-router.get('/article/list', (req, res, next) => {
-  res.render('article/list');
+router.get('/list', (req, res, next) => {
+  Article.find()
+    .then((articles) => {
+      res.render('article/list', { articles });
+    })
+    .catch((error) => {
+      next(error);
+    });
 });
+
+
 
 
 module.exports = router;

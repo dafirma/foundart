@@ -4,7 +4,7 @@ const { Schema } = mongoose;
 const { ObjectId } = Schema.Types;
 
 const articleSchema = new Schema({
-  name: String,
+  title: String,
   category: String,
   type: String,
   description: String,
