@@ -6,16 +6,16 @@
 
     <label for="password">Password</label>
     <input type="password" name="password">
-    <% if (errorMessage) { %>
+    </*% if (errorMessage) { */%>
     <div class="error-message">
-        <%= errorMessage %>
+        <%/*= errorMessage */%>
     </div>
-    <% } %>
+    <%/* } */%>
 
 
-    <button>Sign in</button>
+    <button type="submit">Log In</button>
 
     <p class="account-message">
-        Don't have an account? <a href="/signup">Sign up</a>
+        Don't have an account? <a href="/user/signup">Sign up</a>
     </p>
 </form>
