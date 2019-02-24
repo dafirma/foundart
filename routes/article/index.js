@@ -44,7 +44,14 @@ router.get('/list', (req, res, next) => {
     });
 });
 
-
-
-
+router.get('/:id', (req, res, next) => {
+  const { id } = req.params;
+  Article.findById(id)
+    .then((article) => {
+      res.render('article/show', { article });
+    })
+    .catch((error) => {
+      next(error);
+    });
+});
 module.exports = router;
