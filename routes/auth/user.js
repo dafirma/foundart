@@ -52,7 +52,7 @@ router.post('/login', (req, res, next) => {
         // Save the login in the session!
         req.session.currentUser = user;
         console.log('logged');
-        res.redirect('/');
+        res.redirect('/main');
       } else {
         res.render('auth/login', () => {
           console.log('Please enter both, username and password to sign up.');
