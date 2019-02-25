@@ -11,6 +11,7 @@ const articleSchema = new Schema({
   price: Number,
   imgName: String,
   imgPath: String,
+  originalName: String,
   userID: {
     type: ObjectId,
     ref: 'User',
