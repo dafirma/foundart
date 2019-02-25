@@ -14,7 +14,10 @@ dotenv.load();
 
 const indexRouter = require('./routes/index');
 const userRouter = require('./routes/auth/user');
-const articleRouter = require('./routes/article/index');
+const articleRouter = require('./routes/article');
+const mainRouter = require('./routes/main');
+
+const app = express();
 
 mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true })
   .then(() => {
@@ -23,8 +26,6 @@ mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true })
   .catch((error) => {
     console.log(error);
   });
-
-const app = express();
 
 // view engine setup
 app.use(sassMiddleware({
@@ -58,6 +59,7 @@ app.use(session({
 app.use('/', indexRouter);
 app.use('/user', userRouter);
 app.use('/article', articleRouter);
+app.use('/main', mainRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

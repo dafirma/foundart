@@ -20,16 +20,6 @@ const userSchema = new Schema({
     number: String,
     img: String,
   },
-
-  rent: [{
-    objectID: {
-      type: Schema.Types.ObjectId,
-      ref: 'Article',
-    },
-    dateStart: Date,
-    dateEnd: Date,
-    State: String,
-  }],
 }, {
   timestamps: true,
 });

@@ -28,12 +28,6 @@ router.post('/signup', (req, res, next) => {
     });
 });
 
-/* GET LOGIN FORM */
-
-router.get('/login', (req, res, next) => {
-  res.render('auth/login');
-});
-
 /* LOGGIN USER */
 
 router.post('/login', (req, res, next) => {
@@ -57,7 +51,8 @@ router.post('/login', (req, res, next) => {
       if (bcrypt.compareSync(password, user.password)) {
         // Save the login in the session!
         req.session.currentUser = user;
-        res.redirect('/');
+        console.log('logged');
+        res.redirect('/main');
       } else {
         res.render('auth/login', () => {
           console.log('Please enter both, username and password to sign up.');
