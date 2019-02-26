@@ -1,11 +1,23 @@
 const express = require('express');
 const Article = require('../../models/article');
+
 const middlewares = require('../middlewares');
 
+const app = express();
+
 const router = express.Router();
+router.use(middlewares.protectedRoute);
 
 router.get('/', (req, res, next) => {
-  res.render('main/dashboard');
+  const user = req.session.currentUser;
+  Article.find(user)
+    .then((articles) => {
+      console.log(user);
+      res.render('main/dashboard', { articles });
+    })
+    .catch((error) => {
+      next(error);
+    });
 });
 
 router.get('/search', (req, res, next) => {
