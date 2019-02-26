@@ -1,6 +1,11 @@
 const express = require('express');
+const multer = require('multer');
+const uploadCloud = require('../../config/cloudinary.js');
+
 const User = require('../../models/user');
 
+
+const upload = multer({ dest: './public/uploads/' });
 const Article = require('../../models/article');
 
 const router = express.Router();
@@ -12,13 +17,17 @@ router.get('/new', (req, res, next) => {
 });
 
 /* POST new article */
-router.post('/new', (req, res, next) => {
+router.post('/new', uploadCloud.single('photo'), (req, res, next) => {
   const {
-    title, price, category, imageArticle, type, description,
+    title, price, category, photo, type, description,
   } = req.body;
+  const imgPath = req.file.url;
+  // const imgPath = `/uploads/${req.file.filename}`; to upload image local
+  const { imgName } = req.body;
+  const originalName = req.file.originalname;
   // const userID = req.session.currentUser._id;
   Article.create({
-    title, price, category, imageArticle, type, description,
+    title, price, category, photo, imgPath, imgName, originalName, type, description,
   })
     .then(() => {
       res.redirect('list');
@@ -32,6 +41,7 @@ router.post('/new', (req, res, next) => {
 router.get('/list', (req, res, next) => {
   Article.find()
     .then((articles) => {
+      console.log(articles.imgPath)
       res.render('article/list', {
         articles
       });

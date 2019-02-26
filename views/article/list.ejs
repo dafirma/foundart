@@ -5,7 +5,8 @@
     <% articles.forEach((article) => {%>
       <li>
         <a href="/article/<%= article._id %>">
-          <%= article.title %> </a>
+          <%= article.title %>
+          <img src="<%= article.imgPath %>" alt="<% article.originalName%>"> </a>
           <form action="/article/<%= article._id %>/delete" method="POST">
             <input type="submit" value="Delete">
           </form>

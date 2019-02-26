@@ -9,6 +9,9 @@ const articleSchema = new Schema({
   type: String,
   description: String,
   price: Number,
+  imgName: String,
+  imgPath: String,
+  originalName: String,
   userID: {
     type: ObjectId,
     ref: 'User',
