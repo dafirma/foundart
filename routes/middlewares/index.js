@@ -3,24 +3,15 @@ module.exports = {
     if (req.session.currentUser) {
       next();
     } else {
-      res.redirect('/login');
+      res.redirect('/');
     }
   },
   anonRoute: (req, res, next) => {
     if (req.session.currentUser) {
-      res.redirect('/moves');
+      res.redirect('/');
     } else {
       next();
     }
-  },
-  checkRole: (role) => {
-    return (req, res, next) => {
-      if (req.session.currentUser.role === role) {
-        next();
-      } else {
-        res.redirect('login');
-      }
-    };
   },
   notifications: (req, res, next) => {
     // We extract the messages separately cause we call req.flash() we'll clean the object flash.

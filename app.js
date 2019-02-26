@@ -1,4 +1,5 @@
 const createError = require('http-errors');
+const flash = require('connect-flash');
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
@@ -9,6 +10,8 @@ const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 const sassMiddleware = require('node-sass-middleware');
 const dotenv = require('dotenv');
+
+const { notifications } = require('./routes/middlewares');
 
 dotenv.load();
 
@@ -55,7 +58,15 @@ app.use(session({
     ttl: 24 * 60 * 60, // 1 day
   }),
 }));
+app.use(flash());
 
+app.use((req, res, next) => {
+  // app.locals.currentUser = req.session.currentUser;
+  res.locals.currentUser = req.session.currentUser;
+  next();
+});
+
+app.use(notifications);
 app.use('/', indexRouter);
 app.use('/user', userRouter);
 app.use('/article', articleRouter);
