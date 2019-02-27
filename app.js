@@ -21,6 +21,7 @@ const articleRouter = require('./routes/article');
 const mainRouter = require('./routes/main');
 
 const app = express();
+app.locals.title = 'Found Art';
 
 mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true })
   .then(() => {

@@ -9,25 +9,22 @@ const router = express.Router();
 
 
 /* GET signup form */
-router.get('/signup', (req, res, next) => {
-  res.render('auth/signup');
+router.get('/signup', middlewares.anonRoute, (req, res, next) => {
+  res.render('auth/signup', { errorMessage: req.flash('error') });
 });
 
 /* CREATE USER */
-router.post('/signup', (req, res, next) => {
+router.post('/signup', middlewares.anonRoute, (req, res, next) => {
   const { username, password } = req.body;
-  
   if (username === '' || password === '') {
-    req.flash('error', 'campos vacios');
+    req.flash('error', 'Empty fields');
     return res.redirect('/signup');
   }
   User.findOne({ username })
     .then((user) => {
       if (user) {
-        req.flash('error', 'el usuario no existe');
-        
+        req.flash('error', 'User do not exist');
         res.redirect('/signup');
-
       } else {
         const salt = bcrypt.genSaltSync(bcryptSalt);
         const hashPass = bcrypt.hashSync(password, salt);
@@ -36,7 +33,7 @@ router.post('/signup', (req, res, next) => {
           password: hashPass,
         })
           .then(() => {
-            req.flash('success', 'Usuario creado');
+            req.flash('success', 'User created');
             res.redirect('/');
           })
           .catch((error) => {
@@ -51,11 +48,12 @@ router.post('/signup', (req, res, next) => {
 
 /* LOGGIN USER */
 
-router.post('/login', (req, res, next) => {
+router.post('/login', middlewares.anonRoute, (req, res, next) => {
   const { username, password } = req.body;
 
   if (username === '' || password === '') {
-    req.flash('error', 'campos vacios');
+    req.flash('error', 'no empty fields');
+    req.flash('info', 'no empty fields');
     res.redirect('/');
     return;
   }
