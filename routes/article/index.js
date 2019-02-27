@@ -25,9 +25,13 @@ router.post('/new', uploadCloud.single('photo'), (req, res, next) => {
   // const imgPath = `/uploads/${req.file.filename}`; to upload image local
   const { imgName } = req.body;
   const originalName = req.file.originalname;
-  // const userID = req.session.currentUser._id;
+  const user = req.session.currentUser;
+  const userID = user._id;
+  console.log(userID);
+  
+
   Article.create({
-    title, price, category, photo, imgPath, imgName, originalName, type, description,
+    title, price, category, photo, imgPath, imgName, originalName, userID, type, description,
   })
     .then(() => {
       res.redirect('list');
@@ -41,7 +45,6 @@ router.post('/new', uploadCloud.single('photo'), (req, res, next) => {
 router.get('/list', (req, res, next) => {
   Article.find()
     .then((articles) => {
-      console.log(articles.imgPath)
       res.render('article/list', {
         articles
       });
@@ -51,6 +54,7 @@ router.get('/list', (req, res, next) => {
     });
 });
 
+// GET single article
 router.get('/:id', (req, res, next) => {
   const { id } = req.params;
   Article.findById(id)
