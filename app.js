@@ -23,6 +23,7 @@ const mainRouter = require('./routes/main');
 
 
 const app = express();
+app.locals.title = 'Found Art';
 
 mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true })
   .then(() => {
@@ -63,6 +64,7 @@ app.use(session({
 app.use(flash());
 
 app.use((req, res, next) => {
+  app.locals.currentUser = req.session.currentUser;
   res.locals.currentUser = req.session.currentUser;
   next();
 });

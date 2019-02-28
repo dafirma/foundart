@@ -1,7 +1,7 @@
 const express = require('express');
 const multer = require('multer');
 const uploadCloud = require('../../config/cloudinary.js');
-
+const middlewares = require('../middlewares');
 const User = require('../../models/user');
 
 
@@ -9,6 +9,7 @@ const upload = multer({ dest: './public/uploads/' });
 const Article = require('../../models/article');
 
 const router = express.Router();
+router.use(middlewares.protectedRoute);
 
 /* GET new article */
 
@@ -123,7 +124,7 @@ router.post('/:id/request', (req, res, next) => {
     $push: { rent },
   })
     .then(() => {
-      res.redirect('/');
+      res.redirect('/main');
     })
     .catch((error) => {
       next(error);
