@@ -45,9 +45,7 @@ router.post('/new', uploadCloud.single('photo'), (req, res, next) => {
 router.get('/list', (req, res, next) => {
   Article.find()
     .then((articles) => {
-      res.render('article/list', {
-        articles
-      });
+      res.render('article/list', { articles });
     })
     .catch((error) => {
       next(error);
