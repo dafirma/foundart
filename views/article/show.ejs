@@ -4,7 +4,10 @@
 <h3>Title: <%= article.title%></h3>
 <h3>Price: <%= article.price%></h3>
 <h3>Category: <%= article.category%></h3>
-<a href="/article/<%= article._id%>/update">Edit</a>
-<div>
+
+<% if(locals.currentUser._id == article.userID){ %>
+    <a href="/article/<%= article._id%>/update">Edit</a>
+    <%console.log('propietario')%>
+  <% } else{ %>  
     <%- include('../partials/rentRequest');%>
-</div>
+ <% } %>

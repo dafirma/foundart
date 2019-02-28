@@ -67,7 +67,9 @@ router.post('/login', middlewares.anonRoute, (req, res, next) => {
       }
       if (bcrypt.compareSync(password, user.password)) {
         // Save the login in the session!
+        
         req.session.currentUser = user;
+        
         req.flash('success', 'usuario logeado correctamente');
         res.redirect('/main');
       } else {
@@ -84,8 +86,8 @@ router.post('/login', middlewares.anonRoute, (req, res, next) => {
 
 router.get('/logout', (req, res, next) => {
   req.session.destroy(() => {
-    req.flash('success', 'Sesión cerrada');
-    res.redirect('auth/login');
+    console.log('logout');
+    res.redirect('/');
   });
 });
 

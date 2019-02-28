@@ -30,7 +30,7 @@ router.post('/new', uploadCloud.single('photo'), (req, res, next) => {
   const lesseeID = userID;
   // const userID = req.session.currentUser._id;
   Article.create({
-    title, price, category, photo, imgPath, imgName, lesseeID, userID, originalName, type, description,
+    title, price, category, photo, imgPath, imgName, originalName, lesseeID, userID, type, description,
   })
     .then(() => {
       res.redirect('list');
@@ -44,16 +44,14 @@ router.post('/new', uploadCloud.single('photo'), (req, res, next) => {
 router.get('/list', (req, res, next) => {
   Article.find()
     .then((articles) => {
-      console.log(articles.imgPath)
-      res.render('article/list', {
-        articles
-      });
+      res.render('article/list', { articles });
     })
     .catch((error) => {
       next(error);
     });
 });
 
+// GET single article
 router.get('/:id', (req, res, next) => {
   const { id } = req.params;
   Article.findById(id)
