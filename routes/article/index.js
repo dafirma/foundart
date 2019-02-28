@@ -25,10 +25,12 @@ router.post('/new', uploadCloud.single('photo'), (req, res, next) => {
   const imgPath = req.file.url;
   // const imgPath = `/uploads/${req.file.filename}`; to upload image local
   const { imgName } = req.body;
+  const userID = req.session.currentUser._id;
   const originalName = req.file.originalname;
+  const lesseeID = userID;
   // const userID = req.session.currentUser._id;
   Article.create({
-    title, price, category, photo, imgPath, imgName, originalName, type, description,
+    title, price, category, photo, imgPath, imgName, lesseeID, userID, originalName, type, description,
   })
     .then(() => {
       res.redirect('list');
@@ -112,8 +114,9 @@ router.post('/:id/delete', (req, res, next) => {
 router.post('/:id/request', (req, res, next) => {
   const { id } = req.params;
   const { dateStart, dateEnd } = req.body;
+  const userID = req.session.currentUser;
   const rent = {
-    lesseeID: undefined,
+    lesseeID: userID,
     dateStart,
     dateEnd,
     state: 'In progress',
