@@ -85,6 +85,7 @@ router.post('/login', middlewares.anonRoute, (req, res, next) => {
 
 router.get('/logout', (req, res, next) => {
   req.session.destroy(() => {
+    // req.flash('success', 'Sesión cerrada correctamente');  LA SESIÓN SE BORRA!!
     res.redirect('/');
   });
 });

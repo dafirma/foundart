@@ -14,7 +14,7 @@ router.get('/', (req, res, next) => {
   Article.find({ rent: { $elemMatch: { lesseeID: userID } } })
     .then((articles) => {
       console.log(articles);
-      res.render('main/dashboard', { articles, errorMessage: req.flash('success') });
+      res.render('main/dashboard', { articles, successMessage: req.flash('success') });
     })
     .catch((error) => {
       next(error);

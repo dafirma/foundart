@@ -13,7 +13,7 @@ router.get('/', (req, res, next) => {
   const userID = user._id;
   Article.find({ $and: [{ userID }, { rent: { $elemMatch: { state: 'In progress' } } }] })
     .then((articles) => {
-      res.render('notifications/list', { articles, errorMessage: req.flash('success') });
+      res.render('notifications/list', { articles, successMessage: req.flash('success') });
     })
     .catch((error) => {
       next(error);

@@ -4,7 +4,6 @@ const uploadCloud = require('../../config/cloudinary.js');
 const middlewares = require('../middlewares');
 const User = require('../../models/user');
 
-
 const upload = multer({ dest: './public/uploads/' });
 const Article = require('../../models/article');
 
@@ -34,7 +33,7 @@ router.post('/new', uploadCloud.single('photo'), (req, res, next) => {
   })
     .then(() => {
       req.flash('success', 'Created new article');
-      res.redirect('list');
+      res.redirect('/main');
     })
     .catch((error) => {
       next(error);
@@ -45,7 +44,7 @@ router.post('/new', uploadCloud.single('photo'), (req, res, next) => {
 router.get('/list', (req, res, next) => {
   Article.find()
     .then((articles) => {
-      res.render('article/list', { articles, errorMessage: req.flash('success') });
+      res.render('article/list', { articles, successMessage: req.flash('success') });
     })
     .catch((error) => {
       next(error);
@@ -127,6 +126,7 @@ router.post('/:id/request', (req, res, next) => {
     $push: { rent },
   })
     .then(() => {
+      req.flash('success', 'Article requested');
       res.redirect('/main');
     })
     .catch((error) => {
