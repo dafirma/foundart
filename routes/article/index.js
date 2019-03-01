@@ -33,7 +33,8 @@ router.post('/new', uploadCloud.single('photo'), (req, res, next) => {
     title, price, category, photo, imgPath, imgName, originalName, lesseeID, userID, type, description,
   })
     .then(() => {
-      res.redirect('list');
+      // req.flash('success', 'article created!');
+      res.redirect('list', { errorMessage: req.flash('success') });
     })
     .catch((error) => {
       next(error);
