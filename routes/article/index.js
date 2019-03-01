@@ -33,24 +33,48 @@ router.post('/new', uploadCloud.single('photo'), (req, res, next) => {
   })
     .then(() => {
       req.flash('success', 'Created new article');
-      res.redirect('/main');
+      res.redirect('list', { errorMessage: req.flash('success') });
     })
     .catch((error) => {
       next(error);
     });
 });
+
 
 /* GET list article */
 router.get('/list', (req, res, next) => {
-  Article.find()
+  const userID = req.session.currentUser._id;
+  Article.find({ userID })
     .then((articles) => {
-      res.render('article/list', { articles, successMessage: req.flash('success') });
+      res.render('article/list', { articles });
     })
     .catch((error) => {
       next(error);
     });
 });
 
+
+/*
+router.get('/list/:page', (req, res, next) => {
+  const userID = req.session.currentUser._id;
+  const { page } = req.params;
+  const perPage = 3;
+  console.log(page);
+  Article.find({ userID }).skip((perPage * page) - perPage).limit(perPage)
+    .then((articles) => {
+<<<<<<< HEAD
+      res.render('article/list', { articles, successMessage: req.flash('success') });
+=======
+      // const count =+;
+      res.render('article/list', { articles });
+>>>>>>> d5b991181ee1dc5c25e04070934a9b72cb31c4fe
+    })
+    .catch((error) => {
+      next(error);
+    });
+});
+
+*/
 // GET single article
 router.get('/:id', (req, res, next) => {
   const { id } = req.params;

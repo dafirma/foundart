@@ -11,10 +11,21 @@ router.use(middlewares.protectedRoute);
 router.get('/', (req, res, next) => {
   const userID = req.session.currentUser._id;
   // Article.find({ userID })
-  Article.find({ rent: { $elemMatch: { lesseeID: userID } } })
+  Article.find({ rent: { $elemMatch: { $and: [{ lesseeID: userID }, { state: 'Accepted' }] } } })
+  // Article.find({ $and: [{rent:{elemMatch: {state: 'Accept'}}}, rent: { $elemMatch: { lesseeID: userID } } })
     .then((articles) => {
       console.log(articles);
-      res.render('main/dashboard', { articles, successMessage: req.flash('success') });
+      res.render('main/dashboard', { articles, userID, successMessage: req.flash('success') });
+    })
+    .catch((error) => {
+      next(error);
+    });
+});
+router.get('/rents', (req, res, next) => {
+  const userID = req.session.currentUser._id;
+  Article.find({ userID })
+    .then((articles) => {
+      res.render('main/rents', { articles, userID });
     })
     .catch((error) => {
       next(error);
