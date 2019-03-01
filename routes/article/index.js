@@ -40,9 +40,11 @@ router.post('/new', uploadCloud.single('photo'), (req, res, next) => {
     });
 });
 
+
 /* GET list article */
 router.get('/list', (req, res, next) => {
-  Article.find()
+  const userID = req.session.currentUser._id;
+  Article.find({ userID })
     .then((articles) => {
       res.render('article/list', { articles });
     })
@@ -51,6 +53,24 @@ router.get('/list', (req, res, next) => {
     });
 });
 
+
+/*
+router.get('/list/:page', (req, res, next) => {
+  const userID = req.session.currentUser._id;
+  const { page } = req.params;
+  const perPage = 3;
+  console.log(page);
+  Article.find({ userID }).skip((perPage * page) - perPage).limit(perPage)
+    .then((articles) => {
+      // const count =+;
+      res.render('article/list', { articles });
+    })
+    .catch((error) => {
+      next(error);
+    });
+});
+
+*/
 // GET single article
 router.get('/:id', (req, res, next) => {
   const { id } = req.params;

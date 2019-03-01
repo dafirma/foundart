@@ -13,5 +13,9 @@
       </li>
       <% })%>
   </ul>
+  
+      |<% for (var i = 1; i < (articles.length)/3; i++){%>
+      <a href="/article/list/<%= i%>">page<%= i%></a>
+      <% }%>
   <a href="/article/new">create new article</a>
 </div>
