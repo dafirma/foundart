@@ -30,7 +30,9 @@ router.get('/:articleId/:rentId', (req, res, next) => {
     });
 });
 
-router.get('/:articleId/:rentId/:state', (req, res, next) => {
+
+// UPDATE STATE ACCEPTED OR REJECTED
+router.post('/:articleId/:rentId/:state', (req, res, next) => {
   const { articleId, rentId, state } = req.params;
   let value;
   const val = () => {
@@ -46,7 +48,7 @@ router.get('/:articleId/:rentId/:state', (req, res, next) => {
     { _id: articleId, rent: { $elemMatch: { _id: rentId } } },
     { $set: { 'rent.$.state': val() } },
   )
-    .then((art) => {
+    .then(() => {
       res.redirect('/notifications');
     })
     .catch((error) => {
