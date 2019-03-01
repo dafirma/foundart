@@ -21,6 +21,16 @@ router.get('/', (req, res, next) => {
       next(error);
     });
 });
+router.get('/rents', (req, res, next) => {
+  const userID = req.session.currentUser._id;
+  Article.find({ userID })
+    .then((articles) => {
+      res.render('main/rents', { articles, userID });
+    })
+    .catch((error) => {
+      next(error);
+    });
+});
 
 router.get('/search', (req, res, next) => {
   const { type, dateInitial, dateFinal } = req.query;

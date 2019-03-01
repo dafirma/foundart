@@ -1,0 +1,18 @@
+<h2>My Articles rent</h2>
+<div class = "container-rent">
+  <% articles.forEach((article) => {%> 
+    <% article.rent.forEach((rent) => {%>
+        <li>
+          <a href="/article/<%= article._id %>">
+            <%= article.title %>
+            <%= article.price%>
+            <%= rent.dateEnd%>
+            <%= rent.state%>
+            <img src="<%= rent.imgPath %>" alt="<% article.originalName%>"> </a>
+            <form action="/article/<%= article._id %>/delete" method="POST">
+              <input type="submit" value="Delete">
+            </form>
+        </li>
+    <% })%>
+  <%}) %>  
+</div>
