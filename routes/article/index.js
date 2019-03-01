@@ -33,6 +33,7 @@ router.post('/new', uploadCloud.single('photo'), (req, res, next) => {
     title, price, category, photo, imgPath, imgName, originalName, lesseeID, userID, type, description,
   })
     .then(() => {
+      req.flash('success', 'Created new article');
       res.redirect('list');
     })
     .catch((error) => {
@@ -44,7 +45,7 @@ router.post('/new', uploadCloud.single('photo'), (req, res, next) => {
 router.get('/list', (req, res, next) => {
   Article.find()
     .then((articles) => {
-      res.render('article/list', { articles });
+      res.render('article/list', { articles, errorMessage: req.flash('success') });
     })
     .catch((error) => {
       next(error);
@@ -76,6 +77,7 @@ router.get('/:id/update', (req, res, next) => {
     });
 });
 
+// UPDATE article
 router.post('/:id', (req, res, next) => {
   const { id } = req.params;
   const {
@@ -90,6 +92,7 @@ router.post('/:id', (req, res, next) => {
     title, price, category, imageArticle, type, description,
   })
     .then(() => {
+      req.flash('success', 'Article updated');
       res.redirect('list');
     })
     .catch((error) => {
@@ -102,6 +105,7 @@ router.post('/:id/delete', (req, res, next) => {
   const { id } = req.params;
   Article.findByIdAndDelete(id)
     .then(() => {
+      req.flash('success', 'Article deleted');
       res.redirect('/article/list');
     })
     .catch((error) => {

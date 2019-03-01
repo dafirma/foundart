@@ -9,12 +9,12 @@ const router = express.Router();
 
 
 /* GET signup form */
-router.get('/signup',(req, res, next) => {
+router.get('/signup', middlewares.anonRoute, (req, res, next) => {
   res.render('auth/signup', { errorMessage: req.flash('error') });
 });
 
 /* CREATE USER */
-router.post('/signup', (req, res, next) => {
+router.post('/signup', middlewares.anonRoute, (req, res, next) => {
   const { username, password } = req.body;
   if (username === '' || password === '') {
     req.flash('error', 'Empty fields');
@@ -53,7 +53,6 @@ router.post('/login', middlewares.anonRoute, (req, res, next) => {
 
   if (username === '' || password === '') {
     req.flash('error', 'no empty fields');
-    req.flash('info', 'no empty fields');
     res.redirect('/');
     return;
   }
@@ -86,7 +85,6 @@ router.post('/login', middlewares.anonRoute, (req, res, next) => {
 
 router.get('/logout', (req, res, next) => {
   req.session.destroy(() => {
-    console.log('logout');
     res.redirect('/');
   });
 });

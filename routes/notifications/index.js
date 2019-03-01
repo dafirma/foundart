@@ -5,20 +5,22 @@ const Article = require('../../models/article');
 const middlewares = require('../middlewares');
 
 const router = express.Router();
+router.use(middlewares.protectedRoute);
 
-
+// GET NOTIFICATIONS LIST
 router.get('/', (req, res, next) => {
   const user = req.session.currentUser;
   const userID = user._id;
   Article.find({ $and: [{ userID }, { rent: { $elemMatch: { state: 'In progress' } } }] })
     .then((articles) => {
-      res.render('notifications/list', { articles });
+      res.render('notifications/list', { articles, errorMessage: req.flash('success') });
     })
     .catch((error) => {
       next(error);
     });
 });
 
+// GET NOTIFICATION DETAIL
 router.get('/:articleId/:rentId', (req, res, next) => {
   const { articleId, rentId } = req.params;
   Article.findById(articleId)
@@ -34,6 +36,8 @@ router.get('/:articleId/:rentId', (req, res, next) => {
 // UPDATE STATE ACCEPTED OR REJECTED
 router.post('/:articleId/:rentId/:state', (req, res, next) => {
   const { articleId, rentId, state } = req.params;
+
+  // Looks state and gives accepted or rejected value to 'value' variable
   let value;
   const val = () => {
     if (state === 'reject') {
@@ -44,11 +48,13 @@ router.post('/:articleId/:rentId/:state', (req, res, next) => {
     return value;
   };
 
+  // Changes the state depending on the value of 'value' variable
   Article.findOneAndUpdate(
     { _id: articleId, rent: { $elemMatch: { _id: rentId } } },
     { $set: { 'rent.$.state': val() } },
   )
     .then(() => {
+      req.flash('success', `Rent request ${value}`);
       res.redirect('/notifications');
     })
     .catch((error) => {
