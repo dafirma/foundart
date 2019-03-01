@@ -9,10 +9,11 @@ const router = express.Router();
 router.use(middlewares.protectedRoute);
 
 router.get('/', (req, res, next) => {
-  const user = req.session.currentUser;
-  Article.find(user)
+  const userID = req.session.currentUser._id;
+  // Article.find({ userID })
+  Article.find({ rent: { $elemMatch: { lesseeID: userID } } })
     .then((articles) => {
-      console.log(user);
+      console.log(articles);
       res.render('main/dashboard', { articles });
     })
     .catch((error) => {

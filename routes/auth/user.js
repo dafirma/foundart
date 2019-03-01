@@ -9,12 +9,12 @@ const router = express.Router();
 
 
 /* GET signup form */
-router.get('/signup', middlewares.anonRoute, (req, res, next) => {
+router.get('/signup',(req, res, next) => {
   res.render('auth/signup', { errorMessage: req.flash('error') });
 });
 
 /* CREATE USER */
-router.post('/signup', middlewares.anonRoute, (req, res, next) => {
+router.post('/signup', (req, res, next) => {
   const { username, password } = req.body;
   if (username === '' || password === '') {
     req.flash('error', 'Empty fields');
