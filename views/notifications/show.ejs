@@ -1,0 +1,26 @@
+<div>
+    <%  article.rent.forEach((rent) => { %>
+        <% if(rent._id == rentId){ %>
+            <% const thisRent = rent;%>
+            <p>Title:
+                    <%- article.title%>
+                </p>
+                <p>Date start:
+                    <%- rent.dateStart%>
+                </p>
+                <p>Date end:
+                    <%- rent.dateEnd%>
+                </p>
+                <p>Price by day:
+                    <%- article.price%>
+                </p>
+                <form action="/notifications/<%= article.id %>/<%= rent.id%>/accept" method="post">
+                    <button type="submit">ACCEPT</button>
+                </form>
+                <form action="/notifications/<%= article.id %>/<%= rent.id%>/reject" method="post">
+                    <button type="submit">REJECT</button>
+                </form>
+        <% } %>
+    <%})%>
+    
+</div>
