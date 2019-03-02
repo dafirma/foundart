@@ -96,9 +96,9 @@ router.get('/:id/update', (req, res, next) => {
 });
 
 // UPDATE article
-router.post('/:id', (req, res, next) => {
-  const { id } = req.params;
+router.post('/update', (req, res, next) => {
   const {
+    id,
     title,
     price,
     category,
