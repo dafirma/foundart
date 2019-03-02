@@ -21,6 +21,11 @@ router.post('/new', uploadCloud.single('photo'), (req, res, next) => {
   const {
     title, price, category, photo, type, description,
   } = req.body;
+  if (title === '' || price === '' || category === ''
+      || photo === '' || type === '' || description === '') {
+    req.flash('error', 'Empty fields');
+    res.redirect('/article/new');
+  }
   const imgPath = req.file.url;
   // const imgPath = `/uploads/${req.file.filename}`; to upload image local
   const { imgName } = req.body;

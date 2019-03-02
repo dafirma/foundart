@@ -55,7 +55,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Sesions
 app.use(session({
   secret: 'ironhack',
-  cookie: { maxAge: 60000 },
+  cookie: { maxAge: 6000000 },
   store: new MongoStore({
     mongooseConnection: mongoose.connection,
     ttl: 24 * 60 * 60, // 1 day
