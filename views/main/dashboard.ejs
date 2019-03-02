@@ -1,8 +1,18 @@
-<h1>test</h1>
-
 <div>
-        <%- include('../partials/rentArticles') %>
+  <% articles.forEach((article) => {%>
+    <% article.rent.forEach((rent) => {%>
+      <div class="card-sm">
+        <a href="/article/<%= article._id %>">
+          <% if (rent.lesseeID == userID ){%>
+            <!-- Show only my rents -->
+            <%- include('../partials/rent-list', {article, rent}) %>
+          <%} %>
+        </a>
+      </div>
+    <% })%>
+  <%}) %>
 </div>
+
 <form action="/main/search" method="get">
     <label for="type"> Type</label>
     <select name="type" id="type">

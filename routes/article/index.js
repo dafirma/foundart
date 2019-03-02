@@ -51,7 +51,7 @@ router.get('/list', (req, res, next) => {
   const userID = req.session.currentUser._id;
   Article.find({ userID })
     .then((articles) => {
-      res.render('article/list', { articles, successMessage: req.flash('success') });
+      res.render('article/list', { articles, userID, successMessage: req.flash('success') });
     })
     .catch((error) => {
       next(error);

@@ -23,6 +23,8 @@ router.get('/', (req, res, next) => {
       next(error);
     });
 });
+
+// RENTS
 router.get('/rents', (req, res, next) => {
   const userID = req.session.currentUser._id;
   Article.find({ userID })
@@ -34,6 +36,7 @@ router.get('/rents', (req, res, next) => {
     });
 });
 
+// SEARCH
 router.get('/search', (req, res, next) => {
   const userID = req.session.currentUser._id;
   const { type, dateInitial, dateFinal } = req.query;

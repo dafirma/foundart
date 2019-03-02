@@ -2,7 +2,8 @@
     <h2>Articles</h2>
     <% articles.forEach((article) => {%>
       <% if (article.userID != userID){%>
-        <%- include('../partials/articleList.ejs',{ article });%>
+        <!-- If I'm not owner of the article, show -->
+        <%- include('../partials/articles-list.ejs',{ article, userID });%>
       <% };%>
     <%})%>
   </div>

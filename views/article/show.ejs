@@ -7,7 +7,6 @@
 
 <% if(locals.currentUser._id == article.userID){ %>
     <a href="/article/<%= article._id%>/update">Edit</a>
-    <%console.log('propietario')%>
   <% } else{ %>  
-    <%- include('../partials/rentRequest');%>
+    <%- include('../partials/rent-request-form');%>
  <% } %>
