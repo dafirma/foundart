@@ -1,5 +1,6 @@
 <div>
+    <img src="<%= article.imgPath%>" alt="<% article.originalName%>">
     <p>Title: <%- article.title%></p>
-    <p>Price: <%- article.price%></p>
+    <p>Price: €<%- article.price%>.00</p>
     <a href="/article/<%= article._id%>">SHOW</a>
 </div>
