@@ -1,6 +1,9 @@
 <div>
     <h2>Articles</h2>
     <% articles.forEach((article) => {%>
-      <%- include('../partials/articleList.ejs',{ article });%>
+      <% if (article.userID != userID){%>
+        <!-- If I'm not owner of the article, show -->
+        <%- include('../partials/articles-list.ejs',{ article, userID });%>
+      <% };%>
     <%})%>
   </div>

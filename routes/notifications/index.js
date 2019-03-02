@@ -35,15 +35,14 @@ router.get('/:articleId/:rentId', (req, res, next) => {
 
 
 // UPDATE STATE ACCEPTED OR REJECTED
-router.post('/:articleId/:rentId/:state', (req, res, next) => {
-  const { articleId, rentId, state } = req.params;
-
+router.post('/update', (req, res, next) => {
+  const { articleId, rentId, state } = req.body;
   // Looks state and gives accepted or rejected value to 'value' variable
   let value;
   const val = () => {
-    if (state === 'reject') {
+    if (!state) {
       value = 'Rejected';
-    } else if (state === 'accept') {
+    } else if (state) {
       value = 'Accepted';
     }
     return value;

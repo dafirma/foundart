@@ -1,7 +1,7 @@
 <div>
     <% articles.forEach((article) => {%>
         <%article.rent.forEach((rent) => {%>
-            <%- include('../partials/rent-request-list', {article, rent});%>
+            <%- include('../partials/notifications-list', {article, rent});%>
         <% })%>
     <% })%>
 </div>

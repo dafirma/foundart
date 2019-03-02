@@ -14,11 +14,12 @@
                 <p>Price by day:
                     <%- article.price%>
                 </p>
-                <form action="/notifications/<%= article.id %>/<%= rent.id%>/accept" method="post">
-                    <button type="submit">ACCEPT</button>
-                </form>
-                <form action="/notifications/<%= article.id %>/<%= rent.id%>/reject" method="post">
-                    <button type="submit">REJECT</button>
+                
+                <form action="/notifications/update" method="post">
+                    <input type="hidden" value="<%- article._id%>" name="articleId" >
+                    <input type="hidden" value="<%- rent._id%>" name="rentId" >
+                    <button type="submit" name="state" value="true">ACCEPT</button>
+                    <button type="submit" name="state" value="false">REJECT</button>
                 </form>
         <% } %>
     <%})%>

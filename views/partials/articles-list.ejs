@@ -1,0 +1,18 @@
+<!-- BIG LIST ARTICLES  -->
+<!-- /article/list   &&   /search -->
+
+<!-- for each article -->
+<a href="/article/<%= article._id%>">
+    <div class = "card-bg">
+        <img src="<%= article.imgPath%>" alt="<% article.originalName%>">
+        <p>Title: <%- article.title%></p>
+            <!-- If im not owner, show price and rent request button. Else show delete button -->
+            <% if (article.userID != userID ){%>
+                <p>Price: €<%- article.price%>.00</p>
+            <%}else {%>
+                <form action="/article/<%= article._id %>/delete" method="POST">
+                    <input type="submit" value="Delete">
+                </form>
+            <%} %>
+        </div>
+    </a>
