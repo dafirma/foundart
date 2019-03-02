@@ -29,4 +29,9 @@ module.exports = {
     res.locals.warningMessages = req.flash('warning');
     next();
   },
+  saveSession: ((req, res, next) => {
+    app.locals.currentUser = req.session.currentUser;
+    res.locals.currentUser = req.session.currentUser;
+    next();
+  })
 };
