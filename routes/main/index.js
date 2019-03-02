@@ -33,10 +33,11 @@ router.get('/rents', (req, res, next) => {
 });
 
 router.get('/search', (req, res, next) => {
+  const userID = req.session.currentUser._id;
   const { type, dateInitial, dateFinal } = req.query;
   Article.find({ type })
     .then((articles) => {
-      res.render('main/search', { articles });
+      res.render('main/search', { articles, userID });
     })
     .catch((error) => {
       next(error);
