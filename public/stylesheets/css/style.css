@@ -1,14 +1,48 @@
+h1 {
+  color: black;
+  text-align: center;
+  padding-bottom: 10px;
+  font-size: 20px; }
+
+h2 {
+  color: black;
+  text-align: center;
+  padding-bottom: 10px;
+  font-size: 16px; }
+
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
 
+.container-logo {
+  width: 80%;
+  height: 100%; }
+
+.logo-signup {
+  width: 50%;
+  position: relative;
+  left: 50%;
+  margin-left: -10%; }
+
 a {
-  color: #00B7FF; }
+  color: #43a3e6; }
 
 /* FORM */
 #form {
   margin: 30px auto;
-  width: 380px; }
+  width: auto; }
+
+.form-signup-number {
+  display: flex;
+  padding-right: 25px; }
+
+.form-signup-number input {
+  padding-right: 10px; }
+
+.form-signup-number::-webkit-inner-spin-button,
+.form-signup-number::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0; }
 
 #form label {
   color: #666;
@@ -16,6 +50,11 @@ a {
   margin-bottom: 10px;
   text-align: center;
   width: 100%; }
+
+#form input {
+  border-left: none;
+  border-right: none;
+  border-top: none; }
 
 #form input,
 #form button {
