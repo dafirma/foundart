@@ -33,7 +33,7 @@ router.post('/new', uploadCloud.single('photo'), (req, res, next) => {
   })
     .then(() => {
       req.flash('success', 'Created new article');
-      res.redirect('list', { errorMessage: req.flash('success') });
+      res.redirect('/article/list');
     })
     .catch((error) => {
       next(error);
@@ -46,7 +46,7 @@ router.get('/list', (req, res, next) => {
   const userID = req.session.currentUser._id;
   Article.find({ userID })
     .then((articles) => {
-      res.render('article/list', { articles });
+      res.render('article/list', { articles, successMessage: req.flash('success') });
     })
     .catch((error) => {
       next(error);
@@ -62,12 +62,7 @@ router.get('/list/:page', (req, res, next) => {
   console.log(page);
   Article.find({ userID }).skip((perPage * page) - perPage).limit(perPage)
     .then((articles) => {
-<<<<<<< HEAD
       res.render('article/list', { articles, successMessage: req.flash('success') });
-=======
-      // const count =+;
-      res.render('article/list', { articles });
->>>>>>> d5b991181ee1dc5c25e04070934a9b72cb31c4fe
     })
     .catch((error) => {
       next(error);
