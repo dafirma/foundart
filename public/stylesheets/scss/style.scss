@@ -1,11 +1,71 @@
+@charset 'utf-8';
+
+//VARIABLES
+$primary-color: #d6471b ;
+$secondary-color: blue;
+$primary-color-font: white;
+
+$font-stack: "Lucida Grande", Helvetica, Arial, sans-serif;
+
+$font-size-lg:1.5rem;
+$font-size-md:1rem;
+$font-size-sm:0.8rem;
+
+// BASE
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  padding: 10% 5%;
 }
 
 a {
   color: #00B7FF;
 }
+
+h3{
+  font-size: $font-size-lg
+}
+
+
+
+// CARD-BG
+
+.card-bg {
+
+  img {
+    width: 100%;
+  }
+
+  .card-bg-text {
+    padding: 4% 2%;
+    margin-bottom: 5%;
+    display: flex;
+    justify-content: space-between;
+
+    span {
+      font-size: $font-size-sm;
+      color: $primary-color;
+    }
+
+    .card-bg-right {
+      margin-top: $font-size-sm;
+    }
+
+  }
+
+}
+
+
+// BUTTON
+
+.btn {
+  color: $primary-color-font;
+  background-color: $primary-color;
+  border: none;
+  border-radius: 3px;
+  padding: 0.4rem 0.8rem;
+  text-transform: uppercase;
+}
+
+
 
 
 /* FORM */
@@ -51,4 +111,18 @@ a {
   background: #fff;
   color: #43a3e6;
   transition: .3s ease background;
+}
+
+.inputFields {
+  margin: 15px 0;
+  font-size: 16px;
+  padding: 10px;
+  width: 250px;
+  border: 1px solid rgba(10, 180, 180, 1);
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  background: rgba(20, 20, 20, .2);
+  color: white;
+  outline: none;
 }
