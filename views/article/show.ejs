@@ -8,5 +8,14 @@
 <% if(locals.currentUser._id == article.userID){ %>
     <a href="/article/<%= article._id%>/update">Edit</a>
   <% } else{ %>  
-    <%- include('../partials/rent-request-form');%>
+    <div>
+      <form action="/article/request" method="post">
+          <input type="hidden" name="articleId" value="<%= article._id %>">
+          <label for="dateStart"></label>
+          <input type="date" name="dateStart" id="dateStart">
+          <label for="dateEnd"></label>
+          <input type="date" name="dateEnd" id="dateEnd">
+          <button class="btn" type="submit">Request</button>
+      </form>
+  </div>
  <% } %>

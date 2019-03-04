@@ -19,20 +19,26 @@ router.get('/new', (req, res, next) => {
 /* POST new article */
 router.post('/new', uploadCloud.single('photo'), (req, res, next) => {
   const {
-    title, price, category, photo, type, description,
+    title, price, category, photo, type, description, imgName,
   } = req.body;
+
+  // Validation of empty fields
   if (title === '' || price === '' || category === ''
       || photo === '' || type === '' || description === '') {
     req.flash('error', 'Empty fields');
     res.redirect('/article/new');
   }
+
+  // Set img url and name
   const imgPath = req.file.url;
   // const imgPath = `/uploads/${req.file.filename}`; to upload image local
-  const { imgName } = req.body;
-  const userID = req.session.currentUser._id;
   const originalName = req.file.originalname;
+
+  // Set currrentUser as leessee
+  const userID = req.session.currentUser._id;
   const lesseeID = userID;
-  // const userID = req.session.currentUser._id;
+
+  // Create
   Article.create({
     title, price, category, photo, imgPath, imgName, originalName, lesseeID, userID, type, description,
   })
@@ -73,8 +79,9 @@ router.get('/list/:page', (req, res, next) => {
       next(error);
     });
 });
-
 */
+
+
 // GET single article
 router.get('/:id', (req, res, next) => {
   const { id } = req.params;
@@ -103,13 +110,7 @@ router.get('/:id/update', (req, res, next) => {
 // UPDATE article
 router.post('/update', (req, res, next) => {
   const {
-    id,
-    title,
-    price,
-    category,
-    imageArticle,
-    type,
-    description,
+    id, title, price, category, imageArticle, type, description,
   } = req.body;
   Article.findByIdAndUpdate(id, {
     title, price, category, imageArticle, type, description,
@@ -124,9 +125,9 @@ router.post('/update', (req, res, next) => {
 });
 
 /* DELETE article */
-router.post('/:id/delete', (req, res, next) => {
-  const { id } = req.params;
-  Article.findByIdAndDelete(id)
+router.post('/delete', (req, res, next) => {
+  const { articleId } = req.body;
+  Article.findByIdAndDelete(articleId)
     .then(() => {
       req.flash('success', 'Article deleted');
       res.redirect('/article/list');
@@ -136,9 +137,9 @@ router.post('/:id/delete', (req, res, next) => {
     });
 });
 
-router.post('/:id/request', (req, res, next) => {
-  const { id } = req.params;
-  const { dateStart, dateEnd } = req.body;
+// Creates a rent request for the article
+router.post('/request', (req, res, next) => {
+  const { dateStart, dateEnd, articleId } = req.body;
   const userID = req.session.currentUser;
   const rent = {
     lesseeID: userID,
@@ -146,7 +147,7 @@ router.post('/:id/request', (req, res, next) => {
     dateEnd,
     state: 'In progress',
   };
-  Article.findOneAndUpdate({ _id: id }, {
+  Article.findOneAndUpdate({ _id: articleId }, {
     $push: { rent },
   })
     .then(() => {

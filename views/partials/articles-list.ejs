@@ -15,7 +15,8 @@
         <% if (article.userID != userID ){%>
             <h3 class ="card-lg-right">€<%- article.price%>.00 <span>/ day</span> </h3>
             <%}else {%>
-            <form action="/article/<%= article._id %>/delete" method="POST">
+            <form action="/article/delete" method="POST">
+                <input type="hidden" name="articleId" value="<%= article._id %>">
                 <button class="btn card-lg-right" type="submit">Delete</button>
             </form>
         <%} %>
