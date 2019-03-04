@@ -14,6 +14,7 @@
 </div>
 
 <div class="container-search">
+  <h2>Search</h2>
   <form action="/main/search" method="get">
     <label for="type"> Type</label>
     <select name="type" id="type">
@@ -27,7 +28,9 @@
     </select><br>
     <input type="date" name="dateInitial" id="dateInitial">
     <input type="date" name="dateFinal" id="dateFinal">
-    <button class="btn" type="submit">Search</button>
-    <a href="/article/new">Create Article</a>
+    <div class= "container-search-btn">
+        <button class="btn" type="submit">Search</button>
+        <a class="btn"href="/article/new">Create Article</a>
+    </div>
   </form>
 </div>
