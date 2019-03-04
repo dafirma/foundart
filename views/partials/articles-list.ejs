@@ -6,17 +6,17 @@
     <a href="/article/<%= article._id%>">
         <img src="<%= article.imgPath%>" alt="<% article.originalName%>">
     </a>
-    <div class="card-bg-text">
+    <div class="card-lg-text">
         <div>
             <span> Type / Category / Bla blua</span>
             <h3><%- article.title%></h3>
         </div>
         <!-- If im not owner, show price and rent request button. Else show delete button -->
         <% if (article.userID != userID ){%>
-            <h3 class ="card-bg-right">€<%- article.price%>.00 <span>/ day</span> </h3>
+            <h3 class ="card-lg-right">€<%- article.price%>.00 <span>/ day</span> </h3>
             <%}else {%>
             <form action="/article/<%= article._id %>/delete" method="POST">
-                <button class="btn card-bg-right" type="submit">Delete</button>
+                <button class="btn card-lg-right" type="submit">Delete</button>
             </form>
         <%} %>
     </div>

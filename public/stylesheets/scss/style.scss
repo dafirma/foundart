@@ -2,8 +2,9 @@
 
 //VARIABLES
 $primary-color: #d6471b ;
-$secondary-color: blue;
+$secondary-color: rgb(248, 248, 248);
 $primary-color-font: white;
+$secondary-color-font: $primary-color;
 
 $font-stack: "Lucida Grande", Helvetica, Arial, sans-serif;
 
@@ -28,16 +29,17 @@ h3{
 
 // CARD-BG
 
-.card-bg {
+.card-lg {
 
   img {
     width: 100%;
   }
 
-  .card-bg-text {
+  .card-lg-text {
     padding: 4% 2%;
     margin-bottom: 5%;
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
 
     span {
@@ -45,7 +47,7 @@ h3{
       color: $primary-color;
     }
 
-    .card-bg-right {
+    .card-lg-right {
       margin-top: $font-size-sm;
     }
 
@@ -69,60 +71,15 @@ h3{
 
 
 /* FORM */
-#form {
-  margin: 30px auto;
-  width: 380px;
-}
 
-#form label {
-  color: #666;
-  display: inline-block;
-  margin-bottom: 10px;
-  text-align: center;
-  width: 100%;
-}
+.form {
+  border-bottom: $primary-color solid 2px;
+  background-color: $secondary-color;
 
-#form input,
-#form button {
-  box-sizing: border-box;
-  font-size: 14px;
-  outline: 0;
-  padding: 4px;
-  width: 100%;
-  margin-bottom: 20px;
-}
-
-#form button {
-  background: #43a3e6;
-  border: 1px solid #43a3e6;
-  border-radius: 4px;
-  color: #fff;
-  cursor: pointer;
-  display: inline-block;
-  font-size: 14px;
-  padding: 8px 16px;
-  text-decoration: none;
-  text-transform: uppercase;
-  transition: .3s ease background;
-  width: 100%;
-}
-
-#form button:hover {
-  background: #fff;
-  color: #43a3e6;
-  transition: .3s ease background;
-}
-
-.inputFields {
-  margin: 15px 0;
-  font-size: 16px;
-  padding: 10px;
-  width: 250px;
-  border: 1px solid rgba(10, 180, 180, 1);
-  border-top: none;
-  border-left: none;
-  border-right: none;
-  background: rgba(20, 20, 20, .2);
-  color: white;
-  outline: none;
+  input {
+    -webkit-appearance: none;
+    border-bottom: $primary-color solid 2px;
+    background-color: white;
+    
+  }
 }
