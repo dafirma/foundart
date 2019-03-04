@@ -1,18 +1,122 @@
+$font-stack: "Lucida Grande", Helvetica, Arial, sans-serif;
+$primary-color: green;
+$button-color: red;
+$primary-text-color: black;
+$secondary-text-color:#666;
+$primary-color-link:  #43a3e6;
+
+// BASE
+
 body {
-  padding: 50px;
+  max-width:100%;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+.main-container{
+  padding: 5% 5% 41% 5%;
+}
+
+h1{
+  color: $primary-text-color;
+  text-align: center;
+  padding-bottom: 10px;
+  font-size: 20px;
+}
+
+h2{
+  color: $primary-text-color;
+  text-align: center;
+  padding-bottom: 10px;
+  font-size: 16px;
+
 }
 
 a {
-  color: #00B7FF;
+  color: $primary-color-link;
+}
+.container-rent {
+  width: auto;
+  padding-top:5%; 
+}
+
+.container-logo {
+  width: 80%;
+  height: 100%;
+}
+.logo-signup{
+  width: 50%;
+  position:relative;    
+  left: 50%;
+  margin-left: -10%; 
+}
+.card-sm {
+  height: 100px;
+  padding:3% 0 5% 0; 
+  border-bottom-color: #666;
+  display: flex;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+}
+.container-photo {
+  max-width: 100%;
+
+  padding: 0 3% 0 4%;
+  img{
+    max-width: 70%;
+  }
+
+}
+.container-search{
+  padding-top: 20%;
+}
+.container-text {
+  max-width: 100%;
+  padding: 10% 0 0 0;
+  h3{
+    font-size: 10px;
+  }
+}
+.container-menu-up{
+  background-color:#43a3e6;
+  padding:8% 0 0 9%; 
+  a{
+    padding-top:2%; 
+    color: white;
+    text-decoration: none;
+
+  }
+
+}
+.container-menu-down{
+  background-color:#43a3e6;
+  padding:8% 0 0 9%; 
+  a{
+    padding-top:2%; 
+    color: white;
+    text-decoration: none;
+
+  }
+
 }
 
 
 /* FORM */
 #form {
   margin: 30px auto;
-  width: 380px;
+  width: auto;
 }
+.form-signup-number{
+  display: flex;
+  padding-right: 25px;
+}
+.form-signup-number input{
+  padding-right: 10px;
+}
+
+.form-signup-number::-webkit-inner-spin-button,
+  .form-signup-number::-webkit-outer-spin-button{
+    -webkit-appearance: none;
+    margin:0;
+  }
 
 #form label {
   color: #666;
@@ -22,6 +126,11 @@ a {
   width: 100%;
 }
 
+#form input {
+  border-left: none;
+  border-right: none;
+  border-top: none;
+}
 #form input,
 #form button {
   box-sizing: border-box;

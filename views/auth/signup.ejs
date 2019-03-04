@@ -1,39 +1,30 @@
+
 <form id="form" action="/user/signup" method="POST">
-  <label for="username">Username</label><br>
+  <div class="container-logo">
+    <img class= "logo-signup"src="/assets/icons8-round-512.png" alt="">
+  </div>
+  <h1>Sign up form</h1>
   <input type="text" name="username" placeholder="Your username"><br>
 
-  <label for="password">Password</label><br>
   <input type="password" name="password" placeholder="password"><br>
 
-  <label for="name">Name</label><br>
   <input type="text" name="name" placeholder="Your name"><br>
 
-  <label for="lastName">Lastname</label><br>
   <input type="text" name="lastname" placeholder="Your lastname"><br>
 
-  <label for="phone">Phone</label><br>
   <input type="text" name="phone" placeholder="Your phone"><br>
 
-  <label for="email">email</label><br>
   <input type="email" name="email" placeholder="Your email"><br>
 
-  <label for="street">street</label><br>
   <input type="text" name="street" placeholder="Your street"><br>
+  <div class="form-signup-number">
+      <input type="number" name="number" placeholder="Your number"><br>
 
-  <label for="number">number</label><br>
-  <input type="number" name="number" placeholder="Your number"><br>
-
-  <label for="zipcode">zipcode</label><br>
-  <input type="number" name="zipcode" placeholder="Your zipcode"><br>
-
-  <label for="city">city</label><br>
+      <input type="number" name="zipcode" placeholder="Your zipcode"><br>
+  </div>
   <input type="text" name="city" placeholder="Your city"><br>
 
-  <label for="country">country</label><br>
   <input type="text" name="country" placeholder="Your country"><br>
-
-  <label for="nationalId">nationalId</label><br>
-  <input type="text" name="nationalId" placeholder="Your nationalId"><br>
 
   <%/* if (errorMessage) {*/ %>
     <div class="error-message">

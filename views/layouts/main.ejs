@@ -9,13 +9,21 @@
     <title>Document</title>
 </head>
 <body>
-    <div>
+    <div class = "container-menu-up">
         <a href="/user/logout">LOGOUT</a>
         <a href="/article/list">LIST ARTICLE</a>
         <a href="/main/rents">RENTS</a>
         <a href="/notifications">NOTIFICATIONS</a>
     </div>
-    <%- include('../partials/flash-notifications') %>
-    <%-body%>
+    <div class="main-container">
+        <%- include('../partials/flash-notifications') %>
+        <%-body%>
+    </div>
+    <div class = "container-menu-down">
+            <a href="/user/logout">LOGOUT</a>
+            <a href="/article/list">LIST ARTICLE</a>
+            <a href="/main/rents">RENTS</a>
+            <a href="/notifications">NOTIFICATIONS</a>
+        </div>
 </body>
 </html>

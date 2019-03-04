@@ -11,13 +11,13 @@ router.use(middlewares.protectedRoute);
 router.get('/', (req, res, next) => {
   const userID = req.session.currentUser._id;
   // Article.find({ userID })
-  Article.find({ rent: { $elemMatch: { lesseeID: userID } } })
+  Article.find({ rent: { $elemMatch: { lesseeID: userID } } }).limit(1)
   // Article.find({ $and: [{rent:{elemMatch: {state: 'Accept'}}}, rent: { $elemMatch: { lesseeID: userID } } })
     .then((articles) => {
       const objUser = req.session.currentUser.username;
       console.log(objUser.username);
       res.render('main/dashboard',
-        { articles, userID, objUser, successMessage: req.flash('success') });
+        { articles, userID, successMessage: req.flash('success') });
     })
     .catch((error) => {
       next(error);
