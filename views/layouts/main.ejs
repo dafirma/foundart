@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,22 +9,40 @@
     <link rel="stylesheet" href="/stylesheets/css/style.css">
     <title>Document</title>
 </head>
+
 <body>
-    <div class = "container-menu-up">
-        <a href="/user/logout">LOGOUT</a>
-        <a href="/article/list">LIST ARTICLE</a>
-        <a href="/main/rents">RENTS</a>
-        <a href="/notifications">NOTIFICATIONS</a>
+    <div>
+        <div class="menu-icon" id="menu-icon" onclick="delClass('hidden', 'menu-content')">
+            <img src="/images/menuIcon.png" alt="menu icon">
+        </div>
+        <div class="menu-content hidden" id="menu-content">
+
+            <a href="/main" onclick="addClass('hidden', 'menu-content')">
+                <div>DASHBORD</div>
+            </a>
+            <a href="/article/list" onclick="addClass('hidden', 'menu-content')">
+                <div>MY ARTICLES</div>
+            </a>
+            <a href="/main/rents" onclick="addClass('hidden', 'menu-content')">
+                <div>MY RENTS</div>
+            </a>
+            <a href="/notifications"  onclick="addClass('hidden', 'menu-content')">
+                <div>NOTIFICATIONS</div>
+            </a>
+            <a href="/user/logout" onclick="addClass('hidden', 'menu-content')">
+                <div>LOGOUT</div>
+            </a>
+        </div>
+    </div>
+
+
     </div>
     <div class="main-container">
         <%- include('../partials/flash-notifications') %>
         <%-body%>
     </div>
-    <div class = "container-menu-down">
-            <a href="/user/logout">LOGOUT</a>
-            <a href="/article/list">LIST ARTICLE</a>
-            <a href="/main/rents">RENTS</a>
-            <a href="/notifications">NOTIFICATIONS</a>
-        </div>
+    
+    <script src="/javascripts/support.js"></script>
 </body>
+
 </html>

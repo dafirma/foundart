@@ -9,7 +9,7 @@
     <a href="/article/<%= article._id%>/update">Edit</a>
   <% } else{ %>  
     <div>
-      <form action="/article/request" method="post">
+      <form action="/article/request" method="post" id="requestForm">
           <input type="hidden" name="articleId" value="<%= article._id %>">
           <label for="dateStart"></label>
           <input type="date" name="dateStart" id="dateStart">
