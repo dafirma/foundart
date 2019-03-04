@@ -5,6 +5,7 @@
   <% articles.forEach((article) => {%>
     <%- include('../partials/articles-list.ejs',{ article, userID });%>  
   <% })%>
-
-  <a href="/article/new">create new article</a>
+  <div class="container-list-btn">
+    <a class="btn"href="/article/new">New Article</a>
+  </div>
 </div>

@@ -22,12 +22,13 @@ $font-size-sm:0.8rem;
 
 // BASE
 body {
-  padding: 10% 5%;
+  padding: 0;
+  font-family: $font-stack;
 
 }
 
 .main-container {
-  padding: 5% 5% 41% 5%;
+  padding: 10% 3% 5% 3%;
 }
 
 h1 {
@@ -35,13 +36,15 @@ h1 {
   text-align: center;
   padding-bottom: 10px;
   font-size: 20px;
+  font-family: $font-stack;
 }
 
 h2 {
   color: $primary-text-color;
   text-align: center;
-  padding-bottom: 10px;
-  font-size: 16px;
+  padding-bottom: 26px;
+  font-size: $font-size-lg;
+  font-family: $font-stack;
 
 }
 
@@ -57,37 +60,44 @@ a {
 .container-logo {
   width: 80%;
   height: 100%;
+  left: 50%;
+  margin-left: 10%;
 }
 
 .logo-signup {
   width: 50%;
   position: relative;
   left: 50%;
-  margin-left: -10%;
+  margin-left: -25%;
 }
 
+/* CARD SMALL */
+
 .card-sm {
-  height: 100px;
+  height: 130px;
   padding: 3% 0 5% 0;
   border-bottom-color: #666;
   display: flex;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  // box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
 }
 
 .container-photo {
-  max-width: 100%;
+  width: 50%;
 
   padding: 0 3% 0 4%;
 
   img {
-    max-width: 70%;
+    max-width: 100%;
   }
 
 }
 
 .container-search {
-  padding-top: 20%;
+  padding: 4% 0 0 10%;
+}
+.container-search-btn{
+  padding: 4% 0 ;
 }
 
 .container-text {
@@ -95,7 +105,7 @@ a {
   padding: 10% 0 0 0;
 
   h3 {
-    font-size: 10px;
+    font-size:$font-size-sm;
   }
 }
 
@@ -125,28 +135,74 @@ a {
 
 }
 
+.container-list-btn {
+  padding: 5% 0 0 33%;
+}
+
 
 /* FORM */
+
+
 #form {
   margin: 30px auto;
   width: auto;
 }
 
-.form-signup-number {
-  display: flex;
-  padding-right: 25px;
+
+.form-login {
+  margin: 3% auto;
+  width: 77%;
 }
 
-.form-signup-number input {
-  padding-right: 10px;
+.form-login label {
+  color: #666;
+  display: inline-block;
+  margin-bottom: 10px;
+  text-align: center;
+  width: 100%;
 }
 
-.form-signup-number::-webkit-inner-spin-button,
-.form-signup-number::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+.form-login input,
+.form-login button {
+  box-sizing: border-box;
+  font-size: 14px;
+  outline: 0;
+  padding: 4px;
+  width: 100%;
+  margin-bottom: 20px;
+  border-left: none;
+  border-right: none;
+  border-top: none;
 }
 
+.form-login button {
+  background: #43a3e6;
+  border: 1px solid #43a3e6;
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 14px;
+  padding: 8px 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: .3s ease background;
+  width: 100%;
+}
+
+.form-login button:hover {
+  background: #fff;
+  color: #43a3e6;
+  transition: .3s ease background;
+}
+
+.account-message{
+  text-align: center;
+  font-size: 90%;
+  a{
+    text-decoration: none;
+  }
+}
 
 
 // CARD-BG
@@ -176,7 +232,17 @@ a {
   }
 
 }
+ /* CARD NOTIFICATION*/
+.container-notification {
+  display: flex;
+}
+ .card-notification{
+  padding: 0 0 10% 0;
+} 
+.container-notification-btn{
+  padding: 6% 0 0 8%;
 
+}
 
 // BUTTON
 
@@ -187,21 +253,21 @@ a {
   border-radius: 3px;
   padding: 0.4rem 0.8rem;
   text-transform: uppercase;
+  text-decoration: none;
+  font-size: $font-size-md;
 }
 
 
 
 
-/* FORM */
 
-.form {
-  border-bottom: $primary-color solid 2px;
-  background-color: $secondary-color;
+// NOTIFICATION
 
-  input {
-    -webkit-appearance: none;
-    border-bottom: $primary-color solid 2px;
-    background-color: white;
-
-  }
+.error-message {
+  background: #F02B63;
+  box-sizing: border-box;
+  color: #fff;
+  margin: 20px auto;
+  padding: 20px;
+  width: 100%;
 }

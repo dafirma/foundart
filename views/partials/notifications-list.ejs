@@ -1,9 +1,11 @@
 <!-- /notifications  list of notifications -->
-<div class="card-sm">
-    <img src="<%= rent.imgPath %>" alt="<% article.originalName%>"> </a>
-    <%= article.title %>
-    Date end: <%= rent.dateEnd%>
-    <a href="/notifications/<%= article.id %>/<%= rent.id %>">SHOW</a>
+<div class="container-notification">
+    <div class="card-notification">
+        Name: <%= article.title %><br>
+        Date end: <%= rent.dateEnd%>
+    </div>
+    <div class="container-notification-btn">
+        <a  class="btn" href="/notifications/<%= article.id %>/<%= rent.id %>">SHOW</a>
+    </div>
 </div>
-
 <!-- Show only my rents -->

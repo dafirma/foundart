@@ -1,12 +1,17 @@
-<h2>Article</h2>
+<h2>Article <%= article.title%></h2>
+<div class="card-lg">
+  
+  <img src="<%= article.imgPath%>" alt="<% article.originalName%>">
+  <h3>Category: <%= article.category%></h3>
+  <h3>Description: <%= article.description%></h3>
+  <h3 class ="card-lg-right">€<%- article.price%>.00 <span>/ day</span> </h3><br>
 
-
-<h3>Title: <%= article.title%></h3>
-<h3>Price: <%= article.price%></h3>
-<h3>Category: <%= article.category%></h3>
-
-<% if(locals.currentUser._id == article.userID){ %>
-    <a href="/article/<%= article._id%>/update">Edit</a>
-  <% } else{ %>  
-    <%- include('../partials/rent-request-form');%>
- <% } %>
+</div>
+<div class= "container-list-btn">
+  <% if(locals.currentUser._id == article.userID){ %>
+      <a  class="btn" href="/article/<%= article._id%>/update">Edit</a>
+      <% } else{ %>  
+        <%- include('../partials/rent-request-form');%>
+  <% } %>
+      <a  class="btn" href="/article/list">Back</a>
+</div>
