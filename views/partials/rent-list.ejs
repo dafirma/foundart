@@ -1,6 +1,9 @@
 <!-- /main/dashboard  &&  /main/rents -->
-
-<img src="<%= rent.imgPath %>" alt="<% article.originalName%>"> </a>
-<%= article.title %>
-<%= rent.dateEnd%>
-<%= rent.state%>
+<div class="container-photo">
+    <img src="<%= article.imgPath %>" alt="<% article.originalName%>"> </a>
+</div>
+<div class="container-text">
+    <h3>Title: <%= article.title %> </h3>
+    <h3>Date return: <%= rent.dateEnd%> </h3>
+    <h3>Status: <%= rent.state%> </h3>
+</div>

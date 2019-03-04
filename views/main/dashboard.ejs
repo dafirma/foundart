@@ -1,31 +1,33 @@
-<div>
+<div class="container-rent">
   <% articles.forEach((article) => {%>
-    <% article.rent.forEach((rent) => {%>
-      <div class="card-sm">
-        <a href="/article/<%= article._id %>">
-          <% if (rent.lesseeID == userID ){%>
-            <!-- Show only my rents -->
-            <%- include('../partials/rent-list', {article, rent}) %>
-          <%} %>
-        </a>
-      </div>
-    <% })%>
+  <% article.rent.forEach((rent) => {%>
+  <div class="card-sm">
+    <a href="/article/<%= article._id %>">
+      <% if (rent.lesseeID == userID ){%>
+      <!-- Show only my rents -->
+      <%- include('../partials/rent-list', {article, rent}) %>
+      <%} %>
+    </a>
+  </div>
+  <% })%>
   <%}) %>
 </div>
 
-<form action="/main/search" method="get">
+<div class="container-search">
+  <form action="/main/search" method="get">
     <label for="type"> Type</label>
     <select name="type" id="type">
-        <option value="painting">Painting</option>
-        <option value="sculpture">Sculpture</option>
-        <option value="photography">Photography</option>
-        <option value="prop">Prop</option>
-        <option value="live art">Live Art</option>
-        <option value="drawing">Drawing</option>
-        <option value="music">Music</option>
+      <option value="painting">Painting</option>
+      <option value="sculpture">Sculpture</option>
+      <option value="photography">Photography</option>
+      <option value="prop">Prop</option>
+      <option value="live art">Live Art</option>
+      <option value="drawing">Drawing</option>
+      <option value="music">Music</option>
     </select><br>
     <input type="date" name="dateInitial" id="dateInitial">
     <input type="date" name="dateFinal" id="dateFinal">
     <button class="btn" type="submit">Search</button>
     <a href="/article/new">Create Article</a>
-</form>
+  </form>
+</div>

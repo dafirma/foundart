@@ -49,7 +49,7 @@ router.post('/new', uploadCloud.single('photo'), (req, res, next) => {
 /* GET list article */
 router.get('/list', (req, res, next) => {
   const userID = req.session.currentUser._id;
-  Article.find({ userID })
+  Article.find({ userID }).limit(3)
     .then((articles) => {
       res.render('article/list', { articles, userID, successMessage: req.flash('success') });
     })
