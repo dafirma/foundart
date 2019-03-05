@@ -5,8 +5,9 @@
     background-color: $primary-color;
   
     img {
-      height: 100%;
-      width: 20%;
+      height: 90%;
+      width: 15%;
+      margin-left: 2%;
     }
   }
   
@@ -16,7 +17,6 @@
     height: 90vh;
     display: flex;
     flex-direction: column;
-  
     float: left;
   
     a {

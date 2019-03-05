@@ -1,5 +1,5 @@
 const express = require('express');
-const Article = require('../../models/article');
+const Article = require('../models/article');
 
 const middlewares = require('../middlewares');
 

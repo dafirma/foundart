@@ -1,0 +1,21 @@
+.alert {
+    padding: 0.5rem 1rem;
+    position: fixed;
+    top: 10vh;
+    left: 0;
+    right: 0;
+    border-style: solid;
+    border-width: 1px;
+    width: 100%;
+
+}
+
+.alert-danger {
+    background-color: rgba(255, 0, 0, 0.404);
+    border-color: rgba(255, 0, 0, 0.815);
+}
+
+.alert-success {
+    background-color: rgba(72, 255, 0, 0.404);
+    border-color: rgba(72, 255, 0, 0.815);
+}

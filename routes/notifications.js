@@ -1,7 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 const express = require('express');
 
-const Article = require('../../models/article');
+const Article = require('../models/article');
 const middlewares = require('../middlewares');
 
 const router = express.Router();

@@ -8,12 +8,24 @@
 
 // Menu
 
-function delClass(className, elementId) {
+const delClass = (className, elementId) => {
   const element = document.getElementById(elementId);
   element.classList.remove(className);
 }
 
-function addClass(className, elementId) {
+const addClass = (className, elementId) => {
   const element = document.getElementById(elementId);
   element.classList.add(className);
 }
+
+// flash-alerts
+
+document.addEventListener('DOMContentLoaded', () => {
+  const element = document.getElementsByClassName('alert');
+  console.log(element);
+  if (element.length > 0) {
+    setTimeout(() => {
+      element[0].classList.add('hidden');
+    }, 2500);
+  }
+}, false);

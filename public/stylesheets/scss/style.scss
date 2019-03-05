@@ -2,8 +2,6 @@
 
 @import 'base/reset';
 
-
-
 @import 'helpers/variables';
 
 @import 'base/base';
@@ -13,6 +11,7 @@
 @import 'components/card-sm';
 @import 'components/card-notification';
 @import 'components/form';
+@import 'components/alert';
 @import 'components/button';
 
 @import 'pages/login';

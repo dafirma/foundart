@@ -11,13 +11,13 @@ const MongoStore = require('connect-mongo')(session);
 const sassMiddleware = require('node-sass-middleware');
 const dotenv = require('dotenv');
 
-const { notifications } = require('./routes/middlewares');
+const { notifications } = require('./middlewares');
 
 dotenv.load();
 
 const notificationRouter = require('./routes/notifications');
 const indexRouter = require('./routes/index');
-const userRouter = require('./routes/auth/user');
+const userRouter = require('./routes/auth');
 const articleRouter = require('./routes/article');
 const mainRouter = require('./routes/main');
 
