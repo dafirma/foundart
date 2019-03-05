@@ -2,12 +2,10 @@
   <% articles.forEach((article) => {%>
   <% article.rent.forEach((rent) => {%>
   <div class="card-sm">
-    <a href="/article/<%= article._id %>">
       <% if (rent.lesseeID == userID ){%>
       <!-- Show only my rents -->
       <%- include('../partials/rent-list', {article, rent}) %>
       <%} %>
-    </a>
   </div>
   <% })%>
   <%}) %>
