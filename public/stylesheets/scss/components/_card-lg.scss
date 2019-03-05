@@ -1,0 +1,27 @@
+// CARD-LG
+
+.card-lg {
+
+    img {
+      width: 100%;
+    }
+  
+    .card-lg-text {
+      padding: 4% 2%;
+      margin-bottom: 5%;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+  
+      span {
+        font-size: $font-size-sm;
+        color: $primary-color;
+      }
+  
+      .card-lg-right {
+        margin-top: $font-size-sm;
+      }
+  
+    }
+  
+  }

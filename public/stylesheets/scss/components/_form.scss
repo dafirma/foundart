@@ -1,0 +1,14 @@
+// FORM
+.form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    input {
+      height: 1.5rem;
+      border: none;
+      border-bottom: $primary-color solid 1px;
+      margin-bottom: 1rem;
+    }
+  }

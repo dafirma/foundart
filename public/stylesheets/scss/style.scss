@@ -1,197 +1,24 @@
 @charset 'utf-8';
 
-//VARIABLES
-$primary-color: #d6471b;
-$secondary-color: rgb(248, 248, 248);
-$primary-color-font: white;
-$secondary-color-font: $primary-color;
-
-$button-color: red;
-$primary-text-color: black;
-$secondary-text-color: #666;
-$primary-color-link: #43a3e6;
-
-$font-stack: "Lucida Grande",
-Helvetica,
-Arial,
-sans-serif;
-
-$font-size-lg:1.5rem;
-$font-size-md:1rem;
-$font-size-sm:0.8rem;
-
-// BASE
-body {
-  padding: 0;
-  font-family: $font-stack;
-
-}
-
-.main-container {
-  padding: 10% 3% 5% 3%;
-}
-
-h1 {
-  color: $primary-text-color;
-  text-align: center;
-  padding-bottom: 10px;
-  font-size: 20px;
-  font-family: $font-stack;
-}
-
-h2 {
-  color: $primary-text-color;
-  text-align: center;
-  padding-bottom: 26px;
-  font-size: $font-size-lg;
-  font-family: $font-stack;
-
-}
-
-.container-rent {
-  width: auto;
-  padding-top: 5%;
-}
-
-.container-logo {
-  width: 80%;
-  height: 100%;
-  left: 50%;
-  margin-left: 10%;
-}
-
-.logo-signup {
-  width: 50%;
-  position: relative;
-  left: 50%;
-  margin-left: -25%;
-}
-
-/* CARD SMALL */
-
-.card-sm {
-  height: 130px;
-  padding: 3% 0 5% 0;
-  border-bottom-color: #666;
-  display: flex;
-  // box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-
-}
-
-.container-photo {
-  width: 50%;
-
-  padding: 0 3% 0 4%;
-
-  img {
-    max-width: 100%;
-  }
-
-}
-
-.container-search {
-  padding: 4% 0 0 10%;
-}
-
-.container-search-btn {
-  padding: 4% 0;
-}
-
-.container-text {
-  max-width: 100%;
-  padding: 10% 0 0 0;
-
-  h3 {
-    font-size: $font-size-sm;
-  }
-}
-
-.container-menu-up {
-  background-color: #43a3e6;
-  padding: 8% 0 0 9%;
-
-  a {
-    padding-top: 2%;
-    color: white;
-    text-decoration: none;
-
-  }
-
-}
-
-.container-menu-down {
-  background-color: #43a3e6;
-  padding: 8% 0 0 9%;
-
-  a {
-    padding-top: 2%;
-    color: white;
-    text-decoration: none;
-
-  }
-
-}
-
-.container-list-btn {
-  padding: 5% 0 0 33%;
-}
+@import 'base/reset';
 
 
-/* FORM */
 
+@import 'helpers/variables';
 
-#form {
-  margin: 30px auto;
-  width: auto;
-}
+@import 'base/base';
 
+@import 'components/menu';
+@import 'components/card-lg';
+@import 'components/card-sm';
+@import 'components/card-notification';
+@import 'components/form';
+@import 'components/button';
 
-.form-login {
-  margin: 3% auto;
-  width: 77%;
-}
+@import 'pages/login';
+@import 'pages/main';
 
-.form-login label {
-  color: #666;
-  display: inline-block;
-  margin-bottom: 10px;
-  text-align: center;
-  width: 100%;
-}
-
-.form-login input,
-.form-login button {
-  box-sizing: border-box;
-  font-size: 14px;
-  outline: 0;
-  padding: 4px;
-  width: 100%;
-  margin-bottom: 20px;
-  border-left: none;
-  border-right: none;
-  border-top: none;
-}
-
-.form-login button {
-  background: #43a3e6;
-  border: 1px solid #43a3e6;
-  border-radius: 4px;
-  color: #fff;
-  cursor: pointer;
-  display: inline-block;
-  font-size: 14px;
-  padding: 8px 16px;
-  text-decoration: none;
-  text-transform: uppercase;
-  transition: .3s ease background;
-  width: 100%;
-}
-
-.form-login button:hover {
-  background: #fff;
-  color: #43a3e6;
-  transition: .3s ease background;
-}
+@import 'helpers/extras';
 
 .account-message {
   text-align: center;
@@ -203,68 +30,8 @@ h2 {
 }
 
 
-// CARD-LG
-
-.card-lg {
-
-  img {
-    width: 100%;
-  }
-
-  .card-lg-text {
-    padding: 4% 2%;
-    margin-bottom: 5%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-
-    span {
-      font-size: $font-size-sm;
-      color: $primary-color;
-    }
-
-    .card-lg-right {
-      margin-top: $font-size-sm;
-    }
-
-  }
-
-}
-
-/* CARD NOTIFICATION*/
-.container-notification {
-  display: flex;
-}
-
-.card-notification {
-  padding: 0 0 10% 0;
-}
-
-.container-notification-btn {
-  padding: 6% 0 0 8%;
-
-}
-
-// BUTTON
-
-.btn {
-  color: $primary-color-font;
-  background-color: $primary-color;
-  border: none;
-  border-radius: 3px;
-  padding: 0.4rem 0.8rem;
-  text-transform: uppercase;
-  text-decoration: none;
-  font-size: $font-size-md;
-}
-
-
-
-
 
 // NOTIFICATION
-
-
 
 .error-message {
   background: #F02B63;
@@ -273,45 +40,4 @@ h2 {
   margin: 20px auto;
   padding: 20px;
   width: 100%;
-}
-
-
-// MENU
-.menu-icon {
-  height: 10vh;
-  width: 20%;
-  background-color: $primary-color;
-
-  img {
-    height: 100%;
-    width: 100%;
-  }
-}
-
-.menu-content {
-  background-color: $primary-color;
-  width: 100%;
-  height: 90vh;
-  display: flex;
-  flex-direction: column;
-
-  float: left;
-
-  a {
-    text-decoration: none;
-    color: white;
-
-    div {
-      padding: 1em;
-    }
-
-    &:hover {
-      background-color: rgba(255, 255, 255, 0.226);
-    }
-  }
-
-}
-
-.hidden {
-  display: none;
 }

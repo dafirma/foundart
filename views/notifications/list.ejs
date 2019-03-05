@@ -2,7 +2,9 @@
     <h2>Notifications</h2>
     <% articles.forEach((article) => {%>
         <%article.rent.forEach((rent) => {%>
-            <%- include('../partials/notifications-list', {article, rent});%>
+            <div class="card-sm">
+                <%- include('../partials/notifications-list', {article, rent});%>
+            </div>
         <% })%>
     <% })%>
 </div>
