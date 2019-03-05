@@ -6,7 +6,6 @@
   <h3>Description: <%= article.description%></h3>
   <h3 class ="card-lg-right">€<%- article.price%>.00 <span>/ day</span> </h3><br>
 
-<<<<<<< HEAD
 
 <h3>Title: <%= article.title%></h3>
 <h3>Price: <%= article.price%></h3>
@@ -26,14 +25,3 @@
       </form>
   </div>
  <% } %>
-=======
-</div>
-<div class= "container-list-btn">
-  <% if(locals.currentUser._id == article.userID){ %>
-      <a  class="btn" href="/article/<%= article._id%>/update">Edit</a>
-      <% } else{ %>  
-        <%- include('../partials/rent-request-form');%>
-  <% } %>
-      <a  class="btn" href="/article/list">Back</a>
-</div>
->>>>>>> d9ece631195040150d6984c6d94a5df99e62b825

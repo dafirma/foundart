@@ -10,6 +10,7 @@
 </head>
 
 <body>
+    <% if (locals.currentUser ){%>
     <div>
         <div class="menu-icon" id="menu-icon" onclick="delClass('hidden', 'menu-content')">
             <img src="/images/menuIcon.png" alt="menu icon">
@@ -25,7 +26,7 @@
             <a href="/main/rents" onclick="addClass('hidden', 'menu-content')">
                 <div>MY RENTS</div>
             </a>
-            <a href="/notifications"  onclick="addClass('hidden', 'menu-content')">
+            <a href="/notifications" onclick="addClass('hidden', 'menu-content')">
                 <div>NOTIFICATIONS</div>
             </a>
             <a href="/user/logout" onclick="addClass('hidden', 'menu-content')">
@@ -33,6 +34,8 @@
             </a>
         </div>
     </div>
+    <%} %>
+
 
 
     </div>
@@ -40,7 +43,7 @@
         <%- include('../partials/flash-notifications') %>
         <%-body%>
     </div>
-    
+
     <script src="/javascripts/support.js"></script>
 </body>
 
