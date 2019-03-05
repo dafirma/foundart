@@ -39,19 +39,23 @@ router.get('/rents', (req, res, next) => {
 // SEARCH
 router.get('/search', (req, res, next) => {
   const userID = req.session.currentUser._id;
-  const { type, dateInitial, dateFinal } = req.query;
+  const {
+    type, dateInitial, dateFinal, category,
+  } = req.query;
   console.log(dateFinal);
   if (dateInitial > dateFinal) {
     req.flash('error', 'No valid date');
     res.redirect('/main');
     return;
   }
-  if (dateInitial === '' || dateFinal === '' ) {
+  if (dateInitial === '' || dateFinal === '') {
     req.flash('error', 'Date empty');
     res.redirect('/main');
   }
-  Article.find({ type })
+  Article.find({ type, category })
     .then((articles) => {
+      console.log('test');
+      console.log(articles.category);
       res.render('main/search', { articles, userID });
     })
     .catch((error) => {
