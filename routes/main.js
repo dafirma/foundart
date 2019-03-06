@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 const express = require('express');
 const Article = require('../models/article');
 
@@ -42,7 +43,6 @@ router.get('/search', (req, res, next) => {
   const {
     type, dateInitial, dateFinal, category,
   } = req.query;
-  console.log(dateFinal);
   if (dateInitial > dateFinal) {
     req.flash('error', 'No valid date');
     res.redirect('/main');
@@ -52,10 +52,8 @@ router.get('/search', (req, res, next) => {
     req.flash('error', 'Date empty');
     res.redirect('/main');
   }
-  Article.find({ type, category })
+  Article.find({ type, category }).populate('userID')
     .then((articles) => {
-      console.log('test');
-      console.log(articles.category);
       res.render('main/search', { articles, userID });
     })
     .catch((error) => {

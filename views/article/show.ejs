@@ -4,6 +4,7 @@
   <img src="<%= article.imgPath%>" alt="<% article.originalName%>">
   <h3>Category: <%= article.category%></h3>
   <h3>Type: <%= article.type%></h3>
+  <h3> Owner: <%= article.userID.username%></h3>
   <h3>Description: <%= article.description%></h3>
   <h3 class ="card-lg-right">€<%- article.price%>.00 <span>/ day</span> </h3><br>
 

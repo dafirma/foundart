@@ -54,8 +54,9 @@ router.post('/new', uploadCloud.single('photo'), (req, res, next) => {
 
 /* GET list article */
 router.get('/list', (req, res, next) => {
+  // eslint-disable-next-line no-underscore-dangle
   const userID = req.session.currentUser._id;
-  Article.find({ userID })
+  Article.find({ userID }).populate('userID')
     .then((articles) => {
       res.render('article/list', { articles, userID, successMessage: req.flash('success') });
     })
@@ -85,7 +86,7 @@ router.get('/list/:page', (req, res, next) => {
 // GET single article
 router.get('/:id', (req, res, next) => {
   const { id } = req.params;
-  Article.findById(id)
+  Article.findById(id).populate('userID')
     .then((article) => {
       res.render('article/show', { article });
     })
@@ -158,5 +159,6 @@ router.post('/request', (req, res, next) => {
       next(error);
     });
 });
+
 
 module.exports = router;
