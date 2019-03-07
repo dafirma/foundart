@@ -10,12 +10,26 @@ const router = express.Router();
 
 /* GET signup form */
 router.get('/signup', middlewares.anonRoute, (req, res, next) => {
-  res.render('auth/signup', { errorMessage: req.flash('error') });
+  res.render('user/signup', {
+    errorMessage: req.flash('error')
+  });
 });
 
 /* CREATE USER */
 router.post('/signup', middlewares.anonRoute, (req, res, next) => {
-  const { username, password } = req.body;
+  const {
+    name,
+    lastName,
+    username,
+    telephone,
+    email,
+    street,
+    number,
+    zipcode,
+    city,
+    country,
+    password,
+  } = req.body;
   if (username === '' || password === '') {
     req.flash('error', 'Empty fields');
     return res.redirect('/signup');
@@ -29,7 +43,18 @@ router.post('/signup', middlewares.anonRoute, (req, res, next) => {
         const salt = bcrypt.genSaltSync(bcryptSalt);
         const hashPass = bcrypt.hashSync(password, salt);
         User.create({
+          name,
+          lastName,
           username,
+          telephone,
+          email,
+          address: {
+            street,
+            number,
+            zipcode,
+            city,
+            country,
+          },
           password: hashPass,
         })
           .then(() => {
@@ -49,7 +74,10 @@ router.post('/signup', middlewares.anonRoute, (req, res, next) => {
 /* LOGGIN USER */
 
 router.post('/login', middlewares.anonRoute, (req, res, next) => {
-  const { username, password } = req.body;
+  const {
+    username,
+    password
+  } = req.body;
 
   if (username === '' || password === '') {
     req.flash('error', 'no empty fields');
@@ -66,9 +94,9 @@ router.post('/login', middlewares.anonRoute, (req, res, next) => {
       }
       if (bcrypt.compareSync(password, user.password)) {
         // Save the login in the session!
-        
+
         req.session.currentUser = user;
-        
+
         req.flash('success', 'usuario logeado correctamente');
         res.redirect('/main');
       } else {
@@ -88,6 +116,72 @@ router.get('/logout', (req, res, next) => {
     // req.flash('success', 'Sesión cerrada correctamente');  LA SESIÓN SE BORRA!!
     res.redirect('/');
   });
+});
+
+
+// SHOW PROFILE
+
+router.get('/:id', (req, res, next) => {
+  const { id } = req.params;
+  User.findById(id)
+    .then((user) => {
+      res.render('user/show', { user });
+    })
+    .catch((error) => {
+      next(error);
+    });
+});
+
+// UPDATE PROFILE
+router.get('/:id/update', (req, res, next) => {
+  const { id } = req.params;
+
+  User.findById(id)
+    .then((user) => {
+      res.render('user/update', { user });
+    })
+    .catch((error) => {
+      next(error);
+    });
+});
+
+// UPDATE PROFILE
+router.post('/update', (req, res, next) => {
+  const {
+    id,
+    name,
+    lastName,
+    telephone,
+    email,
+    street,
+    number,
+    zipcode,
+    city,
+    country,
+  } = req.body;
+
+  User.findByIdAndUpdate(id, {
+    name,
+    lastName,
+    telephone,
+    email,
+    address: {
+      street,
+      number,
+      zipcode,
+      city,
+      country,
+    },
+  })
+    .then((user) => {
+      console.log(user);
+      req.flash('success', 'User updated');
+      // eslint-disable-next-line no-underscore-dangle
+      res.redirect(`/user/${user._id}`);
+    })
+    .catch((error) => {
+      next(error);
+    });
 });
 
 module.exports = router;

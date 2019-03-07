@@ -1,35 +1,36 @@
+<div class="container-logo">
+  <img class="logo-signup" src="/assets/icons8-round-512.png" alt="">
+</div>
+<h1>Sign up form</h1>
 
 <form class="form" action="/user/signup" method="POST">
-  <div class="container-logo">
-    <img class= "logo-signup"src="/assets/icons8-round-512.png" alt="">
-  </div>
-  <h1>Sign up form</h1>
+
   <input type="text" name="username" placeholder="Your username"><br>
 
   <input type="password" name="password" placeholder="Password"><br>
 
   <input type="text" name="name" placeholder="Your name"><br>
 
-  <input type="text" name="lastname" placeholder="Your lastname"><br>
+  <input type="text" name="lastName" placeholder="Your lastname"><br>
 
-  <input type="text" name="phone" placeholder="Your phone"><br>
+  <input type="text" name="telephone" placeholder="Your phone"><br>
 
   <input type="email" name="email" placeholder="Your email"><br>
 
   <input type="text" name="street" placeholder="Your street"><br>
   <div class="form-signup-number">
-      <input type="number" name="number" placeholder="Your number"><br>
+    <input type="number" name="number" placeholder="Your number"><br>
 
-      <input type="number" name="zipcode" placeholder="Your zipcode"><br>
+    <input type="number" name="zipcode" placeholder="Your zipcode"><br>
   </div>
   <input type="text" name="city" placeholder="Your city"><br>
 
   <input type="text" name="country" placeholder="Your country"><br>
 
   <%/* if (errorMessage) {*/ %>
-    <div class="error-message">
-      <%/*= errorMessage */%>
-    </div>
+  <div class="error-message">
+    <%/*= errorMessage */%>
+  </div>
   <%/* } */%>
   <button type="submit">Create account</button>
 </form>

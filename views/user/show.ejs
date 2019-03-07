@@ -1,0 +1,18 @@
+<div class="profile">
+    <div class="profile-info">
+        <h1><%= user.username %></h1>
+        <% console.log(user)%>
+        <p> <%= user.name %></p>
+        <p> <%= user.lastName %></p>
+        <p> <%= user.telephone %></p>
+        <p> <%= user.email %></p>
+        <div class="profile-info-address">
+            <span><%= user.address.street %></span>
+            <span><%= user.address.number %></span> </br>
+            <span><%= user.address.zipcode %></span>
+            <span><%= user.address.city %></span>
+            <span><%= user.address.country %></span>
+        </div>
+    </div>
+    <a href="/user/<%=user._id%>/update" class="btn">Update</a>
+</div>

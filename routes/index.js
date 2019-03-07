@@ -7,7 +7,7 @@ const middlewares = require('../middlewares');
 /* GET home page. */
 
 router.get('/', middlewares.anonRoute, (req, res, next) => {
-  res.render('auth/login', { errorMessage: req.flash('error') });
+  res.render('user/login', { errorMessage: req.flash('error') });
 });
 
 

@@ -9,7 +9,7 @@
     <div class="card-lg-text">
         <div>
             <span><%= article.type%> / <%= article.category%></span>
-            <span>By <%= article.userID.username%></span>
+            <span>By <a href="/user/<%=article.userID._id%>"> <%= article.userID.username%> </a></span>
             <h3><%- article.title%></h3>
         </div>
         <!-- If im not owner, show price and rent request button. Else show delete button -->

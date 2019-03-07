@@ -17,7 +17,7 @@ dotenv.load();
 
 const notificationRouter = require('./routes/notifications');
 const indexRouter = require('./routes/index');
-const userRouter = require('./routes/auth');
+const userRouter = require('./routes/user');
 const articleRouter = require('./routes/article');
 const mainRouter = require('./routes/main');
 
@@ -75,8 +75,6 @@ app.use('/user', userRouter);
 app.use('/article', articleRouter);
 app.use('/notifications', notificationRouter);
 app.use('/main', mainRouter);
-
-
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
