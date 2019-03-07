@@ -52,6 +52,48 @@ router.post('/new', uploadCloud.single('photo'), (req, res, next) => {
 });
 
 
+// FAVORITE
+
+
+router.get('/favorites', (req, res, next) => {
+  const userID = req.session.currentUser._id;
+  User.findById(userID)
+    .populate('favorite.articleID')
+    .then((users) => {
+      console.log(users);
+      res.render('article/favorites', { users });
+    })
+    .catch((error) => {
+      next(error);
+    });
+});
+
+
+router.post('/favorites', (req, res, next) => {
+  const userID = req.session.currentUser._id;
+  const { articleId } = req.body;
+  const favorite = { articleID: articleId };
+  User.findOneAndUpdate({ _id: userID }, {
+    $push: { favorite },
+  })
+    .then((user) => {
+      // console.log('test');
+      console.log(user);
+      res.redirect('/main');
+    })
+    .catch((error) => {
+      next(error);
+    });
+});
+/*
+router.get('/favtest', (req, res, next) => {
+  const userID = req.session.currentUser._id;
+  console.log(userID);
+  res.render('/main');
+});
+*/
+
+
 /* GET list article */
 router.get('/list', (req, res, next) => {
   const userID = req.session.currentUser._id;
@@ -159,4 +201,37 @@ router.post('/request', (req, res, next) => {
     });
 });
 
+
+/*
+router.get('/favorites', (req, res, next) => {
+  const userID = req.session.currentUser._id;
+  User.findById({ userID })
+    .then((favorite) => {
+      console.log('hgghj');
+      res.render('/articles/favorites', { favorite });
+    })
+    .catch((error) => {
+      next(error);
+    });
+});
+
+router.post('/fav', (req, res, next) => {
+  const { articleId } = req.body;
+  const userID = req.session.currentUser;
+  const favorites = { articleID: articleId };
+  console.log(articleId);
+  console.log(userID.username);
+  console.log(favorites);
+  User.findOneAndUpdate({ _id: userID }, {
+    $push: { favorite },
+  })
+    .then(() => {
+      console.log();
+      res.redirect('/main');
+    })
+    .catch((error) => {
+      next(error);
+    });
+});
+*/
 module.exports = router;
