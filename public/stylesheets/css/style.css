@@ -103,17 +103,23 @@ h2 {
     color: #d6471b; }
   .card-lg .card-lg-text .card-lg-right {
     margin-top: 0.8rem; }
+@media (min-width: 992px) {
+  .card-lg {
+    max-width: 25%;
+    flex-shrink: 1; } }
 
 .card-sm {
-  height: 130px;
   padding: 3% 0 5% 0;
-  display: flex; }
+  display: flex;
+  flex: 1; }
   .card-sm a {
     width: 40%; }
     .card-sm a img {
       width: 100%; }
   .card-sm img {
-    width: 40%; }
+    max-width: 100%;
+    height: auto;
+    max-height: 40vh; }
   .card-sm .card-sm-text {
     width: 60%;
     padding: 0 0 0 1rem;
@@ -122,6 +128,11 @@ h2 {
     justify-content: center; }
     .card-sm .card-sm-text span {
       font-size: 0.8rem; }
+  @media (min-width: 992px) {
+    .card-sm {
+      max-width: 25%;
+      display: flex;
+      flex-direction: column; } }
 
 /* CARD NOTIFICATION*/
 .card-notification {
@@ -171,7 +182,7 @@ h2 {
   padding: 0.4rem 0.8rem;
   text-transform: uppercase;
   text-decoration: none;
-  font-size: 1rem; }
+  font-size: 1.3rem; }
 
 .container-logo {
   width: 80%;
@@ -191,13 +202,45 @@ h2 {
 .main-rent {
   width: auto;
   padding-top: 5%; }
+  @media (min-width: 992px) {
+    .main-rent div {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around; } }
 
 .main-search {
-  padding: 0 3%; }
+  padding: 0 3%;
+  margin: auto; }
+  .main-search .form-aux {
+    margin: auto; }
+  .main-search .main-search-dates,
+  .main-search .main-search-tags {
+    display: flex;
+    margin: auto; }
+  @media (min-width: 992px) {
+    .main-search {
+      width: 30%; }
+      .main-search .form-aux {
+        margin: auto; }
+      .main-search .aux {
+        display: flex;
+        flex-direction: column;
+        margin: 0.2rem 0.2rem; } }
 
 .main-search-btn-container {
   display: flex;
   justify-content: center; }
+
+.container-search {
+  display: flex;
+  padding: 0 2% 10% 0; }
+
+.container-error {
+  text-align: center;
+  padding: 25% 0 10% 0; }
+
+.container-error-btn {
+  padding-left: 33%; }
 
 .hidden {
   display: none !important; }
@@ -207,13 +250,5 @@ h2 {
   font-size: 90%; }
   .account-message a {
     text-decoration: none; }
-
-.error-message {
-  background: #F02B63;
-  box-sizing: border-box;
-  color: #fff;
-  margin: 20px auto;
-  padding: 20px;
-  width: 100%; }
 
 /*# sourceMappingURL=style.css.map */

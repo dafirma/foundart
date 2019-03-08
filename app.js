@@ -35,8 +35,8 @@ mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true })
 
 // view engine setup
 app.use(sassMiddleware({
-  src: path.join(__dirname, 'stylesheets'),
-  dest: path.join(__dirname, 'stylesheets'),
+  src: path.join(__dirname, '/public/stylesheets/scss'),
+  dest: path.join(__dirname, '/public/stylesheets/css'),
   indentedSyntax: false, // true = .sass and false = .scss
   sourceMap: true, // true for .map; false no .map file
 }));

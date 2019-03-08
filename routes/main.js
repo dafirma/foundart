@@ -40,7 +40,7 @@ router.get('/rents', (req, res, next) => {
 
 // SEARCH
 router.get('/search', (req, res, next) => {
-  const userID = req.session.currentUser._id;
+  const currentUserId = req.session.currentUser;
   const {
     type, dateInitial, dateFinal, category,
   } = req.query;
@@ -55,7 +55,7 @@ router.get('/search', (req, res, next) => {
   }
   Article.find({ type, category }).populate('userID')
     .then((articles) => {
-      res.render('main/search', { articles, userID });
+      res.render('main/search', { articles, currentUserId });
     })
     .catch((error) => {
       next(error);

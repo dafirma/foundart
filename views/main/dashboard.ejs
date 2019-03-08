@@ -1,24 +1,29 @@
 <div class="main-rent">
   <h2>Dashboard</h2>
-  <% articles.forEach((article) => {%>
-  <% article.rent.forEach((rent) => {%>
-  <div class="card-sm">
+  <div>
+    <% articles.forEach((article) => {%>
+    <% article.rent.forEach((rent) => {%>
+    <div class="card-sm">
       <% if (rent.lesseeID == userID ){%>
       <!-- Show only my rents -->
       <%- include('../partials/rent-list', {article, rent}) %>
       <%} %>
+    </div>
+    <% })%>
+    <%}) %>
   </div>
-  <% })%>
-  <%}) %>
 </div>
 
 <div class="main-search">
   <h2>Search</h2>
   <form class="form" action="/main/search" method="get">
-    <div class="container-search">
-      <div class="container-category">
-        <label for="type">Category</label>
-        <select name="category" id="category">
+    <div class="form-aux">
+
+
+      <div class="main-search-tags">
+        <div class="aux">
+          <label for="type">Category</label>
+          <select name="category" id="category">
             <option value="visualArt">Visual Art</option>
             <option value="contemporany">Contemporany</option>
             <option value="decorativeArt">Decorative Art</option>
@@ -28,11 +33,12 @@
             <option value="realism">Realism</option>
             <option value="graffitiArt">Graffiti Art</option>
             <option value="music">Music</option>
-        </select>
-      </div>
-      <div class="container-type">
-        <label for="type"> Type</label>
-        <select name="type" id="type">
+          </select>
+        </div>
+
+        <div class="aux">
+          <label for="type"> Type</label>
+          <select name="type" id="type">
             <option value="painting">Painting</option>
             <option value="sculpture">Sculpture</option>
             <option value="photography">Photography</option>
@@ -40,19 +46,28 @@
             <option value="live art">Live Art</option>
             <option value="drawing">Drawing</option>
             <option value="music">Music</option>
-        </select><br>
+          </select>
+        </div>
+      </div>
+
+      <div class="main-search-dates">
+        <div class="aux">
+          <label for="dateInitial">
+            Rent start:
+          </label>
+          <input type="date" name="dateInitial" id="dateInitial">
+        </div>
+        <div class="aux">
+          <label for="dateFinal">
+            Rent end:
+          </label>
+          <input type="date" name="dateFinal" id="dateFinal">
+        </div>
       </div>
     </div>
-    <label for="dateInitial">
-      Rent start:
-    </label>
-    <input type="date" name="dateInitial" id="dateInitial">
-    <label for="dateFinal">
-      Rent end:
-    </label>
-    <input type="date" name="dateFinal" id="dateFinal">
     <div class="main-search-btn-container">
       <button class="btn" type="submit">Search</button>
     </div>
   </form>
+
 </div>

@@ -3,6 +3,7 @@
 @import 'base/reset';
 
 @import 'helpers/variables';
+@import 'mixins/responsive';
 
 @import 'base/base';
 
@@ -20,7 +21,6 @@
 
 @import 'helpers/extras';
 
-
 .account-message {
   text-align: center;
   font-size: 90%;
@@ -28,17 +28,4 @@
   a {
     text-decoration: none;
   }
-}
-
-
-
-// NOTIFICATION
-
-.error-message {
-  background: #F02B63;
-  box-sizing: border-box;
-  color: #fff;
-  margin: 20px auto;
-  padding: 20px;
-  width: 100%;
 }

@@ -97,10 +97,10 @@ router.get('/favtest', (req, res, next) => {
 /* GET list article */
 router.get('/list', (req, res, next) => {
   // eslint-disable-next-line no-underscore-dangle
-  const userID = req.session.currentUser._id;
-  Article.find({ userID }).populate('userID')
+  const currentUserId = req.session.currentUser._id;
+  Article.find({ userID: currentUserId }).populate('userID')
     .then((articles) => {
-      res.render('article/list', { articles, userID, successMessage: req.flash('success') });
+      res.render('article/list', { articles, currentUserId, successMessage: req.flash('success') });
     })
     .catch((error) => {
       next(error);

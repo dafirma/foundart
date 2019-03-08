@@ -9,11 +9,11 @@
     <div class="card-lg-text">
         <div>
             <span><%= article.type%> / <%= article.category%></span>
-            <span>By <a href="/user/<%=article.userID._id%>"> <%= article.userID.username%> </a></span>
+            <span>By <a href="/user/<%= article.userID._id%>"> <%= article.userID.username%> </a></span>
             <h3><%- article.title%></h3>
         </div>
         <!-- If im not owner, show price and rent request button. Else show delete button -->
-        <% if (article.userID != userID ){%>
+        <% if (article.userID != currentUserId ){%>
             <h3 class ="card-lg-right">€<%- article.price%>.00 <span>/ day</span> </h3>
             <%}else {%>
             <form action="/article/delete" method="POST">

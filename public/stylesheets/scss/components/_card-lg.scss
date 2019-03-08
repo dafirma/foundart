@@ -23,5 +23,9 @@
       }
   
     }
+    @include respond-to('medium') {
+      max-width: 25%; 
+      flex-shrink: 1;
+    }
   
   }
