@@ -8,8 +8,12 @@
   <input type="hidden" name="id" value="<%=user._id%>">
 
   <input type="text" name="username" placeholder="username" value="<%=user.username%>"><br>
-
-  <input type="password" name="password" placeholder="password" value="<%=user.password%>"><br>
+  <span class="btn" id="btn-update-password">Change password</span>
+  <div id="user-update-password" class="hidden">
+    <input type="password" name="oldPassword" placeholder="Old password"><br>
+    <input type="password" name="password" placeholder="New password"><br>
+    <input type="password" name="passwordCompare" placeholder="Repeat password"><br>
+  </div>
 
   <input type="text" name="name" placeholder="name" value="<%=user.name%>"><br>
 

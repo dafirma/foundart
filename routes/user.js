@@ -11,7 +11,7 @@ const router = express.Router();
 /* GET signup form */
 router.get('/signup', middlewares.anonRoute, (req, res, next) => {
   res.render('user/signup', {
-    errorMessage: req.flash('error')
+    errorMessage: req.flash('error'),
   });
 });
 
@@ -76,7 +76,7 @@ router.post('/signup', middlewares.anonRoute, (req, res, next) => {
 router.post('/login', middlewares.anonRoute, (req, res, next) => {
   const {
     username,
-    password
+    password,
   } = req.body;
 
   if (username === '' || password === '') {
@@ -158,30 +158,42 @@ router.post('/update', (req, res, next) => {
     zipcode,
     city,
     country,
+    oldPassword,
+    password,
+    passwordCompare,
   } = req.body;
 
-  User.findByIdAndUpdate(id, {
-    name,
-    lastName,
-    telephone,
-    email,
-    address: {
-      street,
-      number,
-      zipcode,
-      city,
-      country,
-    },
-  })
-    .then((user) => {
-      console.log(user);
-      req.flash('success', 'User updated');
-      // eslint-disable-next-line no-underscore-dangle
-      res.redirect(`/user/${user._id}`);
+  const userPass = req.session.currentUser.password;
+
+  if (bcrypt.compareSync(oldPassword, userPass) && password !== passwordCompare) {
+    const salt = bcrypt.genSaltSync(bcryptSalt);
+    const hashPass = bcrypt.hashSync(password, salt);
+    User.findByIdAndUpdate(id, {
+      name,
+      lastName,
+      telephone,
+      email,
+      address: {
+        street,
+        number,
+        zipcode,
+        city,
+        country,
+      },
+      password: hashPass,
     })
-    .catch((error) => {
-      next(error);
-    });
+      .then((user) => {
+        req.flash('success', 'User updated');
+        // eslint-disable-next-line no-underscore-dangle
+        res.redirect(`/user/${user._id}`);
+      })
+      .catch((error) => {
+        next(error);
+      });
+  } else {
+    req.flash('error', 'old password incorrect');
+    res.redirect('/');
+  }
 });
 
 module.exports = router;
