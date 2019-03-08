@@ -23,3 +23,8 @@
       </form>
   </div>
  <% } %>
+ <br>
+ <form action="/article/favorites" method="post" id="favoriteForm" >
+  <input type="hidden" name="articleId" value="<%= article._id %>">
+  <button class="btn" type="submit">Favorite</button>  
+</form>

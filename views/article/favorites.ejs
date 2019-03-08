@@ -1,0 +1,18 @@
+<h2> Favorites</h2>
+<div>
+  <% users.favorite.forEach((fav) => {%> 
+
+    <div class = "card-lg">
+        <a href="/article/<%= fav.articleID._id%>">
+            <img src="<%= fav.articleID.imgPath%>" alt="<% fav.articleID.originalName%>">
+        </a>
+        <div class="card-lg-text">
+            <div>
+                <span><%= fav.articleID.type%> / <%= fav.articleID.category%> / Bla blua</span>
+                <h3><%- fav.articleID.title%></h3>
+            </div>
+            <h3 class ="card-lg-right">€<%- fav.articleID.price%>.00 <span>/ day</span> </h3>
+        </div>
+    </div>
+  <%}) %>                
+  </div>

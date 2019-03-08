@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
+const { ObjectId } = Schema.Types;
 
 const userSchema = new Schema({
   name: String,
@@ -16,6 +17,12 @@ const userSchema = new Schema({
     city: String,
     country: String,
   },
+  favorite: [{
+    articleID: {
+      type: ObjectId,
+      ref: 'Article',
+    },
+  }],
   nationalId: {
     number: String,
     img: String,
