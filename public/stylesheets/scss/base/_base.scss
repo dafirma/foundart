@@ -1,27 +1,29 @@
 // BASE
 body {
-    padding: 0;
-    font-family: $font-stack;
-  
-  }
-  
-  .main-container {
-    padding: 10% 3% 5% 3%;
-  }
-  
-  h1 {
-    color: $primary-text-color;
-    text-align: center;
-    padding-bottom: 10px;
-    font-size: 20px;
-    font-family: $font-stack;
-  }
-  
-  h2 {
-    color: $primary-text-color;
-    text-align: center;
-    padding-bottom: 1.3rem;
-    font-size: $font-size-lg;
-    font-family: $font-stack;
-  
-  }
+  padding: 0;
+  font-family: $font-stack;
+}
+body > div {
+  margin-top: 7vh;
+}
+
+.main-container {
+  padding: 10% 3% 5% 3%;
+}
+
+h1 {
+  color: $primary-text-color;
+  text-align: center;
+  padding-bottom: 10px;
+  font-size: 20px;
+  font-family: $font-stack;
+}
+
+h2 {
+  color: $primary-text-color;
+  text-align: center;
+  padding-bottom: 1.3rem;
+  font-size: $font-size-lg;
+  font-family: $font-stack;
+
+}

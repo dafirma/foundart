@@ -1,12 +1,15 @@
 // MENU
 .menu-icon {
-    height: 10vh;
-    width: 100%;
+    position: fixed;
+    top:0;
+    left:0;
+    right: 0;
+    height: 7vh;
     background-color: $primary-color;
   
     img {
       height: 90%;
-      width: 15%;
+      width: 30px;
       margin-left: 2%;
     }
   }

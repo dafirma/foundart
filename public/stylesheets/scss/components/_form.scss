@@ -11,6 +11,17 @@
       border-bottom: $primary-color solid 1px;
       margin-bottom: 1rem;
     }
+
+    .aux {
+      display: flex;
+      div {
+        margin: 0 0.2rem 0 0;
+        flex:1;
+      }
+      input {
+        width: 100%;
+      }
+    }
     @include respond-to('medium') {
       // width: 30%;
     }
