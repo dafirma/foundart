@@ -1,22 +1,9 @@
 <h2>Search results</h2>
 <div class="list-card-lg">
-
-    <% allarticles.forEach((article) => { %>
-      <% article.rent.forEach((rent) => { %>
-        <% const dsrent = rent.dateStart; %>
-        <% const derent = rent.dateEnd; %>
-        <% if (dsrent > dateInitial && dsrent < dateFinal) { %>
-          <% console.log('no disponible'); %>
-          <% } else if (derent > dateFinal && derent < dateFinal) { %>
-            <% console.log('no disponible'); %>
-            <% } else { %>
-              <% allarticles.forEach((article) => {%>
-                <% if (article.userID != currentUserId._id){%>
-                  <!-- If I'm not owner of the article, show -->
-                  <%- include('../partials/articles-list.ejs',{ article, currentUserId });%>
-                <% };%>
-              <%})%>
-            <% } %>
-          <% });%>
-        <%});%>
+    <% articles.forEach((article) => {%>
+  <% if (article.userID != currentUserId._id){%>
+  <!-- If I'm not owner of the article, show -->
+  <%- include('../partials/articles-list.ejs',{ article, currentUserId });%>
+  <% };%>
+  <%})%>
 </div>

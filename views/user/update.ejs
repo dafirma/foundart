@@ -7,7 +7,55 @@
 
   <input type="hidden" name="id" value="<%=user._id%>">
 
-  <input type="text" name="username" placeholder="username" value="<%=user.username%>"><br>
+  <label for="username">Username</label>
+  <input type="text" name="username" placeholder="username" value="<%=user.username%>">
+
+  <div class="aux">
+    <div>
+      <label for="name">Name</label><br>
+      <input type="text" name="name" placeholder="name" value="<%=user.name%>">
+    </div>
+    <div>
+      <label for="lastName">Last name</label><br>
+      <input type="text" name="lastName" placeholder="lastname" value="<%=user.lastName%>">
+    </div>
+  </div>
+
+  <label for="telephone">Phone</label>
+  <input type="text" name="telephone" placeholder="phone" value="<%=user.telephone%>"><br>
+
+  <label for="email">Email</label>
+  <input type="email" name="email" placeholder="email" value="<%=user.email%>"><br>
+
+  <div>
+    <label for="street">Street</label><br>
+    <input type="text" name="street" placeholder="street" value="<%=user.address.street%>"><br>
+
+    <div class="form-signup-number aux">
+      <div>
+        <label for="number">Num</label><br>
+        <input type="number" name="number" placeholder="number" value="<%=user.address.number%>"><br>
+      </div>
+      <div>
+        <label for="zipcode">Zip Code</label><br>
+        <input type="number" name="zipcode" placeholder="zipcode" value="<%=user.address.zipcode%>"><br>
+      </div>
+    </div>
+
+    <div class="aux">
+      <div>
+        <label for="city">City</label><br>
+        <input type="text" name="city" placeholder="city" value="<%=user.address.city%>"><br>
+      </div>
+
+      <div>
+        <label for="country">Country</label><br>
+        <input type="text" name="country" placeholder="country" value="<%=user.address.country%>"><br>
+      </div>
+    </div>
+
+  </div>
+
   <span class="btn" id="btn-update-password">Change password</span>
   <div id="user-update-password" class="hidden">
     <input type="password" name="oldPassword" placeholder="Old password"><br>
@@ -15,28 +63,10 @@
     <input type="password" name="passwordCompare" placeholder="Repeat password"><br>
   </div>
 
-  <input type="text" name="name" placeholder="name" value="<%=user.name%>"><br>
-
-  <input type="text" name="lastName" placeholder="lastname" value="<%=user.lastName%>"><br>
-
-  <input type="text" name="telephone" placeholder="phone" value="<%=user.telephone%>"><br>
-
-  <input type="email" name="email" placeholder="email" value="<%=user.email%>"><br>
-
-  <input type="text" name="street" placeholder="street" value="<%=user.address.street%>"><br>
-  <div class="form-signup-number">
-    <input type="number" name="number" placeholder="number" value="<%=user.address.number%>"><br>
-
-    <input type="number" name="zipcode" placeholder="zipcode" value="<%=user.address.zipcode%>"><br>
-  </div>
-  <input type="text" name="city" placeholder="city" value="<%=user.address.city%>"><br>
-
-  <input type="text" name="country" placeholder="country" value="<%=user.address.country%>"><br>
-
   <%/* if (errorMessage) {*/ %>
   <div class="error-message">
     <%/*= errorMessage */%>
   </div>
   <%/* } */%>
-  <button type="submit">Create account</button>
+  <button class="btn" type="submit">+</button>
 </form>
