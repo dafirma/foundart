@@ -15,6 +15,10 @@
                 <p>Price by day:
                     <%- article.price%>
                 </p>
+                <p>Total price:
+                    <%- rent.totalPrice %>
+                
+                </p>
                 <div class="container-list-btn">
                     <form action="/notifications/update" method="post">
                         <input type="hidden" value="<%- article._id%>" name="articleId" >

@@ -23,6 +23,7 @@ const articleSchema = new Schema({
     },
     dateStart: Date,
     dateEnd: Date,
+    totalPrice: Number,
     state: String,
   }],
 });

@@ -7,6 +7,7 @@ const middlewares = require('../middlewares');
 const router = express.Router();
 router.use(middlewares.protectedRoute);
 
+
 // GET NOTIFICATIONS LIST
 router.get('/', (req, res, next) => {
   const user = req.session.currentUser;

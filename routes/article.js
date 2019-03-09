@@ -1,5 +1,6 @@
 const express = require('express');
 const multer = require('multer');
+const moment = require('moment');
 const uploadCloud = require('../config/cloudinary.js');
 const middlewares = require('../middlewares');
 const User = require('../models/user');
@@ -182,14 +183,21 @@ router.post('/delete', (req, res, next) => {
 
 // Creates a rent request for the article
 router.post('/request', (req, res, next) => {
-  const { dateStart, dateEnd, articleId } = req.body;
+  const {
+    dateStart, dateEnd, articleId, articlePrice,
+  } = req.body;
   const userID = req.session.currentUser;
+  const ds = moment(dateStart);
+  const de = moment(dateEnd);
+  const totalPrice = (de.diff(ds, 'days')) * articlePrice;
   const rent = {
     lesseeID: userID,
     dateStart,
     dateEnd,
     state: 'In progress',
+    totalPrice,
   };
+  
   Article.findOneAndUpdate({ _id: articleId }, {
     $push: { rent },
   })

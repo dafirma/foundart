@@ -15,6 +15,7 @@
     <div>
       <form action="/article/request" method="post" id="requestForm">
           <input type="hidden" name="articleId" value="<%= article._id %>">
+          <input type="hidden" name="articlePrice" value="<%= article.price %>">
           <label for="dateStart"></label>
           <input type="date" name="dateStart" id="dateStart">
           <label for="dateEnd"></label>
