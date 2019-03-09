@@ -7,10 +7,12 @@
                     <%- article.title%>
                 </p>
                 <p>Date start:
-                    <%- rent.dateStart%>
+                    <%const ds = rent.dateStart.toString()%>
+                    <%= ds.slice(0,15)%>
                 </p>
                 <p>Date end:
-                    <%- rent.dateEnd%>
+                    <%const de = rent.dateEnd.toString()%>
+                    <%= de.slice(0,15)%>
                 </p>
                 <p>Price by day:
                     <%- article.price%>

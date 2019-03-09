@@ -2,7 +2,8 @@
 <div class="card-notification">
     <div class="card-notification-text">
         Name: <%= article.title %><br>
-        Date end: <%= rent.dateEnd%>
+        <%const de = rent.dateEnd.toString()%>
+         Date end: <%= de.slice(0,15)%>
     </div>
     <div class="card-notification-container-btn">
         <a  class="btn" href="/notifications/<%= article.id %>/<%= rent.id %>">SHOW</a>
