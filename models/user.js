@@ -23,6 +23,17 @@ const userSchema = new Schema({
       ref: 'Article',
     },
   }],
+  loc: {
+    type: {
+      type: String, // Don't do `{ location: { type: String } }`
+      enum: ['Point'], // 'location.type' must be 'Point'
+      required: true,
+    },
+    coordinates: {
+      type: [Number],
+      required: true,
+    },
+  },
   nationalId: {
     number: String,
     img: String,
@@ -31,6 +42,7 @@ const userSchema = new Schema({
   timestamps: true,
 });
 
+userSchema.index({ loc: '2dsphere' });
 const User = mongoose.model('User', userSchema);
 
 module.exports = User;

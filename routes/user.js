@@ -3,6 +3,7 @@ const bcrypt = require('bcrypt');
 
 const User = require('../models/user');
 const middlewares = require('../middlewares');
+const geo = require('../middlewares/geo');
 
 const bcryptSalt = 10;
 const router = express.Router();
@@ -28,13 +29,19 @@ router.post('/signup', middlewares.anonRoute, (req, res, next) => {
     zipcode,
     city,
     country,
+    lat,
+    long,
     password,
   } = req.body;
+
+
   if (username === '' || password === '') {
     req.flash('error', 'Empty fields');
     return res.redirect('/signup');
   }
-  User.findOne({ username })
+  User.findOne({
+    username,
+  })
     .then((user) => {
       if (user) {
         req.flash('error', 'User do not exist');
@@ -54,6 +61,10 @@ router.post('/signup', middlewares.anonRoute, (req, res, next) => {
             zipcode,
             city,
             country,
+          },
+          loc: {
+            type: 'Point',
+            coordinates: [long, lat],
           },
           password: hashPass,
         })
@@ -85,7 +96,9 @@ router.post('/login', middlewares.anonRoute, (req, res, next) => {
     return;
   }
 
-  User.findOne({ username })
+  User.findOne({
+    username,
+  })
     .then((user) => {
       if (!user) {
         req.flash('error', 'usuario o contraseña incorrectos');
@@ -122,10 +135,14 @@ router.get('/logout', (req, res, next) => {
 // SHOW PROFILE
 
 router.get('/:id', (req, res, next) => {
-  const { id } = req.params;
+  const {
+    id,
+  } = req.params;
   User.findById(id)
     .then((user) => {
-      res.render('user/show', { user });
+      res.render('user/show', {
+        user,
+      });
     })
     .catch((error) => {
       next(error);
@@ -134,17 +151,37 @@ router.get('/:id', (req, res, next) => {
 
 // UPDATE PROFILE
 router.get('/:id/update', (req, res, next) => {
-  const { id } = req.params;
+  const {
+    id,
+  } = req.params;
 
   User.findById(id)
     .then((user) => {
-      res.render('user/update', { user });
+      res.render('user/update', {
+        user,
+      });
     })
     .catch((error) => {
       next(error);
     });
 });
 
+router.get('/test/test', (req, res, next) => {
+  User.find({
+    loc: {
+      $near: {
+        $maxDistance: 90000,
+        $geometry: {
+          type: 'Point',
+          coordinates: [2, 41],
+        },
+      },
+    },
+  })
+    .then((user) => {
+      console.log(user);
+    });
+});
 // UPDATE PROFILE
 router.post('/update', (req, res, next) => {
   const {

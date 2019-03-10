@@ -13,12 +13,20 @@ router.use(middlewares.protectedRoute);
 
 router.get('/', (req, res, next) => {
   const userID = req.session.currentUser._id;
-  // Article.find({ userID })
-  Article.find({ rent: { $elemMatch: { lesseeID: userID } } }).limit(1)
-  // Article.find({ $and: [{rent:{elemMatch: {state: 'Accept'}}}, rent: { $elemMatch: { lesseeID: userID } } })
+
+  Article.find({
+    rent: {
+      $elemMatch: {
+        lesseeID: userID,
+      },
+    },
+  }).limit(1)
     .then((articles) => {
-      res.render('main/dashboard',
-        { articles, userID, successMessage: req.flash('success') });
+      res.render('main/dashboard', {
+        articles,
+        userID,
+        successMessage: req.flash('success'),
+      });
     })
     .catch((error) => {
       next(error);
@@ -28,9 +36,14 @@ router.get('/', (req, res, next) => {
 // RENTS
 router.get('/rents', (req, res, next) => {
   const userID = req.session.currentUser._id;
-  Article.find({ userID })
+  Article.find({
+    userID,
+  })
     .then((articles) => {
-      res.render('main/rents', { articles, userID });
+      res.render('main/rents', {
+        articles,
+        userID,
+      });
     })
     .catch((error) => {
       next(error);
@@ -38,16 +51,18 @@ router.get('/rents', (req, res, next) => {
 });
 
 // SEARCH
-router.get('/search', (req, res, next) => {
+router.get('/search', async (req, res, next) => {
   const currentUserId = req.session.currentUser;
+  const usersId = [];
   const {
-    type, dateInitial, dateFinal, category,
+    type,
+    dateInitial,
+    dateFinal,
+    category,
+    distance,
+    lat,
+    long,
   } = req.query;
-  const ds = moment(dateInitial);
-  const de = moment(dateFinal);
-  const totalPrice = de.diff(ds, 'days');
-  console.log('days: + ', totalPrice);
-  const articles = [];
   if (dateInitial === '' || dateFinal === '') {
     req.flash('error', 'Date empty');
     res.redirect('/main');
@@ -56,30 +71,35 @@ router.get('/search', (req, res, next) => {
     req.flash('error', 'No valid date');
     res.redirect('/main');
   }
-  Article.find({ type, category }).populate('userID')
-    .then((allarticles) => {
-      /*
-      allarticles.forEach((article) => {
-        article.rent.forEach((rent) => {
-          const dsrent = rent.dateStart;
-          const derent = rent.dateEnd;
-          if (dsrent > dateInitial && dsrent < dateFinal) {
-            console.log('no disponible');
-          } else if (derent > dateFinal && derent < dateFinal) {
-            console.log('no disponible');
-          } else {
-            articles.push(rent);
-          }
-        });
-      }); */
-  
-      res.render('main/search', {
-        allarticles, currentUserId, dateFinal, dateInitial,
-      });
-    })
-    .catch((error) => {
-      next(error);
+  try {
+    const users = await User.find({
+      loc: {
+        $nearSphere: {
+          $maxDistance: distance,
+          $geometry: {
+            type: 'Point',
+            coordinates: [long, lat],
+          },
+        },
+      },
     });
+    users.forEach((user) => {
+      usersId.push(user._id);
+    });
+  } catch (error) {
+    next(error);
+  }
+  try {
+    const allarticles = await Article.find({ userID: { $in: usersId } }).populate('userID');
+    res.render('main/search', {
+      allarticles,
+      currentUserId,
+      dateFinal,
+      dateInitial,
+    });
+  } catch (error) {
+    next(error);
+  }
 });
 
 module.exports = router;

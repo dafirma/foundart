@@ -16,10 +16,10 @@
 
 <div class="main-search">
   <h2>Search</h2>
-  <form class="form" action="/main/search" method="get">
+  <form id="search-form" class="form" action="/main/search" method="get">
     <div class="form-aux">
-
-
+      <input type="hidden" id ="long" name="long" value="">
+      <input type="hidden" id ="lat" name="lat" value="">
       <div class="aux">
         <div>
           <label for="type">Category</label><br>
@@ -34,6 +34,16 @@
             <option value="graffitiArt">Graffiti Art</option>
             <option value="music">Music</option>
           </select>
+        </div>
+
+        <div>
+            <label for="distance">Distance</label><br>
+            <select name="distance" id="distance">
+              <option value="100.0">1km</option>
+              <option value="200.0">2km</option>
+              <option value="500.0">5km</option>
+              <option value="100.0">10km</option>
+            </select>
         </div>
 
         <div>
@@ -69,7 +79,7 @@
 
     </div>
     <div class="main-search-btn-container">
-      <button class="btn" type="submit">Search</button>
+      <button class="btn" type="submit" >Search</button>
     </div>
   </form>
 

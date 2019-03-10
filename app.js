@@ -10,6 +10,7 @@ const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 const sassMiddleware = require('node-sass-middleware');
 const dotenv = require('dotenv');
+const expressip = require('express-ip');
 
 const { notifications } = require('./middlewares');
 
@@ -20,7 +21,6 @@ const indexRouter = require('./routes/index');
 const userRouter = require('./routes/user');
 const articleRouter = require('./routes/article');
 const mainRouter = require('./routes/main');
-
 
 const app = express();
 app.locals.title = 'Found Art';
@@ -68,6 +68,9 @@ app.use((req, res, next) => {
   res.locals.currentUser = req.session.currentUser;
   next();
 });
+
+// GEO LOCATION
+app.use(expressip().getIpInfoMiddleware);
 
 app.use(notifications);
 app.use('/', indexRouter);
