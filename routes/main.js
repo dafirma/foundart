@@ -43,11 +43,6 @@ router.get('/search', (req, res, next) => {
   const {
     type, dateInitial, dateFinal, category,
   } = req.query;
-  const ds = moment(dateInitial);
-  const de = moment(dateFinal);
-  const totalPrice = de.diff(ds, 'days');
-  console.log('days: + ', totalPrice);
-  const articles = [];
   if (dateInitial === '' || dateFinal === '') {
     req.flash('error', 'Date empty');
     res.redirect('/main');
@@ -56,30 +51,75 @@ router.get('/search', (req, res, next) => {
     req.flash('error', 'No valid date');
     res.redirect('/main');
   }
-  Article.find({ type, category }).populate('userID')
-    .then((allarticles) => {
-      /*
-      allarticles.forEach((article) => {
-        article.rent.forEach((rent) => {
-          const dsrent = rent.dateStart;
-          const derent = rent.dateEnd;
-          if (dsrent > dateInitial && dsrent < dateFinal) {
-            console.log('no disponible');
-          } else if (derent > dateFinal && derent < dateFinal) {
-            console.log('no disponible');
-          } else {
-            articles.push(rent);
-          }
+  const ds = moment(dateInitial).format();
+  const de = moment(dateFinal).format();
+  if (category === 'all' && type === 'all') {
+    Article.find({
+      $and: [{ rent: { $elemMatch: { dataStart: null, dataEnd: null } } },
+        {
+          $or: [{ rent: { $elemMatch: { dateStart: { $gt: de } } } },
+            { rent: { $elemMatch: { dateEnd: { $lt: ds } } } }],
+        }],
+    })
+      .then((allarticles) => {
+        res.render('main/search', {
+          allarticles, currentUserId, dateFinal, dateInitial,
         });
-      }); */
-  
+      })
+      .catch((error) => {
+        next(error);
+      });
+  } else if (category === 'all') {
+    Article.find({
+      $and: [{ type }, { rent: { $elemMatch: { dataStart: null, dataEnd: null } } },
+        {
+          $or: [{ rent: { $elemMatch: { dateStart: { $gt: de } } } },
+            { rent: { $elemMatch: { dateEnd: { $lt: ds } } } }],
+        }],
+    }).then((allarticles) => {
       res.render('main/search', {
         allarticles, currentUserId, dateFinal, dateInitial,
       });
     })
-    .catch((error) => {
-      next(error);
-    });
+      .catch((error) => {
+        next(error);
+      });
+  } else if (type === 'all') {
+    Article.find({
+      $and: [{ category }, { rent: { $elemMatch: { dataStart: null, dataEnd: null } } },
+        {
+          $or: [{ rent: { $elemMatch: { dateStart: { $gt: de } } } },
+            { rent: { $elemMatch: { dateEnd: { $lt: ds } } } }],
+        }],
+    }).then((allarticles) => {
+      res.render('main/search', {
+        allarticles, currentUserId, dateFinal, dateInitial,
+      });
+    })
+      .catch((error) => {
+        next(error);
+      });
+  } else {
+    Article.find({
+      $and: [{ type }, { category }, { rent: { $elemMatch: { dataStart: null, dataEnd: null } } },
+        {
+          $or: [{ rent: { $elemMatch: { dateStart: { $gt: de } } } },
+            { rent: { $elemMatch: { dateEnd: { $lt: ds } } } }],
+        }],
+    })
+      .then((allarticles) => {
+        console.log(allarticles);
+        res.render('main/search', {
+          allarticles, currentUserId, dateFinal, dateInitial,
+        });
+      })
+      .catch((error) => {
+        next(error);
+      });
+  }
 });
 
 module.exports = router;
+
+// eslint-disable-next-line max-len
+// ok $or: [{ rent: { $elemMatch: { dateStart: { $gt: de } } } }, { rent: { $elemMatch: { dateEnd: { $lt: ds } } } }]
