@@ -1,10 +1,11 @@
 const express = require('express');
 const bcrypt = require('bcrypt');
 
+const moment = require('moment');
 const User = require('../models/user');
+const Conversation = require('../models/conversation');
 const middlewares = require('../middlewares');
 const geo = require('../middlewares/geo');
-
 const bcryptSalt = 10;
 const router = express.Router();
 
@@ -101,7 +102,7 @@ router.post('/login', middlewares.anonRoute, (req, res, next) => {
   })
     .then((user) => {
       if (!user) {
-        req.flash('error', 'usuario o contraseña incorrectos');
+        req.flash('error', 'user or password wrong.');
         res.redirect('/');
         return;
       }
@@ -109,8 +110,9 @@ router.post('/login', middlewares.anonRoute, (req, res, next) => {
         // Save the login in the session!
 
         req.session.currentUser = user;
+        console.log(user.username);
 
-        req.flash('success', 'usuario logeado correctamente');
+        req.flash('success', `welcome, ${user.username}`);
         res.redirect('/main');
       } else {
         req.flash('error', 'usuario o contraseña incorrectos');
@@ -129,6 +131,57 @@ router.get('/logout', (req, res, next) => {
     // req.flash('success', 'Sesión cerrada correctamente');  LA SESIÓN SE BORRA!!
     res.redirect('/');
   });
+});
+
+// MESSAGE
+
+router.post('/message', (req, res, next) => {
+  const userID = req.session.currentUser;
+  const { owner } = req.body;
+  const { articleId } = req.body;
+  const { objOwner } = req.body;
+  
+  // console.log(date);
+  console.log(`owner obj:' ${objOwner}`);
+  console.log(`current user:${userID.username}`);
+  // console.log(owner);
+  // console.log( articleId); ok 
+  User.findById(owner)
+    .then((owner) => {
+      // console.log(owner);
+      // console.log(owner.username);
+      // console.log(userID);
+      // console.log(articleId);
+      res.render('user/message', {
+        owner, userID, articleId, objOwner,
+      });
+    })
+    .catch((error) => {
+      next(error);
+    });
+});
+router.post('/message/send', (req, res, next) => {
+  const userID = req.session.currentUser._id;
+  const { text, dest } = req.body;
+  const date = moment().format();
+  // console.log(`current user: ${userID}`);
+  // console.log(`text:${text}`);
+  // console.log(date);
+  // console.log(`dest: ${dest}`);
+  const user1 = userID;
+  const user2 = dest;
+  const sender = userID;
+  console.log(sender);
+  console.log(date);
+  Conversation.create({ user1, user2 }, { $push: { text, sender, date } })
+    .then((msg) => {
+      console.log(msg);
+      req.flash('success', 'Message sent');
+      res.redirect('/');
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 });
 
 

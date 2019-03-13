@@ -11,10 +11,14 @@
 
 <body>
     <% if (locals.currentUser ){%>
+        
     <div>
-        <div class="menu-icon" id="menu-icon" onclick="delClass('hidden', 'menu-content')">
-            <img src="/images/menuIcon.png" alt="menu icon">
-        </div>
+            <div class="menu-icon" id="menu-icon" onclick="delClass('hidden', 'menu-content')">
+                <img src="/images/menuIcon.png" alt="menu icon">
+                <div class = "menu-username">
+                    <a href="/"><%= locals.currentUser.username%></a>
+                </div>
+            </div>
         <div class="menu-content hidden" id="menu-content">
 
             <a href="/main" onclick="addClass('hidden', 'menu-content')">

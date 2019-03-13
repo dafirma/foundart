@@ -33,5 +33,5 @@ document.addEventListener('DOMContentLoaded', () => {
 }, false);
 
 document.getElementById('btn-update-password').addEventListener('click', (element) => {
-  delClass('hidden', 'user-update-password'); 
-  });
+  delClass('hidden', 'user-update-password');
+});

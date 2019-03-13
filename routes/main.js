@@ -79,7 +79,7 @@ router.get('/search', async (req, res, next) => {
     const users = await User.find({
       loc: {
         $nearSphere: {
-          $maxDistance: distance,
+          $maxDistance: 10000000,
           $geometry: {
             type: 'Point',
             coordinates: [long, lat],

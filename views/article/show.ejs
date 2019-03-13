@@ -31,3 +31,11 @@
   <input type="hidden" name="articleId" value="<%= article._id %>">
   <button class="btn" type="submit">Favorite</button>  
 </form>
+<form action="/user/message" method="post" id="btnForm">
+  <input type="hidden" name="objOwner" value="<%= article.userID %>">
+  <input type="hidden" name="articleId" value="<%= article._id %>">
+  <input type="hidden" name="owner" value="<%= article.userID._id %>">
+  <button class="btn" type="submit">Message</button>  
+
+</form>
+
