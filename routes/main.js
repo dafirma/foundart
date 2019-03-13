@@ -50,6 +50,7 @@ router.get('/rents', (req, res, next) => {
     });
 });
 
+
 // SEARCH
 router.get('/search', async (req, res, next) => {
   const currentUserId = req.session.currentUser;
@@ -101,9 +102,12 @@ router.get('/search', async (req, res, next) => {
           { userID: { $in: usersId } },
           { rent: { $elemMatch: { dataStart: null, dataEnd: null } } },
           {
-            $or: [{ rent: { $elemMatch: { dateStart: { $gt: de } } } },
-              { rent: { $elemMatch: { dateEnd: { $lt: ds } } } }],
-          }],
+            $or: [
+              { rent: { $elemMatch: { dateStart: { $gt: de } } } },
+              { rent: { $elemMatch: { dateEnd: { $lt: ds } } } },
+            ],
+          },
+        ],
       });
     } else if (category === 'all') {
       allarticles = await Article.find({
@@ -112,31 +116,41 @@ router.get('/search', async (req, res, next) => {
           { type },
           { rent: { $elemMatch: { dataStart: null, dataEnd: null } } },
           {
-            $or: [{ rent: { $elemMatch: { dateStart: { $gt: de } } } },
-              { rent: { $elemMatch: { dateEnd: { $lt: ds } } } }],
-          }],
+            $or: [
+              { rent: { $elemMatch: { dateStart: { $gt: de } } } },
+              { rent: { $elemMatch: { dateEnd: { $lt: ds } } } },
+            ],
+          },
+        ],
       });
-    } else if(type === 'all') {
+    } else if (type === 'all') {
       allarticles = await Article.find({
         $and: [
           { userID: { $in: usersId } },
           { category },
           { rent: { $elemMatch: { dataStart: null, dataEnd: null } } },
           {
-            $or: [{ rent: { $elemMatch: { dateStart: { $gt: de } } } },
-              { rent: { $elemMatch: { dateEnd: { $lt: ds } } } }],
-          }],
+            $or: [
+              { rent: { $elemMatch: { dateStart: { $gt: de } } } },
+              { rent: { $elemMatch: { dateEnd: { $lt: ds } } } },
+            ],
+          },
+        ],
       });
     } else {
       allarticles = await Article.find({
         $and: [
           { userID: { $in: usersId } },
+          { category },
           { type },
-          { category }, { rent: { $elemMatch: { dataStart: null, dataEnd: null } } },
+          { rent: { $elemMatch: { dataStart: null, dataEnd: null } } },
           {
-            $or: [{ rent: { $elemMatch: { dateStart: { $gt: de } } } },
-              { rent: { $elemMatch: { dateEnd: { $lt: ds } } } }],
-          }],
+            $or: [
+              { rent: { $elemMatch: { dateStart: { $gt: de } } } },
+              { rent: { $elemMatch: { dateEnd: { $lt: ds } } } },
+            ],
+          },
+        ],
       });
     }
     res.render('main/search', {
@@ -148,79 +162,7 @@ router.get('/search', async (req, res, next) => {
   } catch (error) {
     next(error);
   }
-});
-
-//   const ds = moment(dateInitial).format();
-//   const de = moment(dateFinal).format();
-//   if (category === 'all' && type === 'all') {
-//     Article.find({
-//       $and: [
-//         { userID: { $in: usersId } },
-//         { rent: { $elemMatch: { dataStart: null, dataEnd: null } } },
-//         {
-//           $or: [{ rent: { $elemMatch: { dateStart: { $gt: de } } } },
-//             { rent: { $elemMatch: { dateEnd: { $lt: ds } } } }],
-//         }],
-//     })
-//       .then((allarticles) => {
-//         res.render('main/search', {
-//           allarticles, currentUserId, dateFinal, dateInitial,
-//         });
-//       })
-//       .catch((error) => {
-//         next(error);
-//       });
-//   } else if (category === 'all') {
-//     Article.find({
-//       $and: [{ type }, { rent: { $elemMatch: { dataStart: null, dataEnd: null } } },
-//         {
-//           $or: [{ rent: { $elemMatch: { dateStart: { $gt: de } } } },
-//             { rent: { $elemMatch: { dateEnd: { $lt: ds } } } }],
-//         }],
-//     }).then((allarticles) => {
-//       res.render('main/search', {
-//         allarticles, currentUserId, dateFinal, dateInitial,
-//       });
-//     })
-//       .catch((error) => {
-//         next(error);
-//       });
-//   } else if (type === 'all') {
-//     Article.find({
-//       $and: [{ category }, { rent: { $elemMatch: { dataStart: null, dataEnd: null } } },
-//         {
-//           $or: [{ rent: { $elemMatch: { dateStart: { $gt: de } } } },
-//             { rent: { $elemMatch: { dateEnd: { $lt: ds } } } }],
-//         }],
-//     }).then((allarticles) => {
-//       res.render('main/search', {
-//         allarticles, currentUserId, dateFinal, dateInitial,
-//       });
-//     })
-//       .catch((error) => {
-//         next(error);
-//       });
-//   } else {
-//     Article.find({
-//       $and: [{ type }, { category }, { rent: { $elemMatch: { dataStart: null, dataEnd: null } } },
-//         {
-//           $or: [{ rent: { $elemMatch: { dateStart: { $gt: de } } } },
-//             { rent: { $elemMatch: { dateEnd: { $lt: ds } } } }],
-//         }],
-//     })
-//       .then((allarticles) => {
-//         console.log(allarticles);
-//         res.render('main/search', {
-//           allarticles, currentUserId, dateFinal, dateInitial,
-//         });
-//       })
-//       .catch((error) => {
-//         next(error);
-//       });
-//   }
-// });
+}); // End search controller
 
 module.exports = router;
 
-// eslint-disable-next-line max-len
-// ok $or: [{ rent: { $elemMatch: { dateStart: { $gt: de } } } }, { rent: { $elemMatch: { dateEnd: { $lt: ds } } } }]
