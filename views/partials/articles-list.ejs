@@ -2,24 +2,39 @@
 <!-- /article/list   &&   /search -->
 
 <!-- for each article -->
-<div class = "card-lg">
+<div class="card-lg">
     <a href="/article/<%= article._id%>">
         <img src="<%= article.imgPath%>" alt="<% article.originalName%>">
     </a>
     <div class="card-lg-text">
-        <div>
-            <span><%= article.type%> / <%= article.category%></span>
-            <span>By <a href="/user/<%= article.userID._id%>"> <%= article.userID.username%> </a></span>
-            <h3><%- article.title%></h3>
+        <div class="title">
+            <h3>
+                <%- article.title%>
+            </h3>
+            <% if (article.userID._id != locals.currentUser._id ){%>
+            <h3>€
+                <%- article.price%>.00 <span>/ day</span> </h3>
+            <%}%>
+
         </div>
-        <!-- If im not owner, show price and rent request button. Else show delete button -->
-        <% if (article.userID != currentUserId ){%>
-            <h3 class ="card-lg-right">€<%- article.price%>.00 <span>/ day</span> </h3>
+        <div>
+            <span>
+                <%= article.type%> /
+                <%= article.category%>
+            </span>
+
+            <% if (article.userID._id != locals.currentUser._id ){%>
+            <span>By <a href="/user/<%= article.userID._id%>">
+                    <%= article.userID.username%> </a>
+            </span>
             <%}else {%>
             <form action="/article/delete" method="POST">
                 <input type="hidden" name="articleId" value="<%= article._id %>">
                 <button class="btn card-lg-right" type="submit">Delete</button>
             </form>
-        <%} %>
+            <%} %>
+        </div>
+
+        <!-- If im not owner, show price and rent request button. Else show delete button -->
     </div>
 </div>

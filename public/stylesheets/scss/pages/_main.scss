@@ -1,7 +1,12 @@
+
 .main-rent {
     width: auto;
     padding-top: 5%;
-
+    & > div {
+        // border: red solid 1px;
+        max-height: 35vh;
+        overflow: scroll;
+    }
     @include respond-to('medium') {
         div {
             display: flex;
@@ -11,8 +16,9 @@
     }
 }
 
+
 .main-search {
-    padding: 0 3%;
+    
     margin: auto;
 
     .aux {

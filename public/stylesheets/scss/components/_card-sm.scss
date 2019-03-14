@@ -1,32 +1,37 @@
 // CARD SMALL
 
 .card-sm {
-  padding: 3% 0 5% 0;
+  background-color: $white;
+  margin: 0.5rem 0;
+  max-height: 15vh;
+  border-radius: 10px;
   display: flex;
   flex:1;
-  // box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
   // card-sm-img
-  a {
-    width: 40%;
+ 
 
-    img {
-      width: 100%;
-    }
-  }
-
-  img {
+  img, a {
+    border-radius: 10px 0 0 10px;
     max-width: 100%;
     height: auto;
-    max-height: 40vh;
+    max-height: 15vh;
+    margin-left: 0.5rem 0;
   }
 
   .card-sm-text {
+    margin: 0.5rem 0;
+    padding: 0.5rem 0;
     width: 60%;
     padding: 0 0 0 1rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
+
+    .title {
+      color: $primary-color;
+      font-size: $font-size-md;
+    }
 
     span {
       font-size: $font-size-sm;

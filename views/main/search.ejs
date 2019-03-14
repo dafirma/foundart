@@ -6,7 +6,7 @@
       <% allarticles.forEach((article) => {%>
         <% if (article.userID != currentUserId._id){%>
           <!-- If I'm not owner of the article, show -->
-          <%- include('../partials/articles-list.ejs',{ article, currentUserId });%>
+          <%- include('../partials/articles-list.ejs',{ article, currentUserId, dateFinal, dateInitial });%>
         <% };%>
       <%})%>
     <%}%>

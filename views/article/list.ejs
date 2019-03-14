@@ -1,11 +1,10 @@
-<h2>All the Articles</h2>
 
+<div class="container-list-btn">
+    <h2>All the Articles</h2>
+  <a class="btn" href="/article/new">+</a>
+</div>
 <div class="list-card-lg">
   <% articles.forEach((article) => {%>
   <%- include('../partials/articles-list.ejs',{ article, currentUserId });%>
-  
   <% })%>
-  <div class="container-list-btn">
-    <a class="btn" href="/article/new">New Article</a>
-  </div>
 </div>

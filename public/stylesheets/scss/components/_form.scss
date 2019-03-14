@@ -1,10 +1,14 @@
 // FORM
 .form {
     width: 100%;
+    background-color: $white;
     display: flex;
     flex-direction: column;
     align-content: center;
     justify-content: center;
+    border-radius: 10px;
+    padding: 1rem 0.5rem;
+
     input {
       height: 1.5rem;
       border: none;
