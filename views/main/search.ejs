@@ -1,10 +1,10 @@
 <h2>Search results</h2>
 <% if (Object.keys(allarticles).length === 0){%>
-  <h2>No articles available for that date. </h2> <br>
+  <h2 class=>No articles available for that date. </h2> <br>
 <div class="list-card-lg">
     <%} else{%>
       <% allarticles.forEach((article) => {%>
-        <% if (article.userID != currentUserId._id){%>
+        <% if (article.userID._id != currentUserId._id){%>
           <!-- If I'm not owner of the article, show -->
           <%- include('../partials/articles-list.ejs',{ article, currentUserId });%>
         <% };%>

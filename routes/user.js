@@ -1,11 +1,11 @@
 const express = require('express');
 const bcrypt = require('bcrypt');
 
-const moment = require('moment');
 const User = require('../models/user');
-const Conversation = require('../models/conversation');
+const uploadCloud = require('../config/cloudinary.js');
 const middlewares = require('../middlewares');
 const geo = require('../middlewares/geo');
+
 const bcryptSalt = 10;
 const router = express.Router();
 
@@ -18,7 +18,7 @@ router.get('/signup', middlewares.anonRoute, (req, res, next) => {
 });
 
 /* CREATE USER */
-router.post('/signup', middlewares.anonRoute, (req, res, next) => {
+router.post('/signup', middlewares.anonRoute, uploadCloud.single('photo'), (req, res, next) => {
   const {
     name,
     lastName,
@@ -28,13 +28,20 @@ router.post('/signup', middlewares.anonRoute, (req, res, next) => {
     street,
     number,
     zipcode,
+    photo,
+    userImgName,
     city,
     country,
     lat,
     long,
     password,
   } = req.body;
-
+  console.log(photo,
+    userImgName);
+  // Set img url and name
+  const userImgPath = req.file.url;
+  // const imgPath = `/uploads/${req.file.filename}`; to upload image local
+  const userOriginalName = req.file.originalname;
 
   if (username === '' || password === '') {
     req.flash('error', 'Empty fields');
@@ -55,6 +62,10 @@ router.post('/signup', middlewares.anonRoute, (req, res, next) => {
           lastName,
           username,
           telephone,
+          photo,
+          userImgPath,
+          userImgName,
+          userOriginalName,
           email,
           address: {
             street,
@@ -102,20 +113,20 @@ router.post('/login', middlewares.anonRoute, (req, res, next) => {
   })
     .then((user) => {
       if (!user) {
-        req.flash('error', 'user or password wrong.');
+        req.flash('error', 'user or password wrong');
         res.redirect('/');
         return;
       }
       if (bcrypt.compareSync(password, user.password)) {
         // Save the login in the session!
 
+        console.log(user.userImgPath);
         req.session.currentUser = user;
-        console.log(user.username);
 
-        req.flash('success', `welcome, ${user.username}`);
+        req.flash('success', 'Welcome', user.username);
         res.redirect('/main');
       } else {
-        req.flash('error', 'usuario o contraseña incorrectos');
+        req.flash('error', 'user or password wrong');
         res.redirect('/');
       }
     })
@@ -128,60 +139,9 @@ router.post('/login', middlewares.anonRoute, (req, res, next) => {
 
 router.get('/logout', (req, res, next) => {
   req.session.destroy(() => {
-    // req.flash('success', 'Sesión cerrada correctamente');  LA SESIÓN SE BORRA!!
+    // req.flash('success', 'Session closed');  LA SESIÓN SE BORRA!!
     res.redirect('/');
   });
-});
-
-// MESSAGE
-
-router.post('/message', (req, res, next) => {
-  const userID = req.session.currentUser;
-  const { owner } = req.body;
-  const { articleId } = req.body;
-  const { objOwner } = req.body;
-  
-  // console.log(date);
-  console.log(`owner obj:' ${objOwner}`);
-  console.log(`current user:${userID.username}`);
-  // console.log(owner);
-  // console.log( articleId); ok 
-  User.findById(owner)
-    .then((owner) => {
-      // console.log(owner);
-      // console.log(owner.username);
-      // console.log(userID);
-      // console.log(articleId);
-      res.render('user/message', {
-        owner, userID, articleId, objOwner,
-      });
-    })
-    .catch((error) => {
-      next(error);
-    });
-});
-router.post('/message/send', (req, res, next) => {
-  const userID = req.session.currentUser._id;
-  const { text, dest } = req.body;
-  const date = moment().format();
-  // console.log(`current user: ${userID}`);
-  // console.log(`text:${text}`);
-  // console.log(date);
-  // console.log(`dest: ${dest}`);
-  const user1 = userID;
-  const user2 = dest;
-  const sender = userID;
-  console.log(sender);
-  console.log(date);
-  Conversation.create({ user1, user2 }, { $push: { text, sender, date } })
-    .then((msg) => {
-      console.log(msg);
-      req.flash('success', 'Message sent');
-      res.redirect('/');
-    })
-    .catch((error) => {
-      console.log(error);
-    });
 });
 
 

@@ -2,20 +2,19 @@
 
 .menu-username {
   padding-right: 10%;
-  align-self: center;
 
+  align-self: center;
   a {
     text-decoration: none;
     color:white;
-    font-size:$font-size-md;
-    
-    
+    font-size:$font-size-md;  
   }
 }
+
 .menu-icon {
+    position: fixed;
     display: flex;
     justify-content: space-between;
-    position: fixed;
     top:0;
     left:0;
     right: 0;

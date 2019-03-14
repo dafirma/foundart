@@ -10,6 +10,7 @@ const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 const sassMiddleware = require('node-sass-middleware');
 const dotenv = require('dotenv');
+const expressip = require('express-ip');
 
 const { notifications } = require('./middlewares');
 
@@ -69,6 +70,7 @@ app.use((req, res, next) => {
 });
 
 // GEO LOCATION
+app.use(expressip().getIpInfoMiddleware);
 
 app.use(notifications);
 app.use('/', indexRouter);
