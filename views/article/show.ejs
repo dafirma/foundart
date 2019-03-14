@@ -28,14 +28,16 @@
       <!-- <input type="hidden" name="dateEnd" id="dateEnd"> -->
       <button class="btn" type="submit">Request</button>
     </form>
+    <form action="/article/favorites" method="post" id="favoriteForm">
+      <input type="hidden" name="articleId" value="<%= article._id %>">
+      <button class="btn" type="submit">Favorite</button>
+    </form>
   </div>
   <% } else{ %>
-  <a class="btn" href="/article/<%= article._id%>/update">Edit</a>
-  <a class="btn" href="/article/list">Back</a>
+  <div class="edit">
+    <a class="btn" href="/article/<%= article._id%>/update">Edit</a>
+    <a class="btn" href="/article/list">Back</a>
+  </div>
 
   <% } %>
   <br>
-  <form action="/article/favorites" method="post" id="favoriteForm">
-    <input type="hidden" name="articleId" value="<%= article._id %>">
-    <button class="btn" type="submit">Favorite</button>
-  </form>

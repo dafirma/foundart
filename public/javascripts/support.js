@@ -1,11 +1,3 @@
-// const getTotalPrice = (formId, priceDay) => {
-//   const form = document.getElementById(formId);
-//   const dateStart = form.getElementsById('dateStart');
-//   const dateEnd = form.getElementsById('dateEnd');
-//   console.log(`dateStart= ${dateStart} dateEnd= ${dateEnd}`);
-// };
-
-
 // Menu
 
 const delClass = (className, elementId) => {
@@ -22,16 +14,19 @@ const addClass = (className, elementId) => {
 
 // flash-alerts
 
-document.addEventListener('DOMContentLoaded', () => {
-  const element = document.getElementsByClassName('alert');
+// document.addEventListener('DOMContentLoaded', () => {
+const element = document.getElementsByClassName('alert');
 
-  if (element.length > 0) {
-    setTimeout(() => {
-      element[0].classList.add('hidden');
-    }, 2500);
-  }
-}, false);
+if (element.length > 0) {
+  setTimeout(() => {
+    element[0].classList.add('hidden');
+  }, 2500);
+}
+// }, false);
 
-document.getElementById('btn-update-password').addEventListener('click', (element) => {
-  delClass('hidden', 'user-update-password'); 
+const updatePass = document.getElementById('btn-update-password');
+if (updatePass) {
+  updatePass.addEventListener('click', () => {
+    delClass('hidden', 'user-update-password');
   });
+}
