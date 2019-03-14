@@ -22,10 +22,12 @@
       <input type="hidden" name="articlePrice" value="<%= article.price %>">
       <input type="hidden" name="dsOrigin" value="<%= article.rent.dateStart %>">
       <input type="hidden" name="deOrigin" value="<%= article.rent.dateEnd %>">
-      <label for="dateStart"></label>
-      <input type="text" name="dateStart" id="dateStart" value="aa">
-      <label for="dateEnd"></label>
-      <!-- <input type="hidden" name="dateEnd" id="dateEnd"> -->
+      <span>Insert rent dates</span>
+      <label for="dateStart"> Date start</label>
+      <input type="date" name="dateStart" id="dateStart">
+      <label for="dateEnd">Date end</label>
+      <input type="date" name="dateEnd" id="dateEnd">
+
       <button class="btn" type="submit">Request</button>
     </form>
     <form action="/article/favorites" method="post" id="favoriteForm">
