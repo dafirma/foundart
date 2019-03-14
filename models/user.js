@@ -10,6 +10,9 @@ const userSchema = new Schema({
   telephone: Number,
   email: String,
   password: String,
+  userImgPath: String,
+  userImgName: String,
+  userOriginalName: String,
   address: {
     street: String,
     number: Number,

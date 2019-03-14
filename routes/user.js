@@ -2,6 +2,7 @@ const express = require('express');
 const bcrypt = require('bcrypt');
 
 const User = require('../models/user');
+const uploadCloud = require('../config/cloudinary.js');
 const middlewares = require('../middlewares');
 const geo = require('../middlewares/geo');
 
@@ -17,7 +18,7 @@ router.get('/signup', middlewares.anonRoute, (req, res, next) => {
 });
 
 /* CREATE USER */
-router.post('/signup', middlewares.anonRoute, (req, res, next) => {
+router.post('/signup', middlewares.anonRoute, uploadCloud.single('photo'), (req, res, next) => {
   const {
     name,
     lastName,
@@ -27,13 +28,20 @@ router.post('/signup', middlewares.anonRoute, (req, res, next) => {
     street,
     number,
     zipcode,
+    photo,
+    userImgName,
     city,
     country,
     lat,
     long,
     password,
   } = req.body;
-
+  console.log(photo,
+    userImgName);
+  // Set img url and name
+  const userImgPath = req.file.url;
+  // const imgPath = `/uploads/${req.file.filename}`; to upload image local
+  const userOriginalName = req.file.originalname;
 
   if (username === '' || password === '') {
     req.flash('error', 'Empty fields');
@@ -54,6 +62,10 @@ router.post('/signup', middlewares.anonRoute, (req, res, next) => {
           lastName,
           username,
           telephone,
+          photo,
+          userImgPath,
+          userImgName,
+          userOriginalName,
           email,
           address: {
             street,
@@ -101,19 +113,20 @@ router.post('/login', middlewares.anonRoute, (req, res, next) => {
   })
     .then((user) => {
       if (!user) {
-        req.flash('error', 'usuario o contraseña incorrectos');
+        req.flash('error', 'user or password wrong');
         res.redirect('/');
         return;
       }
       if (bcrypt.compareSync(password, user.password)) {
         // Save the login in the session!
 
+        console.log(user.userImgPath);
         req.session.currentUser = user;
 
-        req.flash('success', 'usuario logeado correctamente');
+        req.flash('success', 'Welcome', user.username);
         res.redirect('/main');
       } else {
-        req.flash('error', 'usuario o contraseña incorrectos');
+        req.flash('error', 'user or password wrong');
         res.redirect('/');
       }
     })
@@ -126,7 +139,7 @@ router.post('/login', middlewares.anonRoute, (req, res, next) => {
 
 router.get('/logout', (req, res, next) => {
   req.session.destroy(() => {
-    // req.flash('success', 'Sesión cerrada correctamente');  LA SESIÓN SE BORRA!!
+    // req.flash('success', 'Session closed');  LA SESIÓN SE BORRA!!
     res.redirect('/');
   });
 });
