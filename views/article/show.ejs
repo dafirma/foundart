@@ -1,41 +1,45 @@
-<div class="card-lg">
+  <div class="card-lg">
+    
+      <div class="info">
+        <h2><%= article.title%></h2>
+        <img src="<%= article.imgPath%>" alt="<% article.originalName%>">
+        <span class="title">
+          <%= article.title%></span> 
+        <span>Category:
+          <%= article.category%></span>
+        <span>Type:
+          <%= article.type%></span>
+        <span> Owner:
+          <%= article.userID.username%></span>
+        <span>Description:
+          <%= article.description%></span>
+        <span class="card-lg-right">€
+          <%- article.price%>.00 <span>/ day</span> </span>
+      </div>
+      <% if(article.userID._id != locals.currentUser._id){ %>
+      <div>
+        <form action="/article/request" method="post" id="requestForm">
+          <input type="hidden" name="articleId" value="<%= article._id %>">
+          <input type="hidden" name="articlePrice" value="<%= article.price %>">
+          <input type="hidden" name="dsOrigin" value="<%= article.rent.dateStart %>">
+          <input type="hidden" name="deOrigin" value="<%= article.rent.dateEnd %>">
+          <label for="dateStart"></label>
+          <input type="text" name="dateStart" id="dateStart" value="aa">
+          <label for="dateEnd"></label>
+          <!-- <input type="hidden" name="dateEnd" id="dateEnd"> -->
+          <button class="btn" type="submit">Request</button>
+        </form>
+        <form action="/article/favorites" method="post" id="favoriteForm">
+          <input type="hidden" name="articleId" value="<%= article._id %>">
+          <button class="btn" type="submit">Favorite</button>
+        </form>
+      </div>
+      <% } else{ %>
+      <a class="btn" href="/article/<%= article._id%>/update">Edit</a>
+    
+      <% } %>
+      <br>
 
-  <div class="info">
-    <h2><%= article.title%></h2>
-    <img src="<%= article.imgPath%>" alt="<% article.originalName%>">
-    <span class="title">
-      <%= article.title%></span> 
-    <span>Category:
-      <%= article.category%></span>
-    <span>Type:
-      <%= article.type%></span>
-    <span> Owner:
-      <%= article.userID.username%></span>
-    <span>Description:
-      <%= article.description%></span>
-    <span class="card-lg-right">€
-      <%- article.price%>.00 <span>/ day</span> </span>
-  </div>
-  <% if(article.userID._id != locals.currentUser._id){ %>
-  <div>
-    <form action="/article/request" method="post" id="requestForm">
-      <input type="hidden" name="articleId" value="<%= article._id %>">
-      <input type="hidden" name="articlePrice" value="<%= article.price %>">
-      <input type="hidden" name="dsOrigin" value="<%= article.rent.dateStart %>">
-      <input type="hidden" name="deOrigin" value="<%= article.rent.dateEnd %>">
-      <label for="dateStart"></label>
-      <input type="text" name="dateStart" id="dateStart" value="aa">
-      <label for="dateEnd"></label>
-      <!-- <input type="hidden" name="dateEnd" id="dateEnd"> -->
-      <button class="btn" type="submit">Request</button>
-    </form>
-  </div>
-  <% } else{ %>
-  <a class="btn" href="/article/<%= article._id%>/update">Edit</a>
 
-  <% } %>
-  <br>
-  <form action="/article/favorites" method="post" id="favoriteForm">
-    <input type="hidden" name="articleId" value="<%= article._id %>">
-    <button class="btn" type="submit">Favorite</button>
-  </form>
+
+

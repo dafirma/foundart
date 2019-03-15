@@ -61,7 +61,6 @@ router.get('/favorites', (req, res, next) => {
   User.findById(userID)
     .populate('favorite.articleID')
     .then((users) => {
-      console.log(users);
       res.render('article/favorites', { users });
     })
     .catch((error) => {
@@ -78,8 +77,6 @@ router.post('/favorites', (req, res, next) => {
     $push: { favorite },
   })
     .then((user) => {
-      // console.log('test');
-      console.log(user);
       res.redirect('/main');
     })
     .catch((error) => {
@@ -125,10 +122,22 @@ router.get('/list/:page', (req, res, next) => {
 });
 */
 
+// GET single article favorite
+router.get('/favorites/:id', (req, res, next) => {
+  const { id } = req.params;
+  Article.findById(id).populate('userID')
+    .then((fav) => {
+      res.render('article/show-fav', { fav });
+    })
+    .catch((error) => {
+      next(error);
+    });
+});
 
 // GET single article
 router.get('/:id', (req, res, next) => {
   const { id } = req.params;
+
   Article.findById(id).populate('userID')
     .then((article) => {
       res.render('article/show', { article });

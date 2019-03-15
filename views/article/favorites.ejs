@@ -1,9 +1,12 @@
 <h2> Favorites</h2>
 <div>
+    <%console.log('hola')%>
+    <%(users.favorite.length);%>
+    <%if(users.favorite.length > 0){%>
   <% users.favorite.forEach((fav) => {%> 
 
     <div class = "card-lg">
-        <a href="/article/<%= fav.articleID._id%>">
+        <a href="/article/favorites/<%= fav.articleID._id%>">
             <img src="<%= fav.articleID.imgPath%>" alt="<% fav.articleID.originalName%>">
         </a>
         <div class="card-lg-text">
@@ -16,3 +19,6 @@
     </div>
   <%}) %>                
   </div>
+  <%} else{%>
+    <h2>Sorry, you don´t have any favorite article yet.</h2>
+    <%}%>
