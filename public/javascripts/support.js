@@ -1,32 +1,28 @@
 // Menu
 
-const delClass = (className, elementId) => {
-  console.log('hola');
-  const element = document.getElementById(elementId);
-  console.log(element);
-  element.classList.remove(className);
-};
-
-const addClass = (className, elementId) => {
-  const element = document.getElementById(elementId);
-  element.classList.add(className);
-};
-
-// flash-alerts
+$(() => {     
+  $('.menu-item').on('click', (e) => {
+    e.preventDefault();
+    $('#menu-content').toggleClass('hidden');
+  });
+});
 
 // document.addEventListener('DOMContentLoaded', () => {
-const element = document.getElementsByClassName('alert');
-
-if (element.length > 0) {
+if ($('.alert').length > 0) {
   setTimeout(() => {
-    element[0].classList.add('hidden');
+    $('.alert').hide();
   }, 2500);
 }
 // }, false);
 
-const updatePass = document.getElementById('btn-update-password');
-if (updatePass) {
-  updatePass.addEventListener('click', () => {
-    delClass('hidden', 'user-update-password');
+// const updatePass = document.getElementById('btn-update-password');
+// if ($('#btn-update-password')) {
+//   updatePass.addEventListener('click', () => {
+//     delClass('hidden', 'user-update-password');
+//   });
+  $('#btn-update-password').on('click', (e) => {
+    e.preventDefault();
+    $('#user-update-password').toggleClass('hidden');
   });
-}
+
+// }

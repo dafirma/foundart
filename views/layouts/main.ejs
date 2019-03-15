@@ -12,21 +12,18 @@
 <body>
     <% if (locals.currentUser ){%>
     <div>
-        <div class="menu-icon" id="menu-icon" onclick="delClass('hidden', 'menu-content')">
-            <img src="/images/menuIcon.png" alt="menu icon">
-            <div class ="menu-username">
-                    <a href="/"><%= locals.currentUser.username%></a>
+        <div class="menu-bar">
+            <div class="menu-username">
+                <span><<</span>
             </div>
-        </div>
-        <div class="menu-content hidden" id="menu-content">
-            <a href="/main" onclick="addClass('hidden', 'menu-content')">
-                <div>
-                    <a href="/<%= locals.currentUser._id%>">
-                        <img src="<%= locals.currentUser.userImgPath %>"  width="30%" alt="<%= locals.currentUser.userOriginalName%>">
-                     </a>
-                </div> 
-            </a>
+            <img id="menu-icon" class="menu-item" src="/images/menuIcon.png" alt="menu icon">
 
+        </div>
+        <div class="menu-user">
+            <img class="menu-user-img" src="<%= locals.currentUser.userImgPath %>" alt="<%= locals.currentUser.userOriginalName%>">
+        </div>
+
+        <div class="menu-content hidden" id="menu-content">
             <a href="/main" onclick="addClass('hidden', 'menu-content')">
                 <div>DASHBORD</div>
             </a>
@@ -57,7 +54,7 @@
         <%- include('../partials/flash-notifications') %>
         <%-body%>
     </div>
-
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
     <script src="/javascripts/support.js"></script>
     <script src="/javascripts/geo.js"></script>
 </body>
