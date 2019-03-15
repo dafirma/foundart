@@ -3,11 +3,26 @@
 </div>
 <h1>Sign up form</h1>
 
-<form class="form" action="/user/signup" method="POST" enctype="multipart/form-data" >
-  
+<div id='map'></div>
+<script>
+  console.log('hola')
+  mapboxgl.accessToken = 'pk.eyJ1IjoibW9uaWNhaHVnbyIsImEiOiJjanQ0aWQ4cDMxenYzM3lwYTZuN28yNXFwIn0.JhkL0a0Ordszms0d-H-ARA';
+  var map = new mapboxgl.Map({
+  container: 'map', // container id
+  style: 'mapbox://styles/mapbox/streets-v9', // stylesheet location
+  center: [-74.50, 40], // starting position [lng, lat]
+  zoom: 9 // starting zoom
+  });
+</script>
+
+
+<form class="form" action="/user/signup" method="POST" enctype="multipart/form-data">
+
   <span class="btn" onclick="getLocation()">Position</span>
-  <input type="text" id ="lat" name="lat" value="">
-  <input type="text" id ="long" name="long" value="">
+  <input type="text" id="lat" name="lat" value="">
+  <input type="text" id="long" name="long" value="">
+
+
 
   <label for="username">Username</label>
   <input type="text" name="username" placeholder="username"> <label for="password">Password</label>
@@ -16,11 +31,11 @@
   <div class="aux">
     <div>
       <label for="name">Name</label><br>
-      <input type="text" name="name" placeholder="name">  </div>
+      <input type="text" name="name" placeholder="name"> </div>
 
     <div>
       <label for="lastName">Last name</label><br>
-      <input type="text" name="lastName" placeholder="lastname">  </div>
+      <input type="text" name="lastName" placeholder="lastname"> </div>
   </div>
 
   <label for="photo-profile">Choose a Photo Profile</label>
