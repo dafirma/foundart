@@ -2,7 +2,7 @@
     <h2>Notifications</h2>
     <% articles.forEach((article) => {%>
         <%article.rent.forEach((rent) => {%>
-            <div class="card-sm">
+            <div class="card-sm notification">
                 <%- include('../partials/notifications-list', {article, rent});%>
             </div>
         <% })%>

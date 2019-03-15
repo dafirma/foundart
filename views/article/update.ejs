@@ -1,6 +1,6 @@
 <h2> Edit Article:  <%= article.title%></h2>
 
-<form class ="form-login"action="/article/update" method="post">
+<form class ="form"action="/article/update" method="post">
   <input type="hidden" name="id" value="<%- article._id %>">
   <label for="name">Title</label>
   <input type="text" name="title" id="title" value="<%= article.title %>">

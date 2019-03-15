@@ -11,8 +11,9 @@
   }
 }
 
-.menu-icon {
+.menu-bar {
     position: fixed;
+    z-index: -1;
     display: flex;
     justify-content: space-between;
     top:0;
@@ -26,8 +27,26 @@
       width: 30px;
       margin-left: 2%;
     }
+
+    
   }
-  
+  .menu-user {
+    position: fixed;
+    top:0;
+    left:0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+
+    .menu-user-img {
+      position: fixed;
+      z-index: 99;
+      width: 3.3rem;
+      height: 3.3rem;
+      border-radius: 50%;
+      margin-top:2vh;
+    }
+  }
   .menu-content {
     background-color: $primary-color;
     width: 100%;
