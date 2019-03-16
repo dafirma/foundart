@@ -1,6 +1,7 @@
-<div class="container-logo">
-  <img class="logo-signup" src="/assets/icons8-round-512.png" alt="">
-</div>
+
+  <div class="user-img-update">
+      <img  src="<%= locals.currentUser.userImgPath %>" alt="<%= locals.currentUser.userOriginalName%>">
+  </div>
 <h1>Update profile</h1>
 
 <form class="form" action="/user/update" method="POST">

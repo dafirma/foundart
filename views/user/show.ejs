@@ -1,18 +1,31 @@
-<div class="profile">
-    <div class="profile-info">
-        <h1><%= user.username %></h1>
-        <% console.log(user)%>
-        <p> <%= user.name %></p>
-        <p> <%= user.lastName %></p>
-        <p> <%= user.telephone %></p>
-        <p> <%= user.email %></p>
-        <div class="profile-info-address">
-            <span><%= user.address.street %></span>
-            <span><%= user.address.number %></span> </br>
-            <span><%= user.address.zipcode %></span>
-            <span><%= user.address.city %></span>
-            <span><%= user.address.country %></span>
+
+        <div class ="profile-header">
+            <div class ="container-photo-profile">
+                <img class="img-profile" src="<%= locals.currentUser.userImgPath %>" alt="<%= locals.currentUser.userOriginalName%>">
+            </div>
+            <div class ="container-text-profile">
+                <h2><%= user.username %></h2>
+            </div>
+            </div>
+            <div class="profile-header-buttons">
+                <div class="btn-header">
+                    <a class="btn-articles-fav"href="/article/list"><img src="/images/listado-con-puntos.png" alt="list"></a>
+                </div>
+                <div class = "heart-icon-profile">
+                   <a href="/article/favorites"><img src="/images/corazon-de-boton-de-favorito.png" alt="fav"></a> 
+                </div>
+            </div>
+
+        <div class= "profile-info">
+            <h2>Details:</h2>
+            <p> Name: <%= user.name %></p>
+            <p> Last name: <%= user.lastName %></p>
+            <p> Tel.: <%= user.telephone %></p>
+            <p> Email: <%= user.email %></p>
+            <%if(user.favorite.length > 0){%>
+            <p> Favorite: <%= user.favorite.length %></p>
+            <%}%>
+            <br>
+            <a href="/user/<%=user._id%>/update" class="btn">Update</a>
         </div>
-    </div>
-    <a href="/user/<%=user._id%>/update" class="btn">Update</a>
-</div>
+  

@@ -14,14 +14,18 @@
     <div>
         <div class="menu-bar">
             <div class="menu-username">
-                <span><<</span>
+               <a href="javascript: history.go(-1)"><img src="/images/back-128.png" alt="back icon"></a> 
+            
             </div>
             <img id="menu-icon" class="menu-item" src="/images/menuIcon.png" alt="menu icon">
 
         </div>
+        <%if( typeof userUrl === 'undefined' ){%>
         <div class="menu-user">
-            <img class="menu-user-img" src="<%= locals.currentUser.userImgPath %>" alt="<%= locals.currentUser.userOriginalName%>">
+            <a href="/user/<%= locals.currentUser._id%>"><img class="menu-user-img" src="<%= locals.currentUser.userImgPath %>" alt="<%= locals.currentUser.userOriginalName%>"></a> 
         </div>
+        <%}%>
+
 
         <div class="menu-content hidden" id="menu-content">
             <a href="/main" onclick="addClass('hidden', 'menu-content')">

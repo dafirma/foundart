@@ -13,7 +13,7 @@ router.use(middlewares.protectedRoute);
 
 router.get('/', (req, res, next) => {
   const userID = req.session.currentUser._id;
-
+  const curUrl = req.originalUrl;
   Article.find({
     rent: {
       $elemMatch: {
@@ -23,6 +23,7 @@ router.get('/', (req, res, next) => {
   }).limit(1)
     .then((articles) => {
       res.render('main/dashboard', {
+        curUrl,
         articles,
         userID,
         successMessage: req.flash('success'),
