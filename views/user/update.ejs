@@ -27,34 +27,7 @@
   <label for="email">Email</label>
   <input type="email" name="email" placeholder="email" value="<%=user.email%>"><br>
 
-  <div>
-    <label for="street">Street</label><br>
-    <input type="text" name="street" placeholder="street" value="<%=user.address.street%>"><br>
-
-    <div class="form-signup-number aux">
-      <div>
-        <label for="number">Num</label><br>
-        <input type="number" name="number" placeholder="number" value="<%=user.address.number%>"><br>
-      </div>
-      <div>
-        <label for="zipcode">Zip Code</label><br>
-        <input type="number" name="zipcode" placeholder="zipcode" value="<%=user.address.zipcode%>"><br>
-      </div>
-    </div>
-
-    <div class="aux">
-      <div>
-        <label for="city">City</label><br>
-        <input type="text" name="city" placeholder="city" value="<%=user.address.city%>"><br>
-      </div>
-
-      <div>
-        <label for="country">Country</label><br>
-        <input type="text" name="country" placeholder="country" value="<%=user.address.country%>"><br>
-      </div>
-    </div>
-
-  </div>
+  <div id='map' style="width:300px;height:200px"></div>
 
   <span class="btn" id="btn-update-password">Change password</span>
   <div id="user-update-password" class="hidden">

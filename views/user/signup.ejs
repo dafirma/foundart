@@ -3,26 +3,11 @@
 </div>
 <h1>Sign up form</h1>
 
-<div id='map'></div>
-<script>
-  console.log('hola')
-  mapboxgl.accessToken = 'pk.eyJ1IjoibW9uaWNhaHVnbyIsImEiOiJjanQ0aWQ4cDMxenYzM3lwYTZuN28yNXFwIn0.JhkL0a0Ordszms0d-H-ARA';
-  var map = new mapboxgl.Map({
-  container: 'map', // container id
-  style: 'mapbox://styles/mapbox/streets-v9', // stylesheet location
-  center: [-74.50, 40], // starting position [lng, lat]
-  zoom: 9 // starting zoom
-  });
-</script>
-
 
 <form class="form" action="/user/signup" method="POST" enctype="multipart/form-data">
 
-  <span class="btn" onclick="getLocation()">Position</span>
-  <input type="text" id="lat" name="lat" value="">
-  <input type="text" id="long" name="long" value="">
-
-
+  <input type="hidden" id="lat" name="lat" value="">
+  <input type="hidden" id="long" name="long" value="">
 
   <label for="username">Username</label>
   <input type="text" name="username" placeholder="username"> <label for="password">Password</label>
@@ -48,36 +33,8 @@
 
   <label for="email">Email</label>
   <input type="email" name="email" placeholder="email">
-
-  <div>
-    <label for="street">Street</label><br>
-    <input type="text" name="street" placeholder="street"><br>
-
-    <div class="form-signup-number aux">
-      <div>
-        <label for="number">Num</label><br>
-        <input type="number" name="number" placeholder="number"><br>
-      </div>
-
-      <div>
-        <label for="zipcode">Zip Code</label><br>
-        <input type="number" name="zipcode" placeholder="zipcode"><br>
-      </div>
-    </div>
-
-    <div class="aux">
-      <div>
-        <label for="city">City</label><br>
-        <input type="text" name="city" placeholder="city"><br>
-      </div>
-
-      <div>
-        <label for="country">Country</label><br>
-        <input type="text" name="country" placeholder="country"><br>
-      </div>
-
-    </div>
-  </div>
+  <label>Direcction </label>
+  <div id='map' style="width:300px;height:200px"></div>
 
   <%/* if (errorMessage) {*/ %>
   <div class="error-message">

@@ -1,0 +1,1 @@
+const mapboxKey = mapboxgl.accessToken = 'pk.eyJ1IjoibW9uaWNhaHVnbyIsImEiOiJjanQ0aWQ4cDMxenYzM3lwYTZuN28yNXFwIn0.JhkL0a0Ordszms0d-H-ARA';

@@ -74,19 +74,16 @@ router.get('/search', async (req, res, next) => {
   if (dateInitial > dateFinal) {
     req.flash('error', 'No valid date');
     res.redirect('/main');
-  }
+  };
   try {
-    const users = await User.find({
-      loc: {
-        $nearSphere: {
-          $maxDistance: distance,
-          $geometry: {
-            type: 'Point',
-            coordinates: [long, lat],
-          },
+    const users = await User.find(
+      {loc:
+        {$geoWithin:
+          { $centerSphere: [[long, lat], distance / 6378.1] },
         },
       },
-    });
+    );
+    
     users.forEach((user) => {
       usersId.push(user._id);
     });
@@ -99,11 +96,14 @@ router.get('/search', async (req, res, next) => {
       allarticles = await Article.find({
         $and: [
           { userID: { $in: usersId } },
-          { rent: { $elemMatch: { dataStart: null, dataEnd: null } } },
           {
-            $or: [{ rent: { $elemMatch: { dateStart: { $gt: de } } } },
-              { rent: { $elemMatch: { dateEnd: { $lt: ds } } } }],
-          }],
+            $or: [
+              { rent: { $size: 0 } },
+              { rent: { $elemMatch: { dateStart: { $gt: de } } } },
+              { rent: { $elemMatch: { dateEnd: { $lt: ds } } } }
+            ],
+          },
+        ],
       });
     } else if (category === 'all') {
       allarticles = await Article.find({
@@ -111,33 +111,38 @@ router.get('/search', async (req, res, next) => {
           { userID: { $in: usersId } },
           { type },
           { rent: { $elemMatch: { dataStart: null, dataEnd: null } } },
-          {
-            $or: [{ rent: { $elemMatch: { dateStart: { $gt: de } } } },
-              { rent: { $elemMatch: { dateEnd: { $lt: ds } } } }],
-          }],
-      });
-    } else if(type === 'all') {
-      allarticles = await Article.find({
-        $and: [
+          { $or: [
+            { rent: { $size: 0 } },
+            { rent: { $elemMatch: { dateStart: { $gt: de } } } },
+            { rent: { $elemMatch: { dateEnd: { $lt: ds } } } }
+          ]},
+        ]},
+      );
+    } else if (type === 'all') {
+      allarticles = await Article.find(
+        { $and: [
           { userID: { $in: usersId } },
           { category },
-          { rent: { $elemMatch: { dataStart: null, dataEnd: null } } },
-          {
-            $or: [{ rent: { $elemMatch: { dateStart: { $gt: de } } } },
-              { rent: { $elemMatch: { dateEnd: { $lt: ds } } } }],
-          }],
-      });
+          { $or: [
+            { rent: { $size: 0 } },
+            { rent: { $elemMatch: { dateStart: { $gt: de } } } },
+            { rent: { $elemMatch: { dateEnd: { $lt: ds } } } }
+          ]},
+        ]},
+      );
     } else {
-      allarticles = await Article.find({
-        $and: [
+      allarticles = await Article.find(
+        { $and: [
           { userID: { $in: usersId } },
           { type },
-          { category }, { rent: { $elemMatch: { dataStart: null, dataEnd: null } } },
-          {
-            $or: [{ rent: { $elemMatch: { dateStart: { $gt: de } } } },
-              { rent: { $elemMatch: { dateEnd: { $lt: ds } } } }],
-          }],
-      });
+          { category },
+          { $or: [
+            { rent: { $size: 0 } },
+            { rent: { $elemMatch: { dateStart: { $gt: de } } } },
+            { rent: { $elemMatch: { dateEnd: { $lt: ds } } } }
+          ]},
+        ]},
+      );
     }
     res.render('main/search', {
       allarticles,
@@ -150,75 +155,6 @@ router.get('/search', async (req, res, next) => {
   }
 });
 
-//   const ds = moment(dateInitial).format();
-//   const de = moment(dateFinal).format();
-//   if (category === 'all' && type === 'all') {
-//     Article.find({
-//       $and: [
-//         { userID: { $in: usersId } },
-//         { rent: { $elemMatch: { dataStart: null, dataEnd: null } } },
-//         {
-//           $or: [{ rent: { $elemMatch: { dateStart: { $gt: de } } } },
-//             { rent: { $elemMatch: { dateEnd: { $lt: ds } } } }],
-//         }],
-//     })
-//       .then((allarticles) => {
-//         res.render('main/search', {
-//           allarticles, currentUserId, dateFinal, dateInitial,
-//         });
-//       })
-//       .catch((error) => {
-//         next(error);
-//       });
-//   } else if (category === 'all') {
-//     Article.find({
-//       $and: [{ type }, { rent: { $elemMatch: { dataStart: null, dataEnd: null } } },
-//         {
-//           $or: [{ rent: { $elemMatch: { dateStart: { $gt: de } } } },
-//             { rent: { $elemMatch: { dateEnd: { $lt: ds } } } }],
-//         }],
-//     }).then((allarticles) => {
-//       res.render('main/search', {
-//         allarticles, currentUserId, dateFinal, dateInitial,
-//       });
-//     })
-//       .catch((error) => {
-//         next(error);
-//       });
-//   } else if (type === 'all') {
-//     Article.find({
-//       $and: [{ category }, { rent: { $elemMatch: { dataStart: null, dataEnd: null } } },
-//         {
-//           $or: [{ rent: { $elemMatch: { dateStart: { $gt: de } } } },
-//             { rent: { $elemMatch: { dateEnd: { $lt: ds } } } }],
-//         }],
-//     }).then((allarticles) => {
-//       res.render('main/search', {
-//         allarticles, currentUserId, dateFinal, dateInitial,
-//       });
-//     })
-//       .catch((error) => {
-//         next(error);
-//       });
-//   } else {
-//     Article.find({
-//       $and: [{ type }, { category }, { rent: { $elemMatch: { dataStart: null, dataEnd: null } } },
-//         {
-//           $or: [{ rent: { $elemMatch: { dateStart: { $gt: de } } } },
-//             { rent: { $elemMatch: { dateEnd: { $lt: ds } } } }],
-//         }],
-//     })
-//       .then((allarticles) => {
-//         console.log(allarticles);
-//         res.render('main/search', {
-//           allarticles, currentUserId, dateFinal, dateInitial,
-//         });
-//       })
-//       .catch((error) => {
-//         next(error);
-//       });
-//   }
-// });
 
 module.exports = router;
 
