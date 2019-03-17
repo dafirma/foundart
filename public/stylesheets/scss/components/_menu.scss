@@ -9,11 +9,11 @@
     color:white;
     font-size:$font-size-md;  
   }
-}
+} 
 
 .menu-bar {
     position: fixed;
-    z-index: -1;
+    z-index: 0;
     display: flex;
     justify-content: space-between;
     top:0;
