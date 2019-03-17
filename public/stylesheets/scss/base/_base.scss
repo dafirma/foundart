@@ -8,7 +8,7 @@ body *{
   box-sizing: border-box; 
 }
 body > div {
-  margin-top: 7vh;
+  margin-top: 6vh;
 }
 
 .main-container {
@@ -25,7 +25,7 @@ h1 {
 
 h2 {
   color: $primary-text-color;
-  text-align: center;
+  text-align: left;
   padding: 1rem 0;
   font-size: $font-size-lg;
   font-family: $font-stack;

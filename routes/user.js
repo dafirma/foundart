@@ -151,10 +151,11 @@ router.get('/:id', (req, res, next) => {
   const {
     id,
   } = req.params;
+  const userUrl = true;
   User.findById(id)
     .then((user) => {
       res.render('user/show', {
-        user,
+        user, userUrl,
       });
     })
     .catch((error) => {
@@ -167,11 +168,12 @@ router.get('/:id/update', (req, res, next) => {
   const {
     id,
   } = req.params;
+  const userUrl = true;
 
   User.findById(id)
     .then((user) => {
       res.render('user/update', {
-        user,
+        user, userUrl,
       });
     })
     .catch((error) => {

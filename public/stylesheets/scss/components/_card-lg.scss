@@ -3,14 +3,25 @@
 .card-lg {
     background-color: $white;
     border-radius: 10px;
+
+    a {
+      div {
+        height: 20vh;
+        overflow: hidden;
+        position: relative;
+        z-index: 0;
+      }
+    }
+
     img {
       width: 100%;
       border-radius: 10px 10px 0 0;
+      position: absolute;
+      top:-50%;
     }
     .btn {
       font-size: $font-size-sm;
-      // margin-bottom: 0.5rem;
-      // margin-top: -0.6rem;
+
     }
     .info {
       display: flex;

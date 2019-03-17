@@ -4,7 +4,9 @@
 <!-- for each article -->
 <div class="card-lg">
     <a href="/article/<%= article._id%>">
-        <img src="<%= article.imgPath%>" alt="<% article.originalName%>">
+        <div>
+            <img src="<%= article.imgPath%>" alt="<% article.originalName%>">
+        </div>
     </a>
     <div class="card-lg-text">
         <div class="title">

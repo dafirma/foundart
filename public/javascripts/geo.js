@@ -49,9 +49,7 @@ const geocoder = new MapboxGeocoder({
 });
 
 map.addControl(geocoder);
-// map.addControl(new MapboxGeocoder({
-//   accessToken: mapboxgl.accessToken
-// }));
+
 map.addControl(new mapboxgl.GeolocateControl({
   positionOptions: {
     enableHighAccuracy: true,

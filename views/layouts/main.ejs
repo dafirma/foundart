@@ -15,36 +15,40 @@
 
 <body>
     <% if (locals.currentUser ){%>
-    <div>
+    <div class="menu">
         <div class="menu-bar">
             <div class="menu-username">
-                <span><<</span>
+               <a href="javascript: history.go(-1)"><img src="/images/back-128.png" alt="back icon"></a> 
+            
             </div>
             <img id="menu-icon" class="menu-item" src="/images/menuIcon.png" alt="menu icon">
 
         </div>
+        <%if( typeof userUrl === 'undefined' ){%>
         <div class="menu-user">
-            <img class="menu-user-img" src="<%= locals.currentUser.userImgPath %>" alt="<%= locals.currentUser.userOriginalName%>">
+            <a href="/user/<%= locals.currentUser._id%>"><img class="menu-user-img" src="<%= locals.currentUser.userImgPath %>" alt="<%= locals.currentUser.userOriginalName%>"></a> 
         </div>
+        <%}%>
+
 
         <div class="menu-content hidden" id="menu-content">
-            <a href="/main" onclick="addClass('hidden', 'menu-content')">
+            <a href="/main">
                 <div>DASHBORD</div>
             </a>
 
-            <a href="/article/list" onclick="addClass('hidden', 'menu-content')">
+            <a href="/article/list">
                 <div>MY ARTICLES</div>
             </a>
-            <a href="/main/rents" onclick="addClass('hidden', 'menu-content')">
+            <a href="/main/rents">
                 <div>MY RENTS</div>
             </a>
-            <a href="/article/favorites" onclick="addClass('hidden', 'menu-content')">
+            <a href="/article/favorites">
                 <div>MY FAVORITES</div>
             </a>
-            <a href="/notifications" onclick="addClass('hidden', 'menu-content')">
+            <a href="/notifications">
                 <div>NOTIFICATIONS</div>
             </a>
-            <a href="/user/logout" onclick="addClass('hidden', 'menu-content')">
+            <a href="/user/logout">
                 <div>LOGOUT</div>
             </a>
         </div>
