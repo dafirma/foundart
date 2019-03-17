@@ -1,5 +1,5 @@
 <div class="main-rent">
-  <h2>Dashboard</h2>
+  <h2>Lessee</h2>
   <div>
     <% articles.forEach((article) => {%>
     <% article.rent.forEach((rent) => {%>
@@ -40,10 +40,10 @@
         <div>
             <label for="distance">Distance</label><br>
             <select name="distance" id="distance">
-              <option value="100.0">1km</option>
-              <option value="200.0">2km</option>
-              <option value="500.0">5km</option>
-              <option value="100.0">10km</option>
+              <option value="1">1km</option>
+              <option value="2">2km</option>
+              <option value="5">5km</option>
+              <option value="10">10km</option>
             </select>
         </div>
 
@@ -62,7 +62,6 @@
         </div>
       </div>
 
-      <div class="aux">
         <div>
           <label for="dateInitial">
             Rent start:
@@ -76,8 +75,6 @@
           </label><br>
           <input type="date" name="dateFinal" id="dateFinal">
         </div>
-
-      </div>
 
     </div>
     <div class="main-search-btn-container">

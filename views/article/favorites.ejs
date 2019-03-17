@@ -5,7 +5,9 @@
             <% users.favorite.forEach((fav) => {%>
     <div class = "card-lg">
         <a href="/article/favorites/<%= fav.articleID._id%>">
-            <img src="<%= fav.articleID.imgPath%>" alt="<% fav.articleID.originalName%>">
+            <div>
+                <img src="<%= fav.articleID.imgPath%>" alt="<% fav.articleID.originalName%>">
+            </div>
         </a>
         <div class="card-lg-text">
             <div>

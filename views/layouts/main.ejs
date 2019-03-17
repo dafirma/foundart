@@ -5,13 +5,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.1/mapbox-gl.css' rel='stylesheet' />
+    <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v3.1.6/mapbox-gl-geocoder.css' type='text/css' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.1/mapbox-gl.js'></script>
+    <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v3.1.6/mapbox-gl-geocoder.min.js'></script>
     <link rel="stylesheet" href="/stylesheets/css/style.css">
     <title>Found Art</title>
 </head>
 
 <body>
     <% if (locals.currentUser ){%>
-    <div>
+    <div class="menu">
         <div class="menu-bar">
             <div class="menu-username">
                <a href="javascript: history.go(-1)"><img src="/images/back-128.png" alt="back icon"></a> 
@@ -28,26 +32,26 @@
 
 
         <div class="menu-content hidden" id="menu-content">
-            <a href="/main" onclick="addClass('hidden', 'menu-content')">
+            <a href="/main">
                 <div>DASHBORD</div>
             </a>
 
-            <a href="/article/list" onclick="addClass('hidden', 'menu-content')">
+            <a href="/article/list">
                 <div>MY ARTICLES</div>
             </a>
-            <a href="/main/rents" onclick="addClass('hidden', 'menu-content')">
+            <a href="/main/rents">
                 <div>MY RENTS</div>
             </a>
-            <a href="/article/favorites" onclick="addClass('hidden', 'menu-content')">
+            <a href="/article/favorites">
                 <div>MY FAVORITES</div>
             </a>
             <a href="/user/message" onclick="addClass('hidden', 'menu-content')">
                 <div>MESSAGES</div>
             </a>
-            <a href="/notifications" onclick="addClass('hidden', 'menu-content')">
+            <a href="/notifications">
                 <div>NOTIFICATIONS</div>
             </a>
-            <a href="/user/logout" onclick="addClass('hidden', 'menu-content')">
+            <a href="/user/logout">
                 <div>LOGOUT</div>
             </a>
         </div>
@@ -61,8 +65,10 @@
         <%- include('../partials/flash-notifications') %>
         <%-body%>
     </div>
+    
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
     <script src="/javascripts/support.js"></script>
+    <script src="/javascripts/geo-key.js"></script>
     <script src="/javascripts/geo.js"></script>
 </body>
 

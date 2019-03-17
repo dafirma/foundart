@@ -24,9 +24,9 @@
           <input type="hidden" name="dsOrigin" value="<%= article.rent.dateStart %>">
           <input type="hidden" name="deOrigin" value="<%= article.rent.dateEnd %>">
           <label for="dateStart"></label>
-          <input type="text" name="dateStart" id="dateStart" value="aa">
+          <input type="date" name="dateInitial" id="dateInitial">
           <label for="dateEnd"></label>
-          <!-- <input type="hidden" name="dateEnd" id="dateEnd"> -->
+          <input type="date" name="dateEnd" id="dateEnd">
           <button class="btn" type="submit">Request</button>
         </form>
         <form action="/article/favorites" method="post" id="favoriteForm">
