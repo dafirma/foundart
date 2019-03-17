@@ -14,7 +14,7 @@
   </div>
 </div>
 
-<div class="main-search">
+<div id="main-search">
   <h2>Search</h2>
   <form id="search-form" class="form" action="/main/search" method="get">
 
@@ -81,10 +81,13 @@
       <input type="date" class="full-width-centered" name="dateFinal" id="dateFinal">
     </div>
 
-</div>
-<div class="main-search-btn-container">
-  <button class="btn" type="submit">Search</button>
-</div>
+  </div>
+  <div class="main-search-btn-container">
+      <button class="btn btn-search" type="submit" onclick="closeForm()"><img src="/images/lupa.png" alt=""></button>
+  </div>
 </form>
+<div id="container-btn-search">
+  <button class="btn btn-search" onclick="openForm()"><img src="/images/lupa.png" alt=""></button>
 
+</div>
 </div>

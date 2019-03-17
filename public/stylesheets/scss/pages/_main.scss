@@ -17,9 +17,11 @@
 }
 
 
-.main-search {
-    
+#main-search {
+    display: none;
+    left:21%;
     margin: auto;
+
 
     .aux {
         margin-bottom: 0.8rem;

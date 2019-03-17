@@ -17,3 +17,19 @@
     width: 50%;
 }
 }
+.btn-search {
+  position: absolute;
+  left: 42%;
+  top: 89%;
+  border-radius: 8%;
+  width: 16%;
+  height: 6%;
+  img{
+    height: 95%;
+    width: 95%;
+  }
+
+}
+#container-btn-search {
+  display : block;
+}
