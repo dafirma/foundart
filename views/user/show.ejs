@@ -24,7 +24,7 @@
             <p> Tel.: <%= user.telephone %></p>
             <p> Email: <%= user.email %></p>
             <%if(user.favorite.length > 0){%>
-            <p> Favorite: <%= user.favorite.length %></p>
+            <p> Favorite Items: <%= user.favorite.length %></p>
             <%}%>
             <br>
             <a href="/user/<%=user._id%>/update" class="btn">Update</a>

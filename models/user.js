@@ -13,6 +13,24 @@ const userSchema = new Schema({
   userImgPath: String,
   userImgName: String,
   userOriginalName: String,
+  conversation: [{
+    user1: {
+      type: ObjectId,
+      ref: 'User',
+    },
+    user2: {
+      type: ObjectId,
+      ref: 'User',
+    },
+    message: {
+      text: String,
+      sender: {
+        type: ObjectId,
+        ref: 'User',
+      },
+      date: Date,
+    },
+  }],
   address: {
     street: String,
     number: Number,
