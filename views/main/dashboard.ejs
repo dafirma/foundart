@@ -17,14 +17,15 @@
 <div class="main-search">
   <h2>Search</h2>
   <form id="search-form" class="form" action="/main/search" method="get">
-    <div class="form-aux">
-      <input type="hidden" id ="long" name="long" value="">
-      <input type="hidden" id ="lat" name="lat" value="">
-      <div class="aux">
-        <div>
-          <label for="type">Category</label><br>
+
+      <input type="hidden" id="long" name="long" value="">
+      <input type="hidden" id="lat" name="lat" value="">
+
+      <div class="full-width-centered">
+        <label class="full-width-centered" for="type">Category</label>
+        <div class="select">
           <select name="category" id="category">
-              <option value="all">All</option>
+            <option value="all">All</option>
             <option value="visualArt">Visual Art</option>
             <option value="contemporany">Contemporany</option>
             <option value="decorativeArt">Decorative Art</option>
@@ -36,21 +37,25 @@
             <option value="music">Music</option>
           </select>
         </div>
+      </div>
 
-        <div>
-            <label for="distance">Distance</label><br>
-            <select name="distance" id="distance">
-              <option value="1">1km</option>
-              <option value="2">2km</option>
-              <option value="5">5km</option>
-              <option value="10">10km</option>
-            </select>
+      <div class="full-width-centered">
+        <label for="distance"></select>Distance</label>
+        <div class="select">
+          <select  name="distance" id="distance">
+            <option value="1">1km</option>
+            <option value="2">2km</option>
+            <option value="5">5km</option>
+            <option value="10">10km</option>
+          </select>
         </div>
+      </div>
 
-        <div>
-          <label for="type"> Type</label><br>
+      <div class="full-width-centered">
+        <label for="type"> Type</label>
+        <div class="select">
           <select name="type" id="type">
-              <option value="all">All</option>
+            <option value="all">All</option>
             <option value="painting">Painting</option>
             <option value="sculpture">Sculpture</option>
             <option value="photography">Photography</option>
@@ -62,24 +67,24 @@
         </div>
       </div>
 
-        <div>
-          <label for="dateInitial">
-            Rent start:
-          </label><br>
-          <input type="date" name="dateInitial" id="dateInitial">
-        </div>
-
-        <div>
-          <label for="dateFinal">
-            Rent end:
-          </label><br>
-          <input type="date" name="dateFinal" id="dateFinal">
-        </div>
-
+    <div class="full-width-centered">
+      <label for="dateInitial">
+        Rent start
+      </label>
+      <input type="date" class="full-width-centered" name="dateInitial" id="dateInitial">
     </div>
-    <div class="main-search-btn-container">
-      <button class="btn" type="submit" >Search</button>
+
+    <div class="full-width-centered">
+      <label for="dateFinal">
+        Rent end
+      </label>
+      <input type="date" class="full-width-centered" name="dateFinal" id="dateFinal">
     </div>
-  </form>
+
+</div>
+<div class="main-search-btn-container">
+  <button class="btn" type="submit">Search</button>
+</div>
+</form>
 
 </div>

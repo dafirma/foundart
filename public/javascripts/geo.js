@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-//Set map location
+// Set map location
 
 mapboxgl.accessToken = mapboxKey;
 const map = new mapboxgl.Map({
@@ -56,7 +56,35 @@ map.addControl(new mapboxgl.GeolocateControl({
   },
   trackUserLocation: true,
 }));
+
 geocoder.on('result', (ev) => {
   $('input[name="lat"]').val(ev.result.geometry.coordinates[1]);
   $('input[name="long"]').val(ev.result.geometry.coordinates[0]);
 });
+
+map.on('load', () => {
+  map.addSource('single-point', {
+    type: 'geojson',
+    data: {
+      type: 'FeatureCollection',
+      features: [],
+    },
+  });
+
+  map.addLayer({
+    id: 'point',
+    source: 'single-point',
+    type: 'circle',
+    paint: {
+      'circle-radius': 10,
+      'circle-color': '#007cbf',
+    },
+  });
+
+  // Listen for the `result` event from the MapboxGeocoder that is triggered when a user
+  // makes a selection and add a symbol that matches the result.
+  geocoder.on('result', (ev) => {
+    map.getSource('single-point').setData(ev.result.geometry);
+  });
+});
+

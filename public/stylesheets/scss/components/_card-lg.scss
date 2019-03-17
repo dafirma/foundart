@@ -11,18 +11,18 @@
         position: relative;
         z-index: 0;
       }
+      img {
+        width: 100%;
+        border-radius: 10px 10px 0 0;
+        position: absolute;
+        top:-50%;
+      }
     }
 
-    img {
-      width: 100%;
-      border-radius: 10px 10px 0 0;
-      position: absolute;
-      top:-50%;
-    }
     .btn {
       font-size: $font-size-sm;
-
     }
+
     .info {
       display: flex;
       flex-direction: column;
