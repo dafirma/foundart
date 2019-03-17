@@ -34,6 +34,13 @@
           <button class="btn" type="submit">Favorite</button>
         </form>
       </div>
+      <form action="/user/conv/message" method="post" id="messageForm" >
+        <input type="hidden" name="articleId" value="<%= article._id %>">
+        <input type="hidden" name="articleTitle" value="<%= article.title %>">
+        <input type="hidden" name="articleOwnerId" value="<%= article.userID._id %>">
+        <input type="hidden" name="articleOwnerUsername" value="<%= article.userID.username %>">
+        <button class="btn" type="submit">Message</button> 
+        </form>
       <% } else{ %>
       <a class="btn" href="/article/<%= article._id%>/update">Edit</a>
     

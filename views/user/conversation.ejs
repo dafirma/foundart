@@ -1,0 +1,11 @@
+<h2>SEND MESSAGE</h2>
+<%= articleTitle%>
+<form action="/user/conv/send" method="post" id="messageForm" >
+  <h2></h2>
+  <label for="message">Message to: <%= articleOwnerUsername%></label><br>
+  <input type="text" name="text" id="text">
+  <input type="hidden" name="articleId" value="<%= articleId %>">
+  <input type="hidden" name="articleTitle" value="<%= articleTitle %>">
+  <input type="hidden" name="articleOwnerId" value="<%= articleOwnerId %>">
+  <button class="btn" type="submit">Send</button> 
+  </form>

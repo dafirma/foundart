@@ -13,24 +13,6 @@ const userSchema = new Schema({
   userImgPath: String,
   userImgName: String,
   userOriginalName: String,
-  conversation: [{
-    user1: {
-      type: ObjectId,
-      ref: 'User',
-    },
-    user2: {
-      type: ObjectId,
-      ref: 'User',
-    },
-    message: {
-      text: String,
-      sender: {
-        type: ObjectId,
-        ref: 'User',
-      },
-      date: Date,
-    },
-  }],
   address: {
     street: String,
     number: Number,
@@ -46,8 +28,8 @@ const userSchema = new Schema({
   }],
   loc: {
     type: {
-      type: String,
-      enum: ['Point'], 
+      type: String, // Don't do `{ location: { type: String } }`
+      enum: ['Point'], // 'location.type' must be 'Point'
       required: true,
     },
     coordinates: {

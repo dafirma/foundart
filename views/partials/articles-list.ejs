@@ -24,7 +24,7 @@
                 <%= article.type%> /
                 <%= article.category%>
             </span>
-
+                
             <% if (article.userID._id != locals.currentUser._id ){%>
             <span>By <a href="/user/<%= article.userID._id%>">
                     <%= article.userID.username%> </a>

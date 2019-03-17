@@ -4,6 +4,7 @@
 <div class="list-card-lg">
     <%} else{%>
       <% allarticles.forEach((article) => {%>
+        <%console.log(article.userID.username)%>
         <% if (article.userID._id != currentUserId._id){%>
           <!-- If I'm not owner of the article, show -->
           <%- include('../partials/articles-list.ejs',{ article, currentUserId, dateFinal, dateInitial });%>

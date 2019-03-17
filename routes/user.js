@@ -2,6 +2,7 @@ const express = require('express');
 const bcrypt = require('bcrypt');
 
 const User = require('../models/user');
+const Conversation = require('../models/conversation');
 const middlewares = require('../middlewares');
 const geo = require('../middlewares/geo');
 
@@ -132,21 +133,64 @@ router.get('/logout', (req, res, next) => {
 });
 
 // MESSAGE
-router.get('/message', (req, res, next) => {
-  const { articleId, articleTitle, articleOwnerId } = req.body;
-  console.log(articleId);
-  console.log(articleOwnerId);
-  console.log(articleTitle);
-  User.findById(articleOwnerId)
-    .then((owner) => {
-      console.log(owner);
-      res.render('/');
+
+
+router.post('/conv/message', (req, res, next) => {
+  const {
+    articleId, articleTitle, articleOwnerId,
+    articleOwnerUsername,
+  } = req.body;
+  // console.log(articleId); ok
+  // console.log('ok');
+  // console.log(articleOwnerId);
+  // console.log(articleOwnerId.username);
+  // console.log(articleTitle); ok
+  // res.redirect('/main');ok
+  res.render('user/conversation', {
+    articleOwnerUsername, articleId, articleOwnerId, articleTitle,
+  });
+});
+
+router.get('/conversation', (req, res, next) => {
+  console.log('ok');
+  res.redirect('/main');
+  // res.redirect('/user/message');
+});
+/*
+router.post('/conv/send', (req, res, next) => {
+  // const text = req.body.text;
+  const abc = req.body.text;
+  const user2 = req.body.articleOwnerId;
+  const user1 = req.session.currentUser._id;
+  // eslint-disable-next-line no-underscore-dangle
+  //const message = { text };
+  // const sender = user1;
+  // console.log(text)
+  )
+    .then(() => {
+      req.flash('sucess', 'Message sent');
+      res.redirect('/main');
     })
     .catch((error) => {
       next(error);
     });
 });
+*/
+// User.findById(articleOwnerId)
+   // .then((owner) => {
+     // console.log(owner);
+     // res.redirect('/main');
+    // });
 
+
+
+router.get('/send', (req, res, next) => {
+  res.render('/main');
+});
+
+router.get('/conv/message/show', (req, res, next) => {
+  res.render('/');
+});
 
 // SHOW PROFILE
 
