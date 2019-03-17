@@ -32,7 +32,7 @@
             <%}else {%>
             <form action="/article/delete" method="POST">
                 <input type="hidden" name="articleId" value="<%= article._id %>">
-                <button class="btn card-lg-right" type="submit">Delete</button>
+                <button class="btn delete card-lg-right" type="submit"><img src='/images/deleteicon.png' ></button>
             </form>
             <%} %>
         </div>

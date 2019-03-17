@@ -105,7 +105,7 @@ router.get('/search', async (req, res, next) => {
             ],
           },
         ],
-      });
+      }).populate('userID');
     } else if (category === 'all') {
       allarticles = await Article.find({
         $and: [
@@ -118,7 +118,7 @@ router.get('/search', async (req, res, next) => {
             { rent: { $elemMatch: { dateEnd: { $lt: ds } } } }
           ]},
         ]},
-      );
+      ).populate('userID');
     } else if (type === 'all') {
       allarticles = await Article.find(
         { $and: [
@@ -130,7 +130,7 @@ router.get('/search', async (req, res, next) => {
             { rent: { $elemMatch: { dateEnd: { $lt: ds } } } }
           ]},
         ]},
-      );
+      ).populate('userID');
     } else {
       allarticles = await Article.find(
         { $and: [
@@ -143,7 +143,7 @@ router.get('/search', async (req, res, next) => {
             { rent: { $elemMatch: { dateEnd: { $lt: ds } } } }
           ]},
         ]},
-      );
+      ).populate('userID');
     }
     res.render('main/search', {
       allarticles,
