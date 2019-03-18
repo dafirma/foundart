@@ -1,37 +1,37 @@
 <h2>Notifications</h2>
-<div>
-    <%  article.rent.forEach((rent) => { %>
-        <% if(rent._id == rentId){ %>
-            <% const thisRent = rent;%>
-            <p>Title:
-                    <%- article.title%>
-                </p>
-                <p>Date start:
-                    <%console.log(rent)%>
-                    <%const ds = rent.dateStart.toString()%>
-                    <%= ds.slice(0,15)%>
-                </p>
-                <p>Date end:
-                    <%const de = rent.dateEnd.toString()%>
-                    <%= de.slice(0,15)%>
-                </p>
-                <p>Price by day:
-                    <%- article.price%>
-                </p>
-                <p>Total price:
-                    <%- rent.totalPrice %>
-                
-                </p>
-                <div class="container-list-btn">
-                    <form action="/notifications/update" method="post">
-                        <input type="hidden" value="<%- article._id%>" name="articleId" >
-                        <input type="hidden" value="<%- rent._id%>" name="rentId" >
-                        <button class="btn"type="submit" name="state" value="true">ACCEPT</button>
-                        <button class="btn"type="submit" name="state" value="false">REJECT</button>
-                    </form>
-
-                </div>
-        <% } %>
-    <%})%>
-    
+<div class="card-notification">
+    <div class ="card-notification-text">
+        <%  article.rent.forEach((rent) => { %>
+            <% if(rent._id == rentId){ %>
+                <% const thisRent = rent;%>
+                <p>Title:
+                        <%- article.title%>
+                    </p>
+                    <p>Date start:
+                        <%console.log(rent)%>
+                        <%const ds = rent.dateStart.toString()%>
+                        <%= ds.slice(0,15)%>
+                    </p>
+                    <p>Date end:
+                        <%const de = rent.dateEnd.toString()%>
+                        <%= de.slice(0,15)%>
+                    </p>
+                    <p>Price by day:
+                        € <%- article.price%>
+                    </p>
+                    <p>Total price:
+                        € <%- rent.totalPrice %>
+                    
+                    </p>
+                    <div class="container-list-btn">
+                        <form class="container-list-btn" action="/notifications/update" method="post">
+                            <input type="hidden" value="<%- article._id%>" name="articleId" >
+                            <input type="hidden" value="<%- rent._id%>" name="rentId" >
+                            <button class="btn"type="submit" name="state" value="true">ACCEPT</button>
+                            <button class="btn"type="submit" name="state" value="false">REJECT</button>
+                        </form>
+                    </div>
+            <% } %>
+        <%})%>
+    </div>
 </div>

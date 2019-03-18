@@ -1,11 +1,41 @@
 /* CARD NOTIFICATION*/
 
 .card-notification {
-    padding: 0.5rem;
+    padding: 1.5rem;
     display: flex;
     justify-content: space-around;
+    width: 100%;
+    background-color: $white;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    border-radius: 10px;
+    // padding: 1rem 0.5rem 18% 0.5rem;
+
     
     .btn {
         border-radius: 10px;
+        width: 50%;
+        height: 50;
     }
+    a {
+        height: 10%;
+        width: 10%;
+    }
+}
+.card-notification-text {
+    p {
+        font-size: $font-size-lg;
+    }
+    
+}
+
+.container-list-btn{
+    display: flex;
+}
+
+.card-notification-container-btn{
+    padding-left: 70%;
+
 }
