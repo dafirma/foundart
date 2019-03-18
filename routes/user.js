@@ -41,8 +41,8 @@ router.post('/signup', middlewares.anonRoute, (req, res, next) => {
     return res.redirect('/signup');
   }
   User.findOne({
-    username,
-  })
+      username,
+    })
     .then((user) => {
       if (user) {
         req.flash('error', 'User do not exist');
@@ -51,24 +51,24 @@ router.post('/signup', middlewares.anonRoute, (req, res, next) => {
         const salt = bcrypt.genSaltSync(bcryptSalt);
         const hashPass = bcrypt.hashSync(password, salt);
         User.create({
-          name,
-          lastName,
-          username,
-          telephone,
-          email,
-          address: {
-            street,
-            number,
-            zipcode,
-            city,
-            country,
-          },
-          loc: {
-            type: 'Point',
-            coordinates: [long, lat],
-          },
-          password: hashPass,
-        })
+            name,
+            lastName,
+            username,
+            telephone,
+            email,
+            address: {
+              street,
+              number,
+              zipcode,
+              city,
+              country,
+            },
+            loc: {
+              type: 'Point',
+              coordinates: [long, lat],
+            },
+            password: hashPass,
+          })
           .then(() => {
             req.flash('success', 'User created');
             res.redirect('/');
@@ -98,8 +98,8 @@ router.post('/login', middlewares.anonRoute, (req, res, next) => {
   }
 
   User.findOne({
-    username,
-  })
+      username,
+    })
     .then((user) => {
       if (!user) {
         req.flash('error', 'usuario o contraseña incorrectos');
@@ -137,7 +137,9 @@ router.get('/logout', (req, res, next) => {
 
 router.post('/conv/message', (req, res, next) => {
   const {
-    articleId, articleTitle, articleOwnerId,
+    articleId,
+    articleTitle,
+    articleOwnerId,
     articleOwnerUsername,
   } = req.body;
   // console.log(articleId); ok
@@ -147,7 +149,10 @@ router.post('/conv/message', (req, res, next) => {
   // console.log(articleTitle); ok
   // res.redirect('/main');ok
   res.render('user/conversation', {
-    articleOwnerUsername, articleId, articleOwnerId, articleTitle,
+    articleOwnerUsername,
+    articleId,
+    articleOwnerId,
+    articleTitle,
   });
 });
 
@@ -177,10 +182,10 @@ router.post('/conv/send', (req, res, next) => {
 });
 */
 // User.findById(articleOwnerId)
-   // .then((owner) => {
-     // console.log(owner);
-     // res.redirect('/main');
-    // });
+// .then((owner) => {
+// console.log(owner);
+// res.redirect('/main');
+// });
 
 
 
@@ -198,10 +203,12 @@ router.get('/:id', (req, res, next) => {
   const {
     id,
   } = req.params;
+  const userUrl = true;
   User.findById(id)
     .then((user) => {
       res.render('user/show', {
         user,
+        userUrl,
       });
     })
     .catch((error) => {
@@ -214,11 +221,12 @@ router.get('/:id/update', (req, res, next) => {
   const {
     id,
   } = req.params;
-
+  const userUrl = true;
   User.findById(id)
     .then((user) => {
       res.render('user/update', {
         user,
+        userUrl,
       });
     })
     .catch((error) => {
@@ -226,22 +234,6 @@ router.get('/:id/update', (req, res, next) => {
     });
 });
 
-router.get('/test/test', (req, res, next) => {
-  User.find({
-    loc: {
-      $near: {
-        $maxDistance: 90000,
-        $geometry: {
-          type: 'Point',
-          coordinates: [2, 41],
-        },
-      },
-    },
-  })
-    .then((user) => {
-      console.log(user);
-    });
-});
 // UPDATE PROFILE
 router.post('/update', (req, res, next) => {
   const {
@@ -261,36 +253,58 @@ router.post('/update', (req, res, next) => {
   } = req.body;
 
   const userPass = req.session.currentUser.password;
-
-  if (bcrypt.compareSync(oldPassword, userPass) && password !== passwordCompare) {
-    const salt = bcrypt.genSaltSync(bcryptSalt);
-    const hashPass = bcrypt.hashSync(password, salt);
-    User.findByIdAndUpdate(id, {
-      name,
-      lastName,
-      telephone,
-      email,
-      address: {
-        street,
-        number,
-        zipcode,
-        city,
-        country,
-      },
-      password: hashPass,
-    })
-      .then((user) => {
-        req.flash('success', 'User updated');
-        // eslint-disable-next-line no-underscore-dangle
-        res.redirect(`/user/${user._id}`);
+  if (password) {
+    if (bcrypt.compareSync(oldPassword, userPass) && password === passwordCompare) {
+      const salt = bcrypt.genSaltSync(bcryptSalt);
+      const hashPass = bcrypt.hashSync(password, salt);
+      User.findByIdAndUpdate(id, {
+        name,
+        lastName,
+        telephone,
+        email,
+        address: {
+          street,
+          number,
+          zipcode,
+          city,
+          country,
+        },
+        password: hashPass,
       })
-      .catch((error) => {
-        next(error);
-      });
+        .then((user) => {
+          req.flash('success', 'User updated');
+          // eslint-disable-next-line no-underscore-dangle
+          res.redirect(`/user/${user._id}`);
+        })
+        .catch((error) => {
+          next(error);
+        });
+    }
   } else {
     req.flash('error', 'old password incorrect');
     res.redirect('/');
   }
+  User.findByIdAndUpdate(id, {
+    name,
+    lastName,
+    telephone,
+    email,
+    address: {
+      street,
+      number,
+      zipcode,
+      city,
+      country,
+    },
+  })
+    .then((user) => {
+      req.flash('success', 'User updated');
+      // eslint-disable-next-line no-underscore-dangle
+      res.redirect(`/user/${user._id}`);
+    })
+    .catch((error) => {
+      next(error);
+    });
 });
 
 module.exports = router;
