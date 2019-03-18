@@ -19,7 +19,13 @@
   }
 }
 
+
+.container-btn-search {
+  display: flex;
+  justify-content: center;
+}
 .btn-search {
+  margin-top: 1.5rem;
   border-radius: 50%;
   width: 16%;
   height: 6%;

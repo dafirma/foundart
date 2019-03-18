@@ -1,7 +1,7 @@
-<div id="main-search">
-        <h2>Search</h2>
+<div id="main-search" class="hidden search-form">
+        
         <form id="search-form" class="form" action="/main/search" method="get">
-      
+            <h2>Search</h2>
             <input type="hidden" id="long" name="long" value="">
             <input type="hidden" id="lat" name="lat" value="">
       
@@ -64,11 +64,9 @@
             </label>
             <input type="date" class="full-width-centered" name="dateFinal" id="dateFinal">
           </div>
-      
+        <div class="container-btn-search">
+            <button class="btn btn-search" type="submit"><img src="/images/lupa.png" alt=""></button>
         </div>
-        <!-- <div class="main-search-btn-container">
-            <button class="btn btn-search" type="submit" onclick="closeForm()"><img src="/images/lupa.png" alt=""></button>
-        </div> -->
       </form>
       
       </div>

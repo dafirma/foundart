@@ -1,0 +1,46 @@
+<% if (locals.currentUser ){%>
+    <div class="menu">
+        <div class="menu-bar">
+            <div class="menu-username">
+               <a href="javascript: history.go(-1)"><img src="/images/white-back-arrow.png" alt="back icon"></a> 
+            
+            </div>
+            <div class="menu-bar-right">
+                <img id="open-search" src="/images/lupa.png" alt="">
+                <img id="menu-icon" class="menu-item" src="/images/menuIcon.png" alt="menu icon">
+            </div>
+
+        </div>
+        <%if( typeof userUrl === 'undefined' ){%>
+        <div class="menu-user">
+            <a href="/user/<%= locals.currentUser._id%>"><img class="menu-user-img" src="<%= locals.currentUser.userImgPath %>" alt="<%= locals.currentUser.userOriginalName%>"></a> 
+        </div>
+        <%}%>
+
+
+        <div class="menu-content hidden" id="menu-content">
+            <a href="/main">
+                <div>DASHBORD</div>
+            </a>
+
+            <a href="/article/list">
+                <div>MY ARTICLES</div>
+            </a>
+            <a href="/main/rents">
+                <div>MY RENTS</div>
+            </a>
+            <a href="/article/favorites">
+                <div>MY FAVORITES</div>
+            </a>
+            <a href="/">
+                <div>MESSAGES</div>
+            </a>
+            <a href="/notifications">
+                <div>NOTIFICATIONS</div>
+            </a>
+            <a href="/user/logout">
+                <div>LOGOUT</div>
+            </a>
+        </div>
+    </div>
+    <%} %>
