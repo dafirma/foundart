@@ -12,16 +12,15 @@
   text-justify: center;
   font-size: $font-size-md !important;
 }
+
 .btn-articles-fav {
-  img { 
+  img {
     width: 50%;
+  }
 }
-}
+
 .btn-search {
-  position: absolute;
-  left: 42%;
-  top: 89%;
-  border-radius: 8%;
+  border-radius: 50%;
   width: 16%;
   height: 6%;
   img{
@@ -29,7 +28,4 @@
     width: 95%;
   }
 
-}
-#container-btn-search {
-  display : block;
 }

@@ -1,0 +1,74 @@
+<div id="main-search">
+        <h2>Search</h2>
+        <form id="search-form" class="form" action="/main/search" method="get">
+      
+            <input type="hidden" id="long" name="long" value="">
+            <input type="hidden" id="lat" name="lat" value="">
+      
+            <div class="full-width-centered">
+              <label class="full-width-centered" for="type">Category</label>
+              <div class="select">
+                <select name="category" id="category">
+                  <option value="all">All</option>
+                  <option value="visualArt">Visual Art</option>
+                  <option value="contemporany">Contemporany</option>
+                  <option value="decorativeArt">Decorative Art</option>
+                  <option value="abstractArt">Abstract Art</option>
+                  <option value="fineArt">Fine Art</option>
+                  <option value="modernist">Sculpture</option>
+                  <option value="realism">Realism</option>
+                  <option value="graffitiArt">Graffiti Art</option>
+                  <option value="music">Music</option>
+                </select>
+              </div>
+            </div>
+      
+            <div class="full-width-centered">
+              <label for="distance"></select>Distance</label>
+              <div class="select">
+                <select  name="distance" id="distance">
+                  <option value="1">1km</option>
+                  <option value="2">2km</option>
+                  <option value="5">5km</option>
+                  <option value="10">10km</option>
+                </select>
+              </div>
+            </div>
+      
+            <div class="full-width-centered">
+              <label for="type"> Type</label>
+              <div class="select">
+                <select name="type" id="type">
+                  <option value="all">All</option>
+                  <option value="painting">Painting</option>
+                  <option value="sculpture">Sculpture</option>
+                  <option value="photography">Photography</option>
+                  <option value="prop">Prop</option>
+                  <option value="live art">Live Art</option>
+                  <option value="drawing">Drawing</option>
+                  <option value="music">Music</option>
+                </select>
+              </div>
+            </div>
+      
+          <div class="full-width-centered">
+            <label for="dateInitial">
+              Rent start
+            </label>
+            <input type="date" class="full-width-centered" name="dateInitial" id="dateInitial">
+          </div>
+      
+          <div class="full-width-centered">
+            <label for="dateFinal">
+              Rent end
+            </label>
+            <input type="date" class="full-width-centered" name="dateFinal" id="dateFinal">
+          </div>
+      
+        </div>
+        <!-- <div class="main-search-btn-container">
+            <button class="btn btn-search" type="submit" onclick="closeForm()"><img src="/images/lupa.png" alt=""></button>
+        </div> -->
+      </form>
+      
+      </div>
