@@ -8,10 +8,10 @@
       <span class="title">
         <%= article.title%></span>
       <% if(article.userID._id != locals.currentUser._id){ %>
-      <form action="/article/favorites" method="post" id="favoriteForm">
-        <input type="hidden" name="articleId" value="<%= article._id %>">
-        <button class="btn fav" type="submit"></button>
-      </form>
+          <form action="/article/favorites" method="post" id="favoriteForm">
+            <input type="hidden" name="articleId" value="<%= article._id %>">
+            <button class="btn fav" type="submit"></button>
+          </form>
       <%}%>
     </div>
 

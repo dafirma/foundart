@@ -57,11 +57,12 @@ router.post('/new', uploadCloud.single('photo'), (req, res, next) => {
 
 
 router.get('/favorites', (req, res, next) => {
+  // eslint-disable-next-line no-underscore-dangle
   const userID = req.session.currentUser._id;
   User.findById(userID)
     .populate('favorite.articleID')
-    .then((users) => {
-      res.render('article/favorites', { users });
+    .then((user) => {
+      res.render('article/favorites', { user });
     })
     .catch((error) => {
       next(error);
@@ -70,27 +71,30 @@ router.get('/favorites', (req, res, next) => {
 
 
 router.post('/favorites', (req, res, next) => {
+  // eslint-disable-next-line no-underscore-dangle
   const userID = req.session.currentUser._id;
   const { articleId } = req.body;
   const favorite = { articleID: articleId };
+  // try {
+  //   const fav = await User.find(
+  //     { favorites: { $elemMatch: { favorite } } },
+  //   );
+  //   console.log(fav);
+  // } catch (error) {
+  //   next(error)
+  // }
+
   User.findOneAndUpdate({ _id: userID }, {
     $push: { favorite },
   })
     .then((user) => {
-      res.redirect('/main');
+      // eslint-disable-next-line no-underscore-dangle
+      res.redirect('favorites');
     })
     .catch((error) => {
       next(error);
     });
 });
-/*
-router.get('/favtest', (req, res, next) => {
-  const userID = req.session.currentUser._id;
-  console.log(userID);
-  res.render('/main');
-});
-*/
-
 
 /* GET list article */
 router.get('/list', (req, res, next) => {
@@ -104,23 +108,6 @@ router.get('/list', (req, res, next) => {
       next(error);
     });
 });
-
-
-/*
-router.get('/list/:page', (req, res, next) => {
-  const userID = req.session.currentUser._id;
-  const { page } = req.params;
-  const perPage = 3;
-  console.log(page);
-  Article.find({ userID }).skip((perPage * page) - perPage).limit(perPage)
-    .then((articles) => {
-      res.render('article/list', { articles, successMessage: req.flash('success') });
-    })
-    .catch((error) => {
-      next(error);
-    });
-});
-*/
 
 // GET single article favorite
 router.get('/favorites/:id', (req, res, next) => {

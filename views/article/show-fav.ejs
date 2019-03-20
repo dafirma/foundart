@@ -1,41 +1,45 @@
-<div class="card-lg">
+<div class="card-lg article-detail">
     
-    <div class="info">
-      <h2><%= fav.title%></h2>
-      <img src="<%= fav.imgPath%>" alt="<% fav.originalName%>">
-      <span class="title">
-        <%= fav.title%></span> 
-      <span>Category:
-        <%= fav.category%></span>
-      <span>Type:
-        <%= fav.type%></span>
-      <span> Owner:
-        <%= fav.userID.username%></span>
-      <span>Description:
-        <%= fav.description%></span>
-      <span class="card-lg-right">€
-        <%- fav.price%>.00 <span>/ day</span> </span>
-    </div>
-    <% if(fav.userID._id != locals.currentUser._id){ %>
+  <div class="info">
     <div>
-      <form action="/article/request" method="post" id="requestForm">
-        <input type="hidden" name="articleId" value="<%= fav._id %>">
-        <input type="hidden" name="articlePrice" value="<%= fav.price %>">
-        <input type="hidden" name="dsOrigin" value="<%= fav.rent.dateStart %>">
-        <input type="hidden" name="deOrigin" value="<%= fav.rent.dateEnd %>">
-        <label for="dateStart"></label>
-        <input type="text" name="dateStart" id="dateStart" value="aa">
-        <label for="dateEnd"></label>
-        <!-- <input type="hidden" name="dateEnd" id="dateEnd"> -->
-        <button class="btn" type="submit">Request</button>
-      </form>
-      <form action="" method="post" id="favoriteForm">
-        <input type="hidden" name="articleId" value="<%= fav._id %>">
-        <button class="btn" type="submit"> Delete Favorite</button>
+      <img src="<%= fav.articleID.imgPath%>" alt="<% fav.articleID.originalName%>">
+    </div>
+    <div class="article-title-container">
+      <span class="title">
+        <%= fav.articleID.title%></span>
+      <form action="/article/favorites" method="post" id="favoriteForm">
+        <input type="hidden" name="articleId" value="<%= article._id %>">
+        <button class="btn fav" type="submit"></button>
       </form>
     </div>
-    <% } else{ %>
-    <a class="btn" href="/article/<%= fav._id%>/update">Edit</a>
-  
-    <% } %>
-    <br>
+
+    <span>Category:
+      <%= article.category%></span>
+    <span>Type:
+      <%= article.type%></span>
+    <span> Owner:
+      <%= article.userID.username%></span>
+    <span>Description:
+      <%= article.description%></span>
+    <span class="card-lg-right">€
+      <%- article.price%>.00 <span>/ day</span> </span>
+  </div>
+  <div>
+    <form class="form" action="/article/request" method="post" id="requestForm">
+      <input type="hidden" name="articleId" value="<%= article._id %>">
+      <input type="hidden" name="articlePrice" value="<%= article.price %>">
+      <input type="hidden" name="dsOrigin" value="<%= article.rent.dateStart %>">
+      <input type="hidden" name="deOrigin" value="<%= article.rent.dateEnd %>">
+      <span>Insert the rent dates</span></br>
+      <div class="full-width-centered">
+        <label for="dateStart">Date start</label>
+        <input class="full-width-centered" type="date" name="dateStart" id="dateStart">
+      </div>
+      <div class="full-width-centered">
+        <label for="dateEnd">Date end</label>
+        <input class="full-width-centered" type="date" name="dateEnd" id="dateEnd">
+      </div>
+      <button class="btn" type="submit">Request</button>
+    </form>
+  </div>
+  <br>

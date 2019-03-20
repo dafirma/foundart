@@ -1,10 +1,10 @@
 <br>
 <h2> Favorites</h2>
 <div>
-        <%if(users.favorite.length > 0){%>
-            <% users.favorite.forEach((fav) => {%>
+        <%if(user.favorite.length > 0){%>
+            <% user.favorite.forEach((fav) => {%>
     <div class = "card-lg">
-        <a href="/article/favorites/<%= fav.articleID._id%>">
+        <a href="/article/<%= fav.articleID._id%>">
             <div>
                 <img src="<%= fav.articleID.imgPath%>" alt="<% fav.articleID.originalName%>">
             </div>
