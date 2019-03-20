@@ -76,7 +76,7 @@ h2 {
 .main-container {
   padding: 0;
   margin: 0;
-  padding: 0 3%; }
+  padding: 10% 3%; }
 
 .menu {
   position: relative; }
@@ -101,8 +101,13 @@ h2 {
   height: 7%;
   background-color: #8a15e9;
   border-bottom: #fafafa solid 2px; }
+  .menu-bar .menu-bar-right {
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center; }
   .menu-bar img {
-    height: 50%;
+    height: 70%;
     width: 30px;
     margin: 0.2rem; }
 
@@ -138,7 +143,8 @@ h2 {
   float: left;
   display: flex;
   flex-direction: column;
-  padding-top: 10%; }
+  padding-top: 10%;
+  font-size: 1.5rem; }
   .menu-content a {
     text-decoration: none;
     color: white;
@@ -226,11 +232,28 @@ h2 {
 
 /* CARD NOTIFICATION*/
 .card-notification {
-  padding: 0.5rem;
+  padding: 1.5rem;
   display: flex;
-  justify-content: space-around; }
+  width: 100%;
+  background-color: #fafafa;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 10px; }
   .card-notification .btn {
-    border-radius: 10px; }
+    border-radius: 10px;
+    width: 50%;
+    height: 50; }
+  .card-notification a {
+    height: 10%;
+    width: 10%; }
+  .card-notification div.container-list-btn {
+    display: flex;
+    justify-content: space-between; }
+
+.card-notification-text p {
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem; }
 
 .form {
   width: 100%;
@@ -240,7 +263,7 @@ h2 {
   align-content: center;
   justify-content: center;
   border-radius: 10px;
-  padding: 1rem 0.5rem; }
+  padding: 1rem 0.5rem 18% 0.5rem; }
   .form input, .form select {
     font-size: 1rem; }
   .form label {
@@ -298,6 +321,30 @@ h2 {
   background-color: #acff8b;
   border-color: #9aff72; }
 
+.search-form {
+  background-color: #8a15e9;
+  position: absolute;
+  top: 6%;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  width: 100%;
+  height: 96vh;
+  margin: auto;
+  border-radius: 0; }
+  .search-form .aux {
+    margin-bottom: 0.8rem; }
+  .search-form .form {
+    position: absolute;
+    top: 10%;
+    z-index: 21;
+    border-radius: 0;
+    font-size: 1.5rem; }
+
+.main-search-btn-container {
+  display: flex;
+  justify-content: center; }
+
 .btn {
   color: white;
   background-color: #8a15e9;
@@ -312,6 +359,19 @@ h2 {
 
 .btn-articles-fav img {
   width: 50%; }
+
+.container-btn-search {
+  display: flex;
+  justify-content: center; }
+
+.btn-search {
+  margin-top: 1.5rem;
+  border-radius: 50%;
+  width: 16%;
+  height: 6%; }
+  .btn-search img {
+    height: 95%;
+    width: 95%; }
 
 .container-logo {
   width: 80%;
@@ -340,24 +400,22 @@ h2 {
       flex-wrap: wrap;
       justify-content: space-around; } }
 
-.main-search {
-  margin: auto; }
-  .main-search .aux {
-    margin-bottom: 0.8rem; }
-  @media (min-width: 992px) {
-    .main-search {
-      width: 40%; }
-      .main-search .form-aux {
-        display: flex;
-        flex-direction: column; }
-      .main-search .aux {
-        flex: 1;
-        display: flex;
-        flex-direction: row; } }
-
-.main-search-btn-container {
+.main-rent-selector {
   display: flex;
-  justify-content: center; }
+  justify-content: flex-end;
+  position: fixed;
+  bottom: 5%;
+  left: 5%;
+  right: 5%; }
+  .main-rent-selector a {
+    width: 30%;
+    height: 30%; }
+  .main-rent-selector img {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    padding: 2%;
+    background-color: #8a15e9; }
 
 .container-search {
   display: flex;
