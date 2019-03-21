@@ -73,82 +73,193 @@ router.get('/search', async (req, res, next) => {
   } else if (dateInitial > dateFinal) {
     req.flash('error', 'No valid date');
     res.redirect('/main');
-  };
+  }
   try {
-    const users = await User.find(
-      {loc:
-        {$geoWithin:
-          { $centerSphere: [[long, lat], distance / 6378.1] },
+    const users = await User.find({
+      loc: {
+        $geoWithin: {
+          $centerSphere: [
+            [long, lat], distance / 6378.1,
+          ],
         },
       },
-    );
-    
+    });
+
     users.forEach((user) => {
       usersId.push(user._id);
     });
-  } catch (error) {
-    next(error);
-  }
-  try {
-    let allarticles;
-    if (category === 'all' && type === 'all') {
-      allarticles = await Article.find({
-        $and: [
-          { userID: { $in: usersId } },
+    try {
+      let allarticles;
+      if (category === 'all' && type === 'all') {
+        allarticles = await Article.find({
+          $and: [{
+            userID: {
+              $in: usersId,
+            },
+          },
           {
-            $or: [
-              { rent: { $size: 0 } },
-              { rent: { $elemMatch: { dateStart: { $gt: de } } } },
-              { rent: { $elemMatch: { dateEnd: { $lt: ds } } } }
+            $or: [{
+              rent: {
+                $size: 0,
+              },
+            },
+            {
+              rent: {
+                $elemMatch: {
+                  dateStart: {
+                    $gt: de,
+                  },
+                },
+              },
+            },
+            {
+              rent: {
+                $elemMatch: {
+                  dateEnd: {
+                    $lt: ds,
+                  },
+                },
+              },
+            },
             ],
           },
-        ],
-      }).populate('userID');
-    } else if (category === 'all') {
-      allarticles = await Article.find({
-        $and: [
-          { userID: { $in: usersId } },
-          { type },
-          { rent: { $elemMatch: { dataStart: null, dataEnd: null } } },
-          { $or: [
-            { rent: { $size: 0 } },
-            { rent: { $elemMatch: { dateStart: { $gt: de } } } },
-            { rent: { $elemMatch: { dateEnd: { $lt: ds } } } }
-          ]},
-        ]},
-      ).populate('userID');
-    } else if (type === 'all') {
-      allarticles = await Article.find(
-        { $and: [
-          { userID: { $in: usersId } },
-          { category },
-          { $or: [
-            { rent: { $size: 0 } },
-            { rent: { $elemMatch: { dateStart: { $gt: de } } } },
-            { rent: { $elemMatch: { dateEnd: { $lt: ds } } } }
-          ]},
-        ]},
-      ).populate('userID');
-    } else {
-      allarticles = await Article.find(
-        { $and: [
-          { userID: { $in: usersId } },
-          { type },
-          { category },
-          { $or: [
-            { rent: { $size: 0 } },
-            { rent: { $elemMatch: { dateStart: { $gt: de } } } },
-            { rent: { $elemMatch: { dateEnd: { $lt: ds } } } }
-          ]},
-        ]},
-      ).populate('userID');
+          ],
+        }).populate('userID');
+      } else if (category === 'all') {
+        allarticles = await Article.find({
+          $and: [{
+            userID: {
+              $in: usersId,
+            },
+          },
+          {
+            type,
+          },
+          {
+            rent: {
+              $elemMatch: {
+                dataStart: null,
+                dataEnd: null,
+              },
+            },
+          },
+          {
+            $or: [{
+              rent: {
+                $size: 0,
+              },
+            },
+            {
+              rent: {
+                $elemMatch: {
+                  dateStart: {
+                    $gt: de,
+                  },
+                },
+              },
+            },
+            {
+              rent: {
+                $elemMatch: {
+                  dateEnd: {
+                    $lt: ds,
+                  },
+                },
+              },
+            },
+            ],
+          },
+          ],
+        }).populate('userID');
+      } else if (type === 'all') {
+        allarticles = await Article.find({
+          $and: [{
+            userID: {
+              $in: usersId,
+            },
+          },
+          {
+            category,
+          },
+          {
+            $or: [{
+              rent: {
+                $size: 0,
+              },
+            },
+            {
+              rent: {
+                $elemMatch: {
+                  dateStart: {
+                    $gt: de,
+                  },
+                },
+              },
+            },
+            {
+              rent: {
+                $elemMatch: {
+                  dateEnd: {
+                    $lt: ds,
+                  },
+                },
+              },
+            },
+            ],
+          },
+          ],
+        }).populate('userID');
+      } else {
+        allarticles = await Article.find({
+          $and: [{
+            userID: {
+              $in: usersId,
+            },
+          },
+          {
+            type,
+          },
+          {
+            category,
+          },
+          {
+            $or: [{
+              rent: {
+                $size: 0,
+              },
+            },
+            {
+              rent: {
+                $elemMatch: {
+                  dateStart: {
+                    $gt: de,
+                  },
+                },
+              },
+            },
+            {
+              rent: {
+                $elemMatch: {
+                  dateEnd: {
+                    $lt: ds,
+                  },
+                },
+              },
+            },
+            ],
+          },
+          ],
+        }).populate('userID');
+      }
+      res.render('main/search', {
+        allarticles,
+        currentUserId,
+        dateFinal,
+        dateInitial,
+      });
+    } catch (error) {
+      next(error);
     }
-    res.render('main/search', {
-      allarticles,
-      currentUserId,
-      dateFinal,
-      dateInitial,
-    });
   } catch (error) {
     next(error);
   }
