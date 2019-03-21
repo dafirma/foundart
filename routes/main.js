@@ -63,8 +63,6 @@ router.get('/search', async (req, res, next) => {
     lat,
     long,
   } = req.query;
-  const latitude = lat.parseInt();
-  const longitude = long.parseInt();
   const ds = moment(dateInitial).format();
   const de = moment(dateFinal).format();
 
@@ -80,7 +78,7 @@ router.get('/search', async (req, res, next) => {
       loc: {
         $geoWithin: {
           $centerSphere: [
-            [longitude, latitude], distance / 6378.1,
+            [long, lat], distance / 6378.1,
           ],
         },
       },
