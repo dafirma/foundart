@@ -70,8 +70,7 @@ router.get('/search', async (req, res, next) => {
   if (dateInitial === '' || dateFinal === '') {
     req.flash('error', 'Date empty');
     res.redirect('/main');
-  }
-  if (dateInitial > dateFinal) {
+  } else if (dateInitial > dateFinal) {
     req.flash('error', 'No valid date');
     res.redirect('/main');
   };
